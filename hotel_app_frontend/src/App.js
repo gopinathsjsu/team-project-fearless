@@ -1,26 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
+import Button from 'react-bootstrap/Button';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import CustomerSignUp from './components/Customer/CustomerSignUp';
+import CustomerLogin from './components/Customer/CustomerLogin';
+import CustomerPage from './components/Customer/CustomerPage';
+import CustomerHome from './components/Customer/CustomerHome';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/*<img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>*/}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Hotel Application
-        </a>
-        <h3>Work in Progress!!</h3>
-      </header>
-    </div>
-  );
-}
+  return (<React.Fragment>    
+    <Container fluid>
+    <Router> 
+      <Row>
+        <Col><div >
+        <Card bg={'Primary'.toLowerCase()}
+              border="light"
+              text={'Primary'.toLowerCase() === 'light' ? 'dark' : 'white'}
+              className="mb-2">
+              <Card.Body>
+              <Row>
+              <Col>
+              <h4>Hotel Booking Application</h4>
+               </Col>
+              <Col>
+               
+               
+              <Link to="/customerhome"> <Button  variant="light">Are you a Customer?</Button></Link>
+              <Link to="/adminhome"> <Button variant="light">Are you a Hotel ?</Button></Link>
+              <Link to="/"> <Button variant="light">Logout</Button></Link>
+              </Col>
+              </Row>
+            </Card.Body>
+        </Card>
+        </div></Col>
+      
+      </Row>
+                 <Switch>
+                    <Route path="/customerhome" component={CustomerHome}/>
+                    <Route path='/customerSignup' component={CustomerSignUp} />
+                    <Route path='/customerpage' component={CustomerPage} />
+                    <Route path='/customerlogin' component={CustomerLogin} />
+                    
 
+              </Switch>
+              </Router>
+      </Container>
+    </React.Fragment>
+    );
+  }
 export default App;
