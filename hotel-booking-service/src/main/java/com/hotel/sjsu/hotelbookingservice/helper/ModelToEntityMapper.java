@@ -2,32 +2,26 @@ package com.hotel.sjsu.hotelbookingservice.helper;
 
 import org.springframework.stereotype.Component;
 
-import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
-import com.hotel.sjsu.hotelbookingservice.model.Booking;
+import com.hotel.sjsu.hotelbookingservice.entity.SearchHotelEntity;
+import com.hotel.sjsu.hotelbookingservice.model.Hotel;
 
 @Component
 public class ModelToEntityMapper {
 
-	public BookingEntity map(Booking booking) {
+	public SearchHotelEntity map(Hotel hotel) {
 		
-		BookingEntity bookingEntity = new BookingEntity(
-				booking.getBookingId(), 
-				booking.getHotelId(), 
-				booking.getCustomerId(), 
-				booking.getRoomId(), 
-				booking.getAmenity(), 
-				booking.getBookingDateFrom(), 
-				booking.getBookingDateTo(), 
-				booking.getNoOfAdult(), 
-				booking.getNoOfChildren(), 
-				booking.getNoOfRooms(), 
-				booking.getBookingStatus(), 
-				booking.getAmount(), 
-				booking.getTotalAmount(), 
-				booking.getPaymentMethod(), 
-				booking.getRoomNumbers());
-		
-		return bookingEntity;
+		SearchHotelEntity searchHotelEntity = new SearchHotelEntity(
+				hotel.getHotelId(),
+				hotel.getHotelname(),
+				hotel.getHotel_location(),
+				hotel.getHotel_address(),
+				hotel.getHotelZipCode(),
+				hotel.getHotelContact(),
+				hotel.getHotelManagerName(),
+				hotel.getHotelEmail());
+
+
+		return searchHotelEntity;
 	}
 
 }
