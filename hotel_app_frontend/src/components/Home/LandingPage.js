@@ -1,28 +1,76 @@
+mport React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {FormControl, InputLabel, Select, MenuItem} from '@mui/material/'
 
-import React from 'react';
-import { Row, Col, Alert, Container } from 'react-bootstrap';
-import Grid from '@mui/material/Grid';
+
 import './LandingPage.css';
 
 function LandingPage() {
+    const navigate = useNavigate();
+    const [location, setLocation] = useState("");
+    const [checkIn, setCheckIn] = useState();
+    const [checkOut, setCheckOut] = useState();
+    
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate("/findhotels");
+    };
+
     return (
-        <div className='landingBody' style={{ backgroundSize: 'cover' }}>
-            <Grid container spacing={4}>
-                <Grid item xs={6}></Grid>
-                <Grid item xs={6}></Grid>
-            </Grid>
-            
-                <div class="cardlanding2 ">
-                    <div>
-                    <h1 style={{color:"black",fontSize:"30px", textAlign:"center", fontWeight:"bold" }}>HOTELS APPLICATION</h1>
-                    <h3 style={{color:"black",fontSize:"25px", textAlign:"center", fontWeight:"bold"}}>
-                        "Awesome vacations starts with best stays!!"
-                    </h3>
-                </div>
-                
-            </div>
+        <div>
+        <div className="searchfilter">
+        <form className="search_form">
+        <div className="searchDestination">
+           <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Where?</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={location}
+              label="Where?"
+              onChange={(e) => setLocation(e.target.value)}
+            >
+              <MenuItem value={setLocation}>London</MenuItem>
+              <MenuItem value={setLocation}>Perth</MenuItem>
+              <MenuItem value={setLocation}>India</MenuItem>
+            </Select>
+            </FormControl>
+          </div>
+          <div className="date_picker">
+            <label className="duration" htmlFor="checkIn">
+              Check In
+            </label>
+            <input
+                style={{ height: "50px" }}
+                onChange={(e) => setCheckIn(e.target.value)}
+                className="duration"
+                type="date"
+            ></input>
+          </div>
+          <div className="date_picker">
+            <label className="duration" htmlFor="checkOut">
+              Check Out
+            </label>
+            <input
+              style={{ height: "50px" }}
+              onChange={(e) => setCheckOut(e.target.value)}
+              className="duration"
+              type="date"
+            ></input>
+          </div>
+          <div className="searchHotel">
+            <button
+              style={{ height: "35px" }}
+              className="searchBtn"
+              onClick={handleSearch}
+            >
+              Search
+            </button>
+          </div>
+        </form>
         </div>
+    </div>
     );
-}
+};
 
 export default LandingPage;
