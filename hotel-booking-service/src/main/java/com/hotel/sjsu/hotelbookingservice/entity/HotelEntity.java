@@ -24,7 +24,6 @@ public class HotelEntity {
     @Column(name = "hotel_name")
     private String hotelname;
 
-
     @Column(name = "hotel_location")
     private String hotelLocation;
 
@@ -40,7 +39,10 @@ public class HotelEntity {
     @Column(name = "hotel_manager_name")
     private String hotelManagerName;
 
+
 //    @Column(name = "hotelEmail")
 //    private String hotelEmail;
+    
+    
 
 }
