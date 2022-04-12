@@ -1,17 +1,15 @@
-.landingBody {
-    height: 100vh !important;
-    overflow-x: hidden;
+.searchfilter {
+    position: absolute;
+    top: 35px;
+    left: 25%;
+    width: 48rem;
+    height : 437px;
+    display:grid;
+    justify-content:space-between;
 }
-  
-.cardlanding2 {
-    margin-right: 100px;
-    margin-left: auto;
-    width: 570px;
-    box-shadow: 0 15px 25px rgba(129, 124, 124, 0.8);
-    height: 190px;
-    outline-style: solid;
-    outline-color: rgb(255, 255, 255);
-    border-radius: 10px;    
-    backdrop-filter: blur(10px);
-    padding: 10px;
+
+.duration {
+    position:relative;
+    display: flex;
+    justify-content: space-evenly;
 }
