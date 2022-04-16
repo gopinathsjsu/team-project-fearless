@@ -31,8 +31,8 @@ public class BookingEntity {
 //	private	Integer roomSuite;
 
 	@Column(name="room")
-	private	String room;
-
+	private	String room;	
+	
 	@Column(name="amenity")
 	private	String amenity;
 
@@ -41,6 +41,7 @@ public class BookingEntity {
 
 	@Column(name="booking_date_to")
 	private	Calendar bookingDateTo;
+
 
 	@Column(name="no_of_guest")
 	private	Integer noOfGuest;
@@ -120,7 +121,7 @@ public class BookingEntity {
 //	public void setRoomDeluxe(Integer roomDeluxe) {
 //		this.roomDeluxe = roomDeluxe;
 //	}
-//
+
 //	public Integer getRoomSuite() {
 //		return roomSuite;
 //	}
@@ -136,7 +137,7 @@ public class BookingEntity {
 	public void setRoom(String room) {
 		this.room = room;
 	}
-
+	
 	public String getAmenity() {
 		return amenity;
 	}

@@ -9,38 +9,38 @@ import com.hotel.sjsu.hotelbookingservice.model.Customer;
 
 @Component
 public class EntityToModelMapper {
-	
-	public Booking mapBooking(BookingEntity bookingEntity) {	
+
+	public Booking mapBooking(BookingEntity bookingEntity) {
 		Booking booking = new Booking(
-				bookingEntity.getBookingId(), 
-				bookingEntity.getHotelId(), 
-				bookingEntity.getCustomerId(), 
+				bookingEntity.getBookingId(),
+				bookingEntity.getHotelId(),
+				bookingEntity.getCustomerId(),
 //				bookingEntity.getRoomDeluxe(),
 //				bookingEntity.getRoomSuite(),
-				bookingEntity.getRoom(), 
-				bookingEntity.getAmenity(), 
-				bookingEntity.getBookingDateFrom(), 
-				bookingEntity.getBookingDateTo(), 
-				bookingEntity.getNoOfGuest(), 
-				bookingEntity.getBookingStatus(), 
-				bookingEntity.getAmount(), 
-				bookingEntity.getTotalAmount(), 
-				bookingEntity.getPaymentMethod(), 
+				bookingEntity.getRoom(),
+				bookingEntity.getAmenity(),
+				bookingEntity.getBookingDateFrom(),
+				bookingEntity.getBookingDateTo(),
+				bookingEntity.getNoOfGuest(),
+				bookingEntity.getBookingStatus(),
+				bookingEntity.getAmount(),
+				bookingEntity.getTotalAmount(),
+				bookingEntity.getPaymentMethod(),
 				bookingEntity.getRoomNumbers());
-		
+
 		return booking;
 	}
-	
+
 	public Customer mapCustomer(CustomerEntity customerEntity) {
 
 		Customer customer = new Customer(
-				customerEntity.getCustomerId(), 
-				customerEntity.getCustFirstName(), 
-				customerEntity.getCustLastName(), 
-				customerEntity.getCustPassword(), 
-				customerEntity.getCustEmail(), 
-				customerEntity.getCustAddress(), 
-				customerEntity.getLoyaltyPoints(), 
+				customerEntity.getCustomerId(),
+				customerEntity.getCustFirstName(),
+				customerEntity.getCustLastName(),
+				customerEntity.getCustPassword(),
+				customerEntity.getCustEmail(),
+				customerEntity.getCustAddress(),
+				customerEntity.getLoyaltyPoints(),
 				customerEntity.getContactNumber());
 		return customer;
 	}
