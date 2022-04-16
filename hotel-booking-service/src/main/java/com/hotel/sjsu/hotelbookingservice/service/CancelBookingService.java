@@ -24,7 +24,7 @@ public class CancelBookingService {
 
 //    public String updateBooking(Long bookingId, Booking booking) {
 //
-//        booking.setBookingStatus("Cancel");
+//        booking.setBookingStatus("Cancelled");
 //        BookingEntity bookingEntity = modelToEntityMapper.map(booking);
 ////        System.out.println(bookingEntity);
 //        cancelRepository.save(bookingEntity);

@@ -20,9 +20,14 @@ public class ManageHotelService {
     @Autowired
     EntityToModelMapper entityToModelMapper;
 
-    public List<HotelEntity> getAllHotels () {return (List<HotelEntity>) hotelRepository.findAll();}
+    public List<HotelEntity> getAllHotels () {
+
+        return (List<HotelEntity>) hotelRepository.findAll();
+
+    }
 
     public List<Hotel> getHotel(String hotel_location) {
+
         List<HotelEntity> hotelEntityList = new ArrayList<HotelEntity>();
         hotelEntityList = hotelRepository.findByhotelLocation(hotel_location);
 
@@ -43,8 +48,6 @@ public class ManageHotelService {
     public List<Integer> gethotelIds(String hotel_location) {
         return hotelRepository.gethotelIdByhotelLocation(hotel_location);
     }
-
-
 
 
     public List<String> getbookingIds(Long hotel_id , String fromDate, String toDate) {
