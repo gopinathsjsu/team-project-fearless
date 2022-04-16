@@ -1,42 +1,46 @@
 package com.hotel.sjsu.hotelbookingservice.model;
 
+import java.util.Calendar;
+
 public class Booking {
-	
-	private	Long bookingId;			
-	private	Long hotelId;		
-	private	Long customerId;		
-	private	String roomId;		
-	private	String amenity;		
-	private	String bookingDateFrom;	
-	private	String bookingDateTo; 		
-	private	Integer noOfAdult;	
-	private	Integer noOfChildren;	
-	private	Integer noOfRooms;	
-	private	String bookingStatus;	
-	private	Double amount;	
-	private	Double totalAmount;	
-	private	String paymentMethod;	
+
+	private	Long bookingId;
+	private	Long hotelId;
+	private	Long customerId;
+	//	private	Integer roomDeluxe;
+//	private	Integer roomSuite;
+	private String room;
+	private	String amenity;
+	private	Calendar bookingDateFrom;
+	private	Calendar bookingDateTo;
+	private	Integer noOfGuest;
+	private	String bookingStatus;
+	private	Double amount;
+	private	Double totalAmount;
+	private	String paymentMethod;
 	private	String roomNumbers;
-	
+
 	public Booking() {
 		super();
 	}
-	
 
-	public Booking(Long bookingId, Long hotelId, Long customerId, String roomId, String amenity, String bookingDateFrom,
-			String bookingDateTo, Integer noOfAdult, Integer noOfChildren, Integer noOfRooms, String bookingStatus,
-			Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
+
+	public Booking(Long bookingId, Long hotelId, Long customerId, String room,
+				   //Integer roomDeluxe,Integer roomSuite,
+				   String amenity, Calendar bookingDateFrom,
+				   Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
+				   Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
 		super();
 		this.bookingId = bookingId;
 		this.hotelId = hotelId;
 		this.customerId = customerId;
-		this.roomId = roomId;
+//		this.roomDeluxe = roomDeluxe;
+//		this.roomSuite = roomSuite;
+		this.room = room;
 		this.amenity = amenity;
 		this.bookingDateFrom = bookingDateFrom;
 		this.bookingDateTo = bookingDateTo;
-		this.noOfAdult = noOfAdult;
-		this.noOfChildren = noOfChildren;
-		this.noOfRooms = noOfRooms;
+		this.noOfGuest = noOfGuest;
 		this.bookingStatus = bookingStatus;
 		this.amount = amount;
 		this.totalAmount = totalAmount;
@@ -68,12 +72,28 @@ public class Booking {
 		this.customerId = customerId;
 	}
 
-	public String getRoomId() {
-		return roomId;
+//	public Integer getRoomDeluxe() {
+//		return roomDeluxe;
+//	}
+//
+//	public void setRoomDeluxe(Integer roomDeluxe) {
+//		this.roomDeluxe = roomDeluxe;
+//	}
+//
+//	public Integer getRoomSuite() {
+//		return roomSuite;
+//	}
+//
+//	public void setRoomSuite(Integer roomSuite) {
+//		this.roomSuite = roomSuite;
+//	}
+
+	public String getRoom() {
+		return room;
 	}
 
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
+	public void setRoom(String room) {
+		this.room = room;
 	}
 
 	public String getAmenity() {
@@ -84,44 +104,28 @@ public class Booking {
 		this.amenity = amenity;
 	}
 
-	public String getBookingDateFrom() {
+	public Calendar getBookingDateFrom() {
 		return bookingDateFrom;
 	}
 
-	public void setBookingDateFrom(String bookingDateFrom) {
+	public void setBookingDateFrom(Calendar bookingDateFrom) {
 		this.bookingDateFrom = bookingDateFrom;
 	}
 
-	public String getBookingDateTo() {
+	public Calendar getBookingDateTo() {
 		return bookingDateTo;
 	}
 
-	public void setBookingDateTo(String bookingDateTo) {
+	public void setBookingDateTo(Calendar bookingDateTo) {
 		this.bookingDateTo = bookingDateTo;
 	}
 
-	public Integer getNoOfAdult() {
-		return noOfAdult;
+	public Integer getNoOfGuest() {
+		return noOfGuest;
 	}
 
-	public void setNoOfAdult(Integer noOfAdult) {
-		this.noOfAdult = noOfAdult;
-	}
-
-	public Integer getNoOfChildren() {
-		return noOfChildren;
-	}
-
-	public void setNoOfChildren(Integer noOfChildren) {
-		this.noOfChildren = noOfChildren;
-	}
-
-	public Integer getNoOfRooms() {
-		return noOfRooms;
-	}
-
-	public void setNoOfRooms(Integer noOfRooms) {
-		this.noOfRooms = noOfRooms;
+	public void setNoOfGuest(Integer noOfGuest) {
+		this.noOfGuest = noOfGuest;
 	}
 
 	public String getBookingStatus() {
@@ -163,5 +167,5 @@ public class Booking {
 	public void setRoomNumbers(String roomNumbers) {
 		this.roomNumbers = roomNumbers;
 	}
-	
+
 }

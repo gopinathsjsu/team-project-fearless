@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 //@NoArgsConstructor
-@Entity
+@Entity(name = "hotel")
 @Table(name = "hotel")
 @Component
 public class HotelEntity {
@@ -19,11 +19,10 @@ public class HotelEntity {
     @Id
     @Column(name = "hotel_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer hotelId;
+    private Long hotelId;
 
     @Column(name = "hotel_name")
     private String hotelname;
-
 
     @Column(name = "hotel_location")
     private String hotelLocation;
@@ -40,7 +39,10 @@ public class HotelEntity {
     @Column(name = "hotel_manager_name")
     private String hotelManagerName;
 
+
 //    @Column(name = "hotelEmail")
 //    private String hotelEmail;
+    
+    
 
 }

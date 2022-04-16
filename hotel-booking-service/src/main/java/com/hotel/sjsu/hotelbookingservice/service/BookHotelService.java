@@ -35,7 +35,7 @@ public class BookHotelService {
 	public List<String> bookinghotel(Booking booking) throws ParseException {
 		
 		if(validateBooking(booking)) {
-			BookingEntity bookingEntity = modelToEntityMapper.map(booking);
+			BookingEntity bookingEntity = modelToEntityMapper.mapBooking(booking);
 			bookHotelRepository.save(bookingEntity);
 			List<String> successMsg = new ArrayList<String>();
 			successMsg.add("Successfully Booked!!");
@@ -54,8 +54,18 @@ public class BookHotelService {
 			result = false;
 		}
 		
-		if(booking.getRoomId()==null || booking.getRoomId().equals("") ) {
-			message.add("Please select the type of room.");
+//		if(booking.getRoomDeluxe()==null || booking.getRoomDeluxe().equals("0") ) {
+//			message.add("Please select the type of room.");
+//			result = false;
+//		}
+//		
+//		if(booking.getRoomSuite()==null || booking.getRoomSuite().equals("0") ) {
+//			message.add("Please select the type of room.");
+//			result = false;
+//		}
+		
+		if(booking.getRoom()==null || booking.getRoom().equals("") ) {
+			message.add("Please select room type.");
 			result = false;
 		}
 		
@@ -74,19 +84,18 @@ public class BookHotelService {
 			result = false;
 		}
 		
-		if(booking.getNoOfAdult()==null || booking.getNoOfAdult()==0 ) {
+		if(booking.getNoOfGuest()==null || booking.getNoOfGuest()==0 ) {
 			message.add("Please select the number of people staying.");
 			result = false;
 		}
 		
-		if(booking.getBookingDateFrom()!=null && !booking.getBookingDateFrom().isEmpty()
-				&& booking.getBookingDateTo()!=null && !!booking.getBookingDateTo().isEmpty()) {
+		if(booking.getBookingDateFrom()!=null && booking.getBookingDateTo()!=null) {
 			
-			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-		    Date fromDate = sdformat.parse(booking.getBookingDateFrom());
-		    Date toDate = sdformat.parse(booking.getBookingDateTo());
+//			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+//		    Date fromDate = sdformat.parse();
+//		    Date toDate = sdformat.parse();
 		    
-		    if(fromDate.compareTo(toDate) > 0) {
+		    if(booking.getBookingDateFrom().compareTo(booking.getBookingDateTo()) > 0) {
 		    	message.add("Please select a check-out date after check-in date.");
 		    }
 		}
@@ -101,7 +110,7 @@ public class BookHotelService {
 		List<Booking> bookingList = new ArrayList<Booking>();
 				
 		for(BookingEntity bookingEntity : bookingEntList){
-			bookingList.add(entityToModelMapper.map(bookingEntity));
+			bookingList.add(entityToModelMapper.mapBooking(bookingEntity));
 		}
 		
 		return bookingList;
