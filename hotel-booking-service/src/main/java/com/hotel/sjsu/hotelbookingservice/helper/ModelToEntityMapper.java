@@ -27,7 +27,9 @@ public class ModelToEntityMapper {
 				booking.getAmount(), 
 				booking.getTotalAmount(), 
 				booking.getPaymentMethod(), 
-				booking.getRoomNumbers());
+				booking.getRoomNumbers(),
+				booking.getLoyaltyPointsUsed()
+		);
 		
 		return bookingEntity;
 	}

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity(name="booking")
 @Table(name = "booking")
@@ -61,6 +62,9 @@ public class BookingEntity {
 	@Column(name="room_numbers")
 	private	String roomNumbers;
 
+	@Column(name="loyalty_points_used")
+	private Integer loyaltyPointsUsed;
+
 	public BookingEntity() {
 		super();
 	}
@@ -70,7 +74,7 @@ public class BookingEntity {
 						 //Integer roomDeluxe,Integer roomSuite
 			,String amenity, Calendar bookingDateFrom,
 						 Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
-						 Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
+						 Double amount, Double totalAmount, String paymentMethod, String roomNumbers, Integer loyaltyPointsUsed) {
 
 		super();
 		this.bookingId = bookingId;
@@ -88,6 +92,7 @@ public class BookingEntity {
 		this.totalAmount = totalAmount;
 		this.paymentMethod = paymentMethod;
 		this.roomNumbers = roomNumbers;
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 
 	public Long getBookingId() {
@@ -208,5 +213,14 @@ public class BookingEntity {
 
 	public void setRoomNumbers(String roomNumbers) {
 		this.roomNumbers = roomNumbers;
+	}
+
+
+	public Integer getLoyaltyPointsUsed() {
+		return loyaltyPointsUsed;
+	}
+
+	public void setLoyaltyPointsUsed(Integer loyaltyPointsUsed) {
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 }

@@ -1,5 +1,7 @@
 package com.hotel.sjsu.hotelbookingservice.model;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 public class Customer {
 
 	private Long customerId;

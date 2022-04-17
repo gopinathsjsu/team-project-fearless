@@ -19,6 +19,7 @@ public class Booking {
 	private	Double totalAmount;
 	private	String paymentMethod;
 	private	String roomNumbers;
+	private  Integer loyaltyPointsUsed;
 
 	public Booking() {
 		super();
@@ -29,7 +30,7 @@ public class Booking {
 				   //Integer roomDeluxe,Integer roomSuite,
 				   String amenity, Calendar bookingDateFrom,
 				   Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
-				   Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
+				   Double amount, Double totalAmount, String paymentMethod, String roomNumbers, Integer loyaltyPointsUsed) {
 		super();
 		this.bookingId = bookingId;
 		this.hotelId = hotelId;
@@ -46,6 +47,7 @@ public class Booking {
 		this.totalAmount = totalAmount;
 		this.paymentMethod = paymentMethod;
 		this.roomNumbers = roomNumbers;
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 
 	public Long getBookingId() {
@@ -166,6 +168,14 @@ public class Booking {
 
 	public void setRoomNumbers(String roomNumbers) {
 		this.roomNumbers = roomNumbers;
+	}
+
+	public Integer getLoyaltyPointsUsed() {
+		return loyaltyPointsUsed;
+	}
+
+	public void setLoyaltyPointsUsed(Integer loyaltyPointsUsed) {
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 
 }
