@@ -12,6 +12,14 @@ import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAccessor;
+import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 
 @Service
 @Transactional
@@ -39,12 +47,33 @@ public class CancelBookingService {
         BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
         Booking booking = entityToModelMapper.mapBooking(bookingEntity);
         Long customerId = booking.getCustomerId();
-        Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
-        cancelRepository.cancelBookingStatus(booking_id);
-        Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(customerId) + loyaltyPoints;
-        cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, customerId);
+        Calendar fromDate = booking.getBookingDateFrom();
 
-        return "Booking has been cancelled successfully";
+        SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
+        String bookingDate = bformat.format(fromDate.getTime());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate dateObj = LocalDate.now();
+        String date = dateObj.format(formatter);
+        System.out.println("fromdate= "+bookingDate );
+        System.out.println("today= "+ date);
+
+        LocalDate localDate1 = LocalDate.parse(bookingDate);
+        LocalDate localDate2 = LocalDate.parse(date);
+        long noOfDaysDifference = ChronoUnit.DAYS.between(localDate2, localDate1);
+        System.out.println("No of days diff is : " + noOfDaysDifference);
+        if (noOfDaysDifference > 2){
+
+            Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
+            cancelRepository.cancelBookingStatus(booking_id);
+            Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(customerId) + loyaltyPoints;
+            cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, customerId);
+            return "Booking has been cancelled successfully";
+        }
+        else {
+            return "Booking can not be cancelled within 48 hours of booking date";
+
+        }
+
 
     }
 
