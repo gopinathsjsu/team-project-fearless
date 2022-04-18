@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ac3dfca-5d84-458f-8871-3abbc64237c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/CancelBookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/CancelBookingService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
