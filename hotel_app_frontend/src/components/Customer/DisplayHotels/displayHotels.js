@@ -3,9 +3,9 @@ import { useHistory,Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
 import { FormButton } from 'semantic-ui-react';
+import BookRoom from '../Bookings/bookroom';
 
-
-
+import { hotels } from './hotels';
 
 export default function DisplayHotels() {
 
@@ -18,7 +18,8 @@ export default function DisplayHotels() {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then((response) => {
                 console.log(response.data);
-                setUsers(response.data);
+                setUsers(hotels);
+                console.log(hotels[0].hotel);
             })
             .catch((error)=>{
                 console.log(error);
@@ -26,7 +27,7 @@ export default function DisplayHotels() {
             })
     }, [])
 
-
+    
     // const alertClicked=(val)=>{
       
     //     setUrl(val);
@@ -39,44 +40,53 @@ export default function DisplayHotels() {
     // }
 
     return (
+        
         <React.Fragment>
+           
             <Card>
           <Card.Header  style={{textAlign:'center', color:'green', fontStyle:"italic"}}>Displaying Search Results</Card.Header>
           <Card.Body>
-        
+              
         <ListGroup >
            
             
-                {users.map(user=>{
+                {hotels.map(hotel=>{
                     return(
                         
-                        <ListGroup.Item key={user.id} >
+                        <ListGroup.Item key={hotel.hotel.hotelId} >
                     
                             <Row >
                             
-                            <Col>{user.name}
+                            <Col>{hotel.hotel.hotelname} 
                             </Col>
                             <Col>
-                            {user.email}
+                            {hotel.hotel.hotelLocation}
                             </Col>
+
                             <Col>
-                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={`hotel/${user.id}`}>Select</Link>
+                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`user/${hotel.hotel.hotelId}`, state:hotel  }} > Select</Link>
+                            
                             </Col>
                             </Row>
                             <Row>
                                 <Col>
                                 Description of the Hotel
-                                </Col>
-                                
+                                </Col> 
                             </Row>
                             
+                             
+                          
+                           
+                            
                             </ListGroup.Item>
+
+                                                   
                         );
                     
                 })}
         </ListGroup>
         </Card.Body>
-
+  
         </Card>
         </React.Fragment>
 )

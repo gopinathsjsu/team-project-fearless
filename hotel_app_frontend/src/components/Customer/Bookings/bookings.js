@@ -64,53 +64,161 @@
 //     )
 
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React,{useState,useEffect} from "react";
+import {useLocation} from 'react-router-dom';
+import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
+import AddAmenities from "./amenities";
 
 
 
+export default function BookingsPage(){
+    const [hotel, setHotel] = useState([]);
+    const [rooms, setRooms]= useState([]);
+    const [amenities, setAmenities]=useState([]);
 
-export default function BookingsPage(props){
-    const id=props.match.params.id
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [user, setUser] = useState([]);
+    const [bookingData, setBookingData]=useState( {
+        hotelId:"", SR:" ", DR:" "} );
+    const { state } = useLocation();
     
-    useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/users/" + id)
-            .then(res => res.json())
-            .then(
-                (data) => {
-                    console.log(data);
-                    setUser(data);
-                    setIsLoaded(true);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    }, [])
-    if (error) {
-        return <div>Error: {error.message}</div>;
+    const validateSRooms=(event)=>{
+        console.log(event.target.value);
+        if (event.target.value > rooms.SR ){
+           window.alert("No available single rooms");
+        }    
+
     }
-    if (!isLoaded) {
-        return <div>Loading...</div>;
-    }  
+    const validateDRooms=(event)=>{
+        console.log(event.target.value);
+        if (event.target.value > rooms.DR ){
+           window.alert("No available deluxe rooms");
+        }  
+    }
+
+    useEffect(() => {
+        console.log(state.amenities);
+        setHotel(state.hotel);
+        setRooms(state.availability);
+        setAmenities(state.amenities);
+        // fetch("https://jsonplaceholder.typicode.com/users/" + id)
+        //     .then(res => res.json())
+        //     .then(
+        //         (data) => {
+        //             console.log(data);
+        //             setUser(data);
+        //             setIsLoaded(true);
+        //             
+        //         },
+        //         (error) => {
+        //             setIsLoaded(true);
+        //             setError(error);
+        //         }
+        //     )
+    }, [])
+    // if (error) {
+    //     return <div>Error: {error.message}</div>;
+    // }
+    // if (!isLoaded) {
+    //     return <div>Loading...</div>;
+    // }  
     
-    if (user) {
+if (hotel) {
         return (
-            <div>
-                <h1>{user.name}</h1>
-                <div>
-                    Email: {user.email}
-                </div>
-                <div>
-                    Phone: {user.phone}
-                </div>
-                <div>
-                    Website: {user.website}
-                </div>
-            </div>
+            <React.Fragment>
+
+                
+  <Card border="success" >
+  <Card.Header  style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>{hotel.hotelname} , {hotel.hotelLocation} 
+           </Card.Header>
+    <Card.Body>
+      <Card.Title style={{ color:'green', fontStyle:"italic"}}>Hotel Details</Card.Title>
+      <Card.Text>
+            <ul>
+               <li >
+                Hotel Address : {hotel.hotel_address}  
+                </li>
+                <li>
+                Manager : {hotel.hotelManagerName}  
+                </li>
+                <li>
+                Contact Details : {hotel.hotelContact}
+                </li>
+            </ul>
+      </Card.Text>
+    </Card.Body>
+  <br />
+        <Card.Body>  
+        <ListGroup >
+        <Card.Title style={{ color:'green', fontStyle:"italic"}}>Available Rooms</Card.Title>    
+                        <ListGroup.Item>
+                            <Row >
+                            <Col> Single Room
+                            </Col>
+                            <Col>
+                            <label htmlFor="singleRoom" > Book Single Rooms </label> {" "}
+                            
+                            <input name="singleRoom"  type="number" min={0} max={rooms.SR} onChange={validateSRooms}/>
+                            </Col>
+                            </Row>
+                        </ListGroup.Item>   
+                        <ListGroup.Item>
+                            <Row >
+                            <Col> Deluxe Room
+                            </Col>
+                            <Col>
+                            <label htmlFor="deluxeRoom" > Book Deluxe Rooms </label> {" "}
+                            <input name="deluxeRoom" type="number" min={0} max={rooms.DR} onChange={validateDRooms}/>
+                            </Col>
+                            </Row> 
+                        </ListGroup.Item>     
+        </ListGroup>
+        </Card.Body>
+<br></br>
+        <Card.Body>  
+        <ListGroup >
+        <Card.Title style={{ color:'green', fontStyle:"italic"}}>Add Amenities</Card.Title> 
+            
+                        <ListGroup.Item>
+                        {amenities.map(amenity=>{
+                    return(
+                        <ListGroup.Item key={amenity.amenityId} >
+                            <Row >
+                            <Col>{amenity.amenityType} 
+                            </Col>
+                            <Col>
+                            {amenity.amenityCost}$
+                            </Col>
+                            <Col> <input type="checkbox" name={amenity.amenityType} />
+                            </Col>
+                            </Row>
+                            </ListGroup.Item>                     
+                        );
+                })}
+                        </ListGroup.Item>                  
+        </ListGroup>
+        </Card.Body>
+</Card>
+        </React.Fragment>
         );
     }
 
