@@ -107,7 +107,7 @@ create table room(
     room_id int not null,
     room_code varchar(10),
     room_type  varchar(500),
-    room_cost  varchar(500),
+    room_cost  int,
     primary key (room_id)
 );
 
