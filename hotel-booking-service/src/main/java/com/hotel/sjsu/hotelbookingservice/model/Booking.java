@@ -3,33 +3,34 @@ package com.hotel.sjsu.hotelbookingservice.model;
 import java.util.Calendar;
 
 public class Booking {
-	
-	private	Long bookingId;			
-	private	Long hotelId;		
-	private	Long customerId;		
-//	private	Integer roomDeluxe;
+
+	private	Long bookingId;
+	private	Long hotelId;
+	private	Long customerId;
+	//	private	Integer roomDeluxe;
 //	private	Integer roomSuite;
 	private String room;
-	private	String amenity;		
-	private	Calendar bookingDateFrom;	
-	private	Calendar bookingDateTo; 		
-	private	Integer noOfGuest;	
-	private	String bookingStatus;	
-	private	Double amount;	
-	private	Double totalAmount;	
-	private	String paymentMethod;	
+	private	String amenity;
+	private	Calendar bookingDateFrom;
+	private	Calendar bookingDateTo;
+	private	Integer noOfGuest;
+	private	String bookingStatus;
+	private	Double amount;
+	private	Double totalAmount;
+	private	String paymentMethod;
 	private	String roomNumbers;
-	
+	private  Integer loyaltyPointsUsed;
+
 	public Booking() {
 		super();
 	}
-	
+
 
 	public Booking(Long bookingId, Long hotelId, Long customerId, String room,
-			//Integer roomDeluxe,Integer roomSuite, 
-			String amenity, Calendar bookingDateFrom,
-			Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
-			Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
+				   //Integer roomDeluxe,Integer roomSuite,
+				   String amenity, Calendar bookingDateFrom,
+				   Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
+				   Double amount, Double totalAmount, String paymentMethod, String roomNumbers, Integer loyaltyPointsUsed) {
 		super();
 		this.bookingId = bookingId;
 		this.hotelId = hotelId;
@@ -46,6 +47,7 @@ public class Booking {
 		this.totalAmount = totalAmount;
 		this.paymentMethod = paymentMethod;
 		this.roomNumbers = roomNumbers;
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 
 	public Long getBookingId() {
@@ -79,7 +81,7 @@ public class Booking {
 //	public void setRoomDeluxe(Integer roomDeluxe) {
 //		this.roomDeluxe = roomDeluxe;
 //	}
-//	
+//
 //	public Integer getRoomSuite() {
 //		return roomSuite;
 //	}
@@ -91,11 +93,11 @@ public class Booking {
 	public String getRoom() {
 		return room;
 	}
-	
+
 	public void setRoom(String room) {
 		this.room = room;
 	}
-	
+
 	public String getAmenity() {
 		return amenity;
 	}
@@ -167,5 +169,13 @@ public class Booking {
 	public void setRoomNumbers(String roomNumbers) {
 		this.roomNumbers = roomNumbers;
 	}
-	
+
+	public Integer getLoyaltyPointsUsed() {
+		return loyaltyPointsUsed;
+	}
+
+	public void setLoyaltyPointsUsed(Integer loyaltyPointsUsed) {
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
+	}
+
 }

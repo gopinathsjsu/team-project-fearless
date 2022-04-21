@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Hotel {
 
-    private Integer hotelId;
+    private Long hotelId;
     private String hotelname;
     private String hotelLocation;
     private String hotel_address;

@@ -8,25 +8,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.criteria.CriteriaBuilder;
 
-@Entity
+@Entity(name="booking")
 @Table(name = "booking")
 public class BookingEntity {
 
 	@Id
 	@Column(name="booking_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private	Long bookingId;	
+	private	Long bookingId;
 
 	@Column(name="hotel_id")
-	private	Long hotelId;	
+	private	Long hotelId;
 
 	@Column(name="customer_id")
 	private	Long customerId;
 
 //	@Column(name="room_deluxe")
 //	private	Integer roomDeluxe;
-//	
+//
 //	@Column(name="room_suite")
 //	private	Integer roomSuite;
 
@@ -34,13 +35,14 @@ public class BookingEntity {
 	private	String room;	
 	
 	@Column(name="amenity")
-	private	String amenity;	
+	private	String amenity;
 
 	@Column(name="booking_date_from")
 	private	Calendar bookingDateFrom;
 
 	@Column(name="booking_date_to")
-	private	Calendar bookingDateTo; 	
+	private	Calendar bookingDateTo;
+
 
 	@Column(name="no_of_guest")
 	private	Integer noOfGuest;
@@ -49,7 +51,7 @@ public class BookingEntity {
 	private	String bookingStatus;
 
 	@Column(name="amount")
-	private	Double amount;	
+	private	Double amount;
 
 	@Column(name="total_amount")
 	private	Double totalAmount;
@@ -60,17 +62,20 @@ public class BookingEntity {
 	@Column(name="room_numbers")
 	private	String roomNumbers;
 
+	@Column(name="loyalty_points_used")
+	private Integer loyaltyPointsUsed;
+
 	public BookingEntity() {
 		super();
 	}
 
-	public BookingEntity(Long bookingId, Long hotelId, Long customerId, 
-			String room
-			//Integer roomDeluxe,Integer roomSuite
+	public BookingEntity(Long bookingId, Long hotelId, Long customerId,
+						 String room
+						 //Integer roomDeluxe,Integer roomSuite
 			,String amenity, Calendar bookingDateFrom,
-			Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
-			Double amount, Double totalAmount, String paymentMethod, String roomNumbers) {
-		
+						 Calendar bookingDateTo, Integer noOfGuest, String bookingStatus,
+						 Double amount, Double totalAmount, String paymentMethod, String roomNumbers, Integer loyaltyPointsUsed) {
+
 		super();
 		this.bookingId = bookingId;
 		this.hotelId = hotelId;
@@ -87,6 +92,7 @@ public class BookingEntity {
 		this.totalAmount = totalAmount;
 		this.paymentMethod = paymentMethod;
 		this.roomNumbers = roomNumbers;
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 
 	public Long getBookingId() {
@@ -120,7 +126,7 @@ public class BookingEntity {
 //	public void setRoomDeluxe(Integer roomDeluxe) {
 //		this.roomDeluxe = roomDeluxe;
 //	}
-//	
+
 //	public Integer getRoomSuite() {
 //		return roomSuite;
 //	}
@@ -207,5 +213,14 @@ public class BookingEntity {
 
 	public void setRoomNumbers(String roomNumbers) {
 		this.roomNumbers = roomNumbers;
+	}
+
+
+	public Integer getLoyaltyPointsUsed() {
+		return loyaltyPointsUsed;
+	}
+
+	public void setLoyaltyPointsUsed(Integer loyaltyPointsUsed) {
+		this.loyaltyPointsUsed = loyaltyPointsUsed;
 	}
 }
