@@ -2,13 +2,15 @@ import React,{useState} from "react";
 import { Button, Card, Form, Row , Col} from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-
+import {useLocation} from 'react-router-dom';
 
 
 export default function RegisterUser(){
     const [regUserdata, setRegUserdata]=useState({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""});
     const history=useHistory()
+    const location = useLocation()
 
     const handleChange=(event)=>{
         // console.log(event.target.value);
@@ -17,13 +19,30 @@ export default function RegisterUser(){
     const handleSubmit=(event)=>{
         event.preventDefault();
         console.log(regUserdata);
+
+        axios.post("/customer/register",{regUserdata}).then(res=>{
+            if (res.status==200){
+                console.log(res.data)
+
+                history.push("/login");
+                console.log("registration successful");
+            }
+            else{
+                console.log("registration unsuccessful");
+            }
+            
+        });
+     
        
         setRegUserdata({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""})
-        history.push("/login");
+        
+
+        // history.push("/login");
     }
 
 return(
   <React.Fragment>
+
       <Card style={{ width: '35rem', marginLeft:'25rem', marginTop:'2rem' }}>
           <Card.Header  style={{textAlign:'center', color:'green', fontStyle:"italic"}}>Create New Account</Card.Header>
           <Card.Body>

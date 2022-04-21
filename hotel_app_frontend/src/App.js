@@ -9,6 +9,9 @@ import RegisterUser from './components/Customer/Register/registerForm';
 import LoginForm from './components/Customer/Login/loginForm';
 import BookingsPage from './components/Customer/Bookings/bookings';
 import DisplayHotels from './components/Customer/DisplayHotels/displayHotels';
+import BookRoom from './components/Customer/Bookings/bookroom';
+// import Amenities from './components/Customer/Bookings/amenities';
+
 function App(){
   return(
     
@@ -19,14 +22,18 @@ function App(){
           <RegisterUser/>
           </Route>
         
-        {/* <Route path="/login">
+        <Route path="/login">
           <LoginForm/>
+          </Route>
+
+          {/* <Route path="/test">
+            <Amenities></Amenities>
           </Route> */}
 
           {/* <Route path="/bookings/{url}">
           <BookingsPage/>
           </Route> */}
-         <Route path = "/hotel/:id" component = {BookingsPage} />
+         <Route path = "/user/:id"  component = {BookingsPage} />
 
           
 
