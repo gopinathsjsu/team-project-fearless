@@ -88,7 +88,7 @@
 import React,{useState,useEffect} from "react";
 import {useLocation} from 'react-router-dom';
 import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
-import AddAmenities from "./amenities";
+
 
 
 
@@ -105,14 +105,20 @@ export default function BookingsPage(){
         console.log(event.target.value);
         if (event.target.value > rooms.SR ){
            window.alert("No available single rooms");
-        }    
-
+        } 
+        else{
+            setBookingData({...bookingData,[event.target.name]:event.target.value})
+        }   
     }
     const validateDRooms=(event)=>{
         console.log(event.target.value);
         if (event.target.value > rooms.DR ){
            window.alert("No available deluxe rooms");
         }  
+        else{
+            setBookingData({...bookingData,[event.target.name]:event.target.value})
+            console.log(bookingData);
+        }
     }
 
     useEffect(() => {
@@ -175,9 +181,9 @@ if (hotel) {
                             <Col> Single Room
                             </Col>
                             <Col>
-                            <label htmlFor="singleRoom" > Book Single Rooms </label> {" "}
+                            <label htmlFor="SR" > Book Single Rooms </label> {" "}
                             
-                            <input name="singleRoom"  type="number" min={0} max={rooms.SR} onChange={validateSRooms}/>
+                            <input name="SR"  type="number" min={0} max={rooms.SR} onChange={validateSRooms}/>
                             </Col>
                             </Row>
                         </ListGroup.Item>   
@@ -186,8 +192,8 @@ if (hotel) {
                             <Col> Deluxe Room
                             </Col>
                             <Col>
-                            <label htmlFor="deluxeRoom" > Book Deluxe Rooms </label> {" "}
-                            <input name="deluxeRoom" type="number" min={0} max={rooms.DR} onChange={validateDRooms}/>
+                            <label htmlFor="DR" > Book Deluxe Rooms </label> {" "}
+                            <input name="DR" type="number" min={0} max={rooms.DR} onChange={validateDRooms}/>
                             </Col>
                             </Row> 
                         </ListGroup.Item>     
@@ -208,9 +214,10 @@ if (hotel) {
                             <Col>
                             {amenity.amenityCost}$
                             </Col>
-                            <Col> <input type="checkbox" name={amenity.amenityType} />
+                            <Col> <input type="checkbox" name={amenity.amenityType}  />
                             </Col>
                             </Row>
+                            
                             </ListGroup.Item>                     
                         );
                 })}

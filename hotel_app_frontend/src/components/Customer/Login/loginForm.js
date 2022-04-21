@@ -26,7 +26,7 @@ export default function LoginForm(){
         console.log(user);
         const user={email,password};
         console.log(user);
-        axios.post("/checkLogin",{user}).then(res=>{
+        axios.post("/customer/login",{user}).then(res=>{
             if (res.status==200){
                 //set state of user
                 setUser(res.data)
