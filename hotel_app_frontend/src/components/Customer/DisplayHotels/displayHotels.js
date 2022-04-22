@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
 import { FormButton } from 'semantic-ui-react';
 import BookRoom from '../Bookings/bookroom';
-
 import { hotels } from './hotels';
 
 export default function DisplayHotels() {
@@ -13,7 +12,7 @@ export default function DisplayHotels() {
     const [users, setUsers] = useState([]);
     // const [url,setUrl]=useState("");
 
-    const history=useHistory();
+    const navigate=useNavigate();
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then((response) => {
@@ -73,10 +72,6 @@ export default function DisplayHotels() {
                                 Description of the Hotel
                                 </Col> 
                             </Row>
-                            
-                             
-                          
-                           
                             
                             </ListGroup.Item>
 

@@ -1,0 +1,25 @@
+.searchfilter {
+    position:relative;
+    top: 35px;
+    left: 25%;
+    width: 48em;
+    height : 437px;
+    display:flex;
+    justify-content:space-around;
+}
+
+.button {
+    height: 40px;
+}
+/*
+.duration {
+    position:relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.searchDestination {
+    position:relative;
+}
+*/
+

@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import { Button, Card, Form, Row , Col} from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ import {useLocation} from 'react-router-dom';
 
 export default function RegisterUser(){
     const [regUserdata, setRegUserdata]=useState({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""});
-    const history=useHistory()
+    const navigate=useNavigate()
     const location = useLocation()
 
     const handleChange=(event)=>{
@@ -24,7 +24,7 @@ export default function RegisterUser(){
             if (res.status==200){
                 console.log(res.data)
 
-                history.push("/login");
+                navigate("/login");
                 console.log("registration successful");
             }
             else{

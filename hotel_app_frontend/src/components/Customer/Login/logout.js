@@ -1,8 +1,9 @@
-import {React, useState} from 'react';
-import { Button } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button } from "react-bootstrap"
 
-export default function logout({setUser}){
-    // const [user,setUser]=useState();
+export default function Logout({setUser}){
+    
+    //const [user,setUser]=useState();
     const loggedInuser=localStorage.getItem("user");
     setUser(loggedInuser);
 
@@ -10,20 +11,16 @@ export default function logout({setUser}){
 
     const handleLogout=()=>{
         setUser({});
-        
         localStorage.clear();
         setMsg ("Logged out successfully")
-
-
     }
-
 
     return (
         <div>
             <Button onClick={handleLogout}>Logout</Button>
-            <p>{msg} </p>
+            <p>{msg}</p>
         </div>
-    
-
     )
 }
+
+//export default Logout;
