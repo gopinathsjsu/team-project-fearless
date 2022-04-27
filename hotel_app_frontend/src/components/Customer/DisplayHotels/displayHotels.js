@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useHistory,Link ,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
 import { FormButton } from 'semantic-ui-react';
 import BookRoom from '../Bookings/bookroom';
+
 import { hotels } from './hotels';
 
 export default function DisplayHotels() {
+   
+    useEffect(()=>{
+        localStorage.setItem("hotels",hotels);
+    },[hotels]);
+    console.log(typeof(hotels));
 
 
-    const [users, setUsers] = useState([]);
-    // const [url,setUrl]=useState("");
+    // const [hotels, setHotels] = useState([]);
+     
+    // useEffect(() => {
+    //     axios.get('https://jsonplaceholder.typicode.com/users')
+    //         .then((response) => {
+    //             console.log(response.data);
+    //             // setHotels(hotels);
+    //             console.log(hotels[0].hotel);
+    //         })
+    //         .catch((error)=>{
+    //             console.log(error);
 
-    const navigate=useNavigate();
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then((response) => {
-                console.log(response.data);
-                setUsers(hotels);
-                console.log(hotels[0].hotel);
-            })
-            .catch((error)=>{
-                console.log(error);
-
-            })
-    }, [])
+    //         })
+    // }, [])
 
     
     // const alertClicked=(val)=>{
@@ -37,9 +41,10 @@ export default function DisplayHotels() {
 
         
     // }
+   
 
     return (
-        
+    
         <React.Fragment>
            
             <Card>
@@ -63,8 +68,8 @@ export default function DisplayHotels() {
                             </Col>
 
                             <Col>
-                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`user/${hotel.hotel.hotelId}`, state:hotel  }} > Select</Link>
-                            
+                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`hotel/${hotel.hotel.hotelId}`, state:hotel  }} > Select</Link>
+ 
                             </Col>
                             </Row>
                             <Row>
@@ -72,6 +77,10 @@ export default function DisplayHotels() {
                                 Description of the Hotel
                                 </Col> 
                             </Row>
+                            
+                             
+                          
+                           
                             
                             </ListGroup.Item>
 

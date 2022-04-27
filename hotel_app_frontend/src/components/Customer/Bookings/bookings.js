@@ -67,24 +67,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React,{useState,useEffect} from "react";
 import {useLocation} from 'react-router-dom';
 import { Card, Form, Row,Col, Button,ListGroup } from "react-bootstrap";
@@ -96,11 +78,13 @@ export default function BookingsPage(){
     const [hotel, setHotel] = useState([]);
     const [rooms, setRooms]= useState([]);
     const [amenities, setAmenities]=useState([]);
-
+    
     const [bookingData, setBookingData]=useState( {
         hotelId:"", SR:" ", DR:" "} );
     const { state } = useLocation();
+
     
+
     const validateSRooms=(event)=>{
         console.log(event.target.value);
         if (event.target.value > rooms.SR ){
@@ -111,21 +95,23 @@ export default function BookingsPage(){
         }   
     }
     const validateDRooms=(event)=>{
-        console.log(event.target.value);
+        // console.log(event.target.value);
         if (event.target.value > rooms.DR ){
            window.alert("No available deluxe rooms");
         }  
         else{
             setBookingData({...bookingData,[event.target.name]:event.target.value})
-            console.log(bookingData);
+            console.log(bookingData.DR);
         }
     }
 
     useEffect(() => {
-        console.log(state.amenities);
-        setHotel(state.hotel);
-        setRooms(state.availability);
-        setAmenities(state.amenities);
+
+        console.log(state?.amenities);
+        setHotel(state?.hotel);
+       
+        setRooms(state?.availability);
+        setAmenities(state?.amenities);
         // fetch("https://jsonplaceholder.typicode.com/users/" + id)
         //     .then(res => res.json())
         //     .then(
@@ -148,26 +134,26 @@ export default function BookingsPage(){
     //     return <div>Loading...</div>;
     // }  
     
-if (hotel) {
+
         return (
-            <React.Fragment>
+           
 
                 
   <Card border="success" >
-  <Card.Header  style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>{hotel.hotelname} , {hotel.hotelLocation} 
+  <Card.Header  style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>{hotel?.hotelname} , {hotel?.hotelLocation} 
            </Card.Header>
     <Card.Body>
       <Card.Title style={{ color:'green', fontStyle:"italic"}}>Hotel Details</Card.Title>
       <Card.Text>
             <ul>
                <li >
-                Hotel Address : {hotel.hotel_address}  
+                Hotel Address : {hotel?.hotel_address}  
                 </li>
                 <li>
-                Manager : {hotel.hotelManagerName}  
+                Manager : {hotel?.hotelManagerName}  
                 </li>
                 <li>
-                Contact Details : {hotel.hotelContact}
+                Contact Details : {hotel?.hotelContact}
                 </li>
             </ul>
       </Card.Text>
@@ -183,7 +169,7 @@ if (hotel) {
                             <Col>
                             <label htmlFor="SR" > Book Single Rooms </label> {" "}
                             
-                            <input name="SR"  type="number" min={0} max={rooms.SR} onChange={validateSRooms}/>
+                            <input name="SR"  type="number" min={0} max={rooms?.SR} onChange={validateSRooms}/>
                             </Col>
                             </Row>
                         </ListGroup.Item>   
@@ -193,7 +179,7 @@ if (hotel) {
                             </Col>
                             <Col>
                             <label htmlFor="DR" > Book Deluxe Rooms </label> {" "}
-                            <input name="DR" type="number" min={0} max={rooms.DR} onChange={validateDRooms}/>
+                            <input name="DR" type="number" min={0} max={rooms?.DR} onChange={validateDRooms}/>
                             </Col>
                             </Row> 
                         </ListGroup.Item>     
@@ -205,7 +191,7 @@ if (hotel) {
         <Card.Title style={{ color:'green', fontStyle:"italic"}}>Add Amenities</Card.Title> 
             
                         <ListGroup.Item>
-                        {amenities.map(amenity=>{
+                        {amenities?.map(amenity=>{
                     return(
                         <ListGroup.Item key={amenity.amenityId} >
                             <Row >
@@ -225,9 +211,9 @@ if (hotel) {
         </ListGroup>
         </Card.Body>
 </Card>
-        </React.Fragment>
+       
         );
-    }
+    
 
   
     // return(

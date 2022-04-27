@@ -1,16 +1,17 @@
 import React,{useState} from "react";
 import { Button, Card, Form, Row , Col} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import {useLocation} from 'react-router-dom';
+import {useLocation,useNavigate} from 'react-router-dom';
 
 
 export default function RegisterUser(){
     const [regUserdata, setRegUserdata]=useState({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""});
-    const navigate=useNavigate()
-    const location = useLocation()
+   
+    const location = useLocation();
+    const nav=useNavigate();
 
     const handleChange=(event)=>{
         // console.log(event.target.value);
@@ -20,11 +21,13 @@ export default function RegisterUser(){
         event.preventDefault();
         console.log(regUserdata);
 
-        axios.post("/customer/register",{regUserdata}).then(res=>{
+        axios.post("/register",{regUserdata})
+    
+        .then(res=>{
             if (res.status==200){
                 console.log(res.data)
 
-                navigate("/login");
+                // navigate("/login");
                 console.log("registration successful");
             }
             else{
@@ -37,7 +40,7 @@ export default function RegisterUser(){
         setRegUserdata({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""})
         
 
-        // history.push("/login");
+        nav('/login');
     }
 
 return(
