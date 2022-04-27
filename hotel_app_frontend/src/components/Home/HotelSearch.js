@@ -10,14 +10,14 @@ import {Button} from 'react-bootstrap'
 import {getLocationBasedHotels} from './Fetchjson';
 import Header from "./Header";
 import './HotelSearch.css';
+//import {urls} from 'Utils';
 
 function HotelSearch(props) {
     const navigate = useNavigate();
     const [location, setLocation] = useState("");
-    const [checkIn, setCheckIn] = useState("");
-    const [checkOut, setCheckOut] = useState("");
+    const [from, setCheckIn] = useState("");
+    const [to, setCheckOut] = useState("");
     const updateLocation=(e)=>{
-      debugger;
       setLocation(e.target.value)
     }
     
@@ -41,6 +41,20 @@ function HotelSearch(props) {
          //updateHotelList(responseData.message)
          
        })*/
+       const data = JSON.stringify({from, to, location})
+      // "{'from':"+ from+",'to':"+to+",'location':"+location+"}";
+        //  console.log(data);
+        console.log(data)
+
+      /* axios.post("http://localhost:3000/",data).then(res=>{
+        if (res.status==200){
+            console.log(res.data);
+        }
+        else{
+            console.log("wrong user");
+        }
+        
+    });*/
 
     };
 
@@ -71,7 +85,7 @@ function HotelSearch(props) {
                 allowSameDateSelection={true}                
                 label="CheckIn"
                 inputFormat="MM/dd/yyyy"
-                value={checkIn}
+                value={from}
                 onChange={(d) => setCheckIn(d)}
                 renderInput={(params) => <TextField fullWidth={true} {...params} />}
               />
@@ -84,7 +98,7 @@ function HotelSearch(props) {
                   allowSameDateSelection={true}
                   label="CheckOut"
                   inputFormat="MM/dd/yyyy"
-                  value={checkOut}
+                  value={to}
                   onChange={(d) => setCheckOut(d)}
                   renderInput={(params) => <TextField fullWidth={true} {...params} />}
                 />
