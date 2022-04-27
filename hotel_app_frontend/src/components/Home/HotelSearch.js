@@ -23,6 +23,7 @@ function HotelSearch(props) {
     
     const handleSearch = async (e) => {
         e.preventDefault();
+        
         //navigate("../find", {replace:true})
        props.updateHotelList(getLocationBasedHotels(location))
        /*await axios({

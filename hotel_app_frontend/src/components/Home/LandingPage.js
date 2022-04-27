@@ -4,6 +4,7 @@ import HotelList from "./HotelList";
 import Header from "./Header";
 
 
+
 function LandingPage() {
     const [hotelList, setHotelList] = useState("");
     const updateHotelList = (hotelList) => {
@@ -14,6 +15,8 @@ function LandingPage() {
             <Header/>
             <HotelSearch updateHotelList={updateHotelList}/>
             <HotelList hotelList = {hotelList}/>
+
+            
         </div>
     )
 
