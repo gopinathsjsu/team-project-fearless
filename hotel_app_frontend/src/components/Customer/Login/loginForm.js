@@ -1,7 +1,7 @@
 import React,{useState} from "react";
-import { Link, Redirect, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Card, Form, Row,Col, Button } from "react-bootstrap";
-import logout from "./Logout";
+import logout from "./logout";
 
 
 import axios from "axios";
@@ -14,7 +14,7 @@ export default function LoginForm(){
         email :"",
         password :""
     })
-    const navigate=useNavigate()
+    
 
     // const handleChange=(event)=>{
     //     // console.log(event.target.value);
@@ -35,7 +35,7 @@ export default function LoginForm(){
                 localStorage.setItem('user', res.data)
                 console.log(res.data)
 
-                navigate(-1);
+                // navigate(-1);
                 console.log("logged in");
             }
             else{
@@ -53,7 +53,7 @@ export default function LoginForm(){
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
       window.alert("Already logged in");
-      navigate(-1);
+    //   navigate(-1);
 
     }
 
