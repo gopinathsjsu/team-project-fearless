@@ -6,6 +6,7 @@ import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
 import com.hotel.sjsu.hotelbookingservice.model.Booking;
 import com.hotel.sjsu.hotelbookingservice.repository.BookHotelRepository;
 import com.hotel.sjsu.hotelbookingservice.repository.CancelRepository;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
@@ -42,6 +43,7 @@ public class CancelBookingService {
 //        return successMsg;
 //    }
 
+    //public String cancelBooking (Long booking_id) {
     public String cancelBooking (Long booking_id) {
 
         BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
@@ -65,17 +67,37 @@ public class CancelBookingService {
 
             Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
             cancelRepository.cancelBookingStatus(booking_id);
+
             Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(customerId) + loyaltyPoints;
             cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, customerId);
-            return "Booking has been cancelled successfully";
+
+            //refund paid amt
+            Double totalAmount = booking.getTotalAmount();
+            cancelRepository.updateTotalAmount((double) 0,booking_id);
+
+            String output = "{\"result\": \"Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!\"}";
+            JSONObject jsonResult = new JSONObject(output);
+            System.out.println(jsonResult);
+            //String cancelled = json.getString("cancelled");
+            //System.out.println(cancelled);
+
+            //return "{'result': 'Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!'}";
+            return output;
         }
         else {
-            return "Booking can not be cancelled within 48 hours of booking date";
+
+            String output = "{\"result\": \"Booking can not be cancelled within 48 hours of booking date!!\"}";
+            JSONObject jsonResult = new JSONObject(output);
+            System.out.println(jsonResult);
+            //String cancelled = json.getString("cancelled");
+            //System.out.println(cancelled);
+
+            //return "{'result': 'Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!'}";
+            return output;
+            //return "{'Booking can not be cancelled within 48 hours of booking date!!'}";
 
         }
 
-
     }
-
 
 }

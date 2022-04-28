@@ -25,5 +25,13 @@ public interface CancelRepository extends CrudRepository<BookingEntity, Long> {
     void updateLoyaltyPoints(Integer loyalty_points, Long customer_id );
 
 
+    //refund paid amt
+    @Modifying
+    @Query("UPDATE booking b set b.totalAmount=?1 where b.bookingId=?2" )
+    void updateTotalAmount(Double total_amount, Long booking_id );
+
+
+
+
 
 }
