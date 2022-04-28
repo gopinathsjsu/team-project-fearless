@@ -1,10 +1,11 @@
 create database hotelbooking_database;
 use hotelbooking_database;
 ------------------------------------------------------------------------------------------------------------------------------------------
+
 drop table hotel;
 
 create table hotel(
-	hotel_id int not null,
+	hotel_id int not null auto_increment,
 	hotel_name varchar(500),
 	hotel_location varchar(500),
 	hotel_address varchar(500),
@@ -16,32 +17,31 @@ create table hotel(
 );
 
 INSERT INTO hotel 
-(hotel_id, hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
+(hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
 VALUES 
-(100,'The Ocean Pearl','Mangalore','Navabharath Cir, KA, India','575003','12345667890','Rajesh Koothrappali','topm1@gmail.com');
+('The Ocean Pearl','Mangalore','Navabharath Cir, KA, India','575003','12345667890','Rajesh Koothrappali','topm1@gmail.com');
 
 INSERT INTO hotel
-(hotel_id, hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
+(hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
 VALUES 
-(200,'The Ocean Pearl','Udupi','Kunjibettu, KA India','576102','12345667890','Sheldon Cooper','topu1@gmail.com');
+('The Ocean Pearl','Udupi','Kunjibettu, KA India','576102','12345667890','Sheldon Cooper','topu1@gmail.com');
 
 INSERT INTO hotel 
-(hotel_id, hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
+(hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail) 
 VALUES 
-(300,'The Ocean Pearl GARDENIA','New Delhi','Chattarpur Mandir Rd, New Delhi, India','110074','12345667890','Leonard Hofstadter','topn1@gmail.com');
+('The Ocean Pearl GARDENIA','New Delhi','Chattarpur Mandir Rd, New Delhi, India','110074','12345667890','Leonard Hofstadter','topn1@gmail.com');
 
 INSERT INTO hotel
-(hotel_id, hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail)
+(hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail)
 VALUES
-(400,'Hilton','San Francisco','California,US','575077','12345660090','Tom Creek','tomcreek@gmail.com');
+('Hilton','San Francisco','California,US','575077','12345660090','Tom Creek','tomcreek@gmail.com');
 
 INSERT INTO hotel
-(hotel_id, hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail)
+(hotel_name, hotel_location, hotel_address, hotel_zip_code, hotel_contact, hotel_manager_name, hotelEmail)
 VALUES
-(500,'JW Marriott','San Francisco','California,US','785077','19645660090','Steven Mary','stevem@gmail.com');
+('JW Marriott','San Francisco','California,US','785077','19645660090','Steven Mary','stevem@gmail.com');
 
 Select * From hotel;
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 drop table hotel_rooms_map;
