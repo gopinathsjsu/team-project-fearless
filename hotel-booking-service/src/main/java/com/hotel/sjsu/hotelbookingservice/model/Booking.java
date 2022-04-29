@@ -7,8 +7,6 @@ public class Booking {
 	private	Long bookingId;
 	private	Long hotelId;
 	private	Long customerId;
-	//	private	Integer roomDeluxe;
-//	private	Integer roomSuite;
 	private String room;
 	private	String amenity;
 	private	Calendar bookingDateFrom;

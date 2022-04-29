@@ -9,5 +9,7 @@ import com.hotel.sjsu.hotelbookingservice.entity.CustomerEntity;
 public interface CustomerRepository extends CrudRepository<CustomerEntity, Long>{
 	
 	CustomerEntity findByCustEmail(String custEmail);
+	
+	CustomerEntity findByCustomerId(Long customerId);
 
 }

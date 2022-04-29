@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor
 @Entity(name = "hotel")
 @Table(name = "hotel")
 @Component
@@ -38,6 +37,62 @@ public class HotelEntity {
 
     @Column(name = "hotel_manager_name")
     private String hotelManagerName;
+
+	public Long getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(Long hotelId) {
+		this.hotelId = hotelId;
+	}
+
+	public String getHotelname() {
+		return hotelname;
+	}
+
+	public void setHotelname(String hotelname) {
+		this.hotelname = hotelname;
+	}
+
+	public String getHotelLocation() {
+		return hotelLocation;
+	}
+
+	public void setHotelLocation(String hotelLocation) {
+		this.hotelLocation = hotelLocation;
+	}
+
+	public String getHotel_address() {
+		return hotel_address;
+	}
+
+	public void setHotel_address(String hotel_address) {
+		this.hotel_address = hotel_address;
+	}
+
+	public Integer getHotelZipCode() {
+		return hotelZipCode;
+	}
+
+	public void setHotelZipCode(Integer hotelZipCode) {
+		this.hotelZipCode = hotelZipCode;
+	}
+
+	public String getHotelContact() {
+		return hotelContact;
+	}
+
+	public void setHotelContact(String hotelContact) {
+		this.hotelContact = hotelContact;
+	}
+
+	public String getHotelManagerName() {
+		return hotelManagerName;
+	}
+
+	public void setHotelManagerName(String hotelManagerName) {
+		this.hotelManagerName = hotelManagerName;
+	}
 
 
 //    @Column(name = "hotelEmail")
