@@ -7,8 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "customer")
 @Table(name = "customer")
+@Component
 public class CustomerEntity {
 
 	@Id
@@ -34,6 +42,9 @@ public class CustomerEntity {
 	@Column(name="loyalty_points")
 	private Integer loyaltyPoints;
 	
+	@Column(name="booking_count")
+	private Integer bookingCount;
+	
 	@Column(name="contact_number")
 	private String contactNumber;
 
@@ -42,7 +53,7 @@ public class CustomerEntity {
 	}
 
 	public CustomerEntity(Long customerId, String custFirstName, String custLastName, String custPassword,
-			String custEmail, String custAddress, Integer loyaltyPoints, String contactNumber) {
+			String custEmail, String custAddress, Integer loyaltyPoints,Integer bookingCount, String contactNumber) {
 		super();
 		this.customerId = customerId;
 		this.custFirstName = custFirstName;
@@ -51,6 +62,7 @@ public class CustomerEntity {
 		this.custEmail = custEmail;
 		this.custAddress = custAddress;
 		this.loyaltyPoints = loyaltyPoints;
+		this.bookingCount = bookingCount;
 		this.contactNumber = contactNumber;
 	}
 
@@ -117,5 +129,23 @@ public class CustomerEntity {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
+
+	public Integer getBookingCount() {
+		return bookingCount;
+	}
+
+	public void setBookingCount(Integer bookingCount) {
+		this.bookingCount = bookingCount;
+	}
+
+	@Override
+	public String toString() {
+		return "CustomerEntity [customerId=" + customerId + ", custFirstName=" + custFirstName + ", custLastName="
+				+ custLastName + ", custPassword=" + custPassword + ", custEmail=" + custEmail + ", custAddress="
+				+ custAddress + ", loyaltyPoints=" + loyaltyPoints + ", bookingCount=" + bookingCount
+				+ ", contactNumber=" + contactNumber + "]";
+	}
+	
+	
 }
 

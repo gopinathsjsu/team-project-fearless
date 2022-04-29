@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
+
+import org.springframework.stereotype.Component;
 
 @Entity(name="booking")
 @Table(name = "booking")
+@Component
 public class BookingEntity {
 
 	@Id
@@ -25,11 +27,6 @@ public class BookingEntity {
 	@Column(name="customer_id")
 	private	Long customerId;
 
-//	@Column(name="room_deluxe")
-//	private	Integer roomDeluxe;
-//
-//	@Column(name="room_suite")
-//	private	Integer roomSuite;
 
 	@Column(name="room")
 	private	String room;	

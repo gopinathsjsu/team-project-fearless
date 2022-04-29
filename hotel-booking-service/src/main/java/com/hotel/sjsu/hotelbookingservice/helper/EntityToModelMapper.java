@@ -15,8 +15,6 @@ public class EntityToModelMapper {
 				bookingEntity.getBookingId(),
 				bookingEntity.getHotelId(),
 				bookingEntity.getCustomerId(),
-//				bookingEntity.getRoomDeluxe(),
-//				bookingEntity.getRoomSuite(),
 				bookingEntity.getRoom(),
 				bookingEntity.getAmenity(),
 				bookingEntity.getBookingDateFrom(),
@@ -43,6 +41,7 @@ public class EntityToModelMapper {
 				customerEntity.getCustEmail(),
 				customerEntity.getCustAddress(),
 				customerEntity.getLoyaltyPoints(),
+				customerEntity.getBookingCount(), 
 				customerEntity.getContactNumber());
 		return customer;
 	}

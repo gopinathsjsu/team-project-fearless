@@ -1,10 +1,7 @@
 package com.hotel.sjsu.hotelbookingservice.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +9,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
+import com.hotel.sjsu.hotelbookingservice.entity.CustomerEntity;
 import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
 import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
 import com.hotel.sjsu.hotelbookingservice.model.Booking;
+import com.hotel.sjsu.hotelbookingservice.model.Rating;
+import com.hotel.sjsu.hotelbookingservice.model.Response;
 import com.hotel.sjsu.hotelbookingservice.repository.BookHotelRepository;
 
 @Service
 @Transactional
 public class BookHotelService {
+	
+	@Autowired
+	CustomerService customerService;
+	
+	@Autowired
+	RatesService ratesService;
 
 	@Autowired
 	BookHotelRepository bookHotelRepository;
@@ -32,17 +38,36 @@ public class BookHotelService {
 	
 	List<String> message = new ArrayList<String>();
 	
-	public List<String> bookinghotel(Booking booking) throws ParseException {
+	public Response bookinghotel(Booking booking) throws ParseException {
 		
 		if(validateBooking(booking)) {
 			BookingEntity bookingEntity = modelToEntityMapper.mapBooking(booking);
-			bookHotelRepository.save(bookingEntity);
-			List<String> successMsg = new ArrayList<String>();
-			successMsg.add("Successfully Booked!!");
-			return successMsg;
+			
+			Rating rating = new Rating(booking.getCustomerId(),  booking.getHotelId(), 
+					ratesService.getStringFromCalendar(booking.getBookingDateFrom()), 
+					ratesService.getStringFromCalendar(booking.getBookingDateTo()), 
+					booking.getRoom(), booking.getAmenity(),0.0D, "", booking.getNoOfGuest(), booking.getLoyaltyPointsUsed());
+			
+			Response ratingResponse = ratesService.calculateTotalRating(rating);
+			Rating ratingResult = (Rating)ratingResponse.getObject();
+			
+			bookingEntity.setAmount(ratingResult.getCost()+ booking.getLoyaltyPointsUsed());
+			bookingEntity.setTotalAmount(ratingResult.getCost());
+			
+			
+			Response response = customerService.updateCustomer(booking.getCustomerId(), booking.getLoyaltyPointsUsed());
+
+			if(response.getObject()!=Integer.valueOf(-1)) {
+				BookingEntity bookingEntityRes = bookHotelRepository.save(bookingEntity);
+				return new Response(bookingEntityRes, "Successfully Booked!!");
+			}else {
+				
+				return new Response(-1, response.getMessage());
+			}
+		
 		}else {
 			message.add("Unable to book rooms due to above reason(s)");
-			return message;
+			return new Response(message, "Booking failed");
 		}
 	}
 
@@ -53,16 +78,6 @@ public class BookHotelService {
 			message.add("Customer ID is missing.");
 			result = false;
 		}
-		
-//		if(booking.getRoomDeluxe()==null || booking.getRoomDeluxe().equals("0") ) {
-//			message.add("Please select the type of room.");
-//			result = false;
-//		}
-//		
-//		if(booking.getRoomSuite()==null || booking.getRoomSuite().equals("0") ) {
-//			message.add("Please select the type of room.");
-//			result = false;
-//		}
 		
 		if(booking.getRoom()==null || booking.getRoom().equals("") ) {
 			message.add("Please select room type.");
@@ -90,11 +105,8 @@ public class BookHotelService {
 		}
 		
 		if(booking.getBookingDateFrom()!=null && booking.getBookingDateTo()!=null) {
-			
-//			SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
-//		    Date fromDate = sdformat.parse();
-//		    Date toDate = sdformat.parse();
-		    
+			System.out.println("Difference in dates");
+			System.out.println(booking.getBookingDateFrom().compareTo(booking.getBookingDateTo()));
 		    if(booking.getBookingDateFrom().compareTo(booking.getBookingDateTo()) > 0) {
 		    	message.add("Please select a check-out date after check-in date.");
 		    }
@@ -103,16 +115,21 @@ public class BookHotelService {
 		return result;
 	}
 
-	public List<Booking> viewBookings(Long customerID) {
+	public Response viewBookings(Long customerID) {
 		List<BookingEntity> bookingEntList = new ArrayList<BookingEntity>();
+		
 		bookingEntList = bookHotelRepository.findAllByCustomerId(customerID);	
 
+		if(bookingEntList.size()==0) {
+			return new Response(-1, "No booking found");
+		}
+		
 		List<Booking> bookingList = new ArrayList<Booking>();
-				
+					
 		for(BookingEntity bookingEntity : bookingEntList){
 			bookingList.add(entityToModelMapper.mapBooking(bookingEntity));
 		}
 		
-		return bookingList;
+		return new Response(bookingList, "Bookings retrieved");
 	}
 }

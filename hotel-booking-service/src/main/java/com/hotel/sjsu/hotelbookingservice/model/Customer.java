@@ -11,14 +11,26 @@ public class Customer {
 	private String custEmail;
 	private String custAddress;
 	private Integer loyaltyPoints;
+	private Integer bookingCount;
 	private String contactNumber;
 	
 	public Customer() {
 		super();
 	}
 
+
+	
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", custFirstName=" + custFirstName + ", custLastName="
+				+ custLastName + ", custPassword=" + custPassword + ", custEmail=" + custEmail + ", custAddress="
+				+ custAddress + ", loyaltyPoints=" + loyaltyPoints + ", bookingCount=" + bookingCount
+				+ ", contactNumber=" + contactNumber + "]";
+	}
+
+
 	public Customer(Long customerId, String custFirstName, String custLastName, String custPassword, String custEmail,
-			String custAddress, Integer loyaltyPoints, String contactNumber) {
+			String custAddress, Integer loyaltyPoints, Integer bookingCount,String contactNumber) {
 		
 		super();
 		this.customerId = customerId;		
@@ -28,8 +40,10 @@ public class Customer {
 		this.custEmail = custEmail;
 		this.custAddress = custAddress;
 		this.loyaltyPoints = loyaltyPoints;
+		this.bookingCount = bookingCount;
 		this.contactNumber = contactNumber;
 	}
+
 	
 	public Long getCustomerId() {
 		return customerId;
@@ -94,4 +108,13 @@ public class Customer {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
+	
+	public Integer getBookingCount() {
+		return bookingCount;
+	}
+
+	public void setBookingCount(Integer bookingCount) {
+		this.bookingCount = bookingCount;
+	}
+
 }
