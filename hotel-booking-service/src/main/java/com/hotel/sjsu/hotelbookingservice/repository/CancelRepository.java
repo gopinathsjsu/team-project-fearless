@@ -3,10 +3,14 @@ package com.hotel.sjsu.hotelbookingservice.repository;
 import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
+@EnableJpaRepositories
 public interface CancelRepository extends CrudRepository<BookingEntity, Long> {
 
 

@@ -12,7 +12,7 @@ public class Amenity {
     private Integer amenityId;
     private String amenityCode;
     private String amenityType;
-    private Integer amenityCost;
+    private Double amenityCost;
 
     public Amenity (AmenityEntity amenityEntity){
         this.amenityId = amenityEntity.getAmenityId();

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.sjsu.hotelbookingservice.model.Booking;
+import com.hotel.sjsu.hotelbookingservice.model.Response;
 import com.hotel.sjsu.hotelbookingservice.service.BookHotelService;
 
 @RestController
@@ -24,14 +25,12 @@ public class BookHotelController {
 	private BookHotelService bookHotelService;
 	
 	@RequestMapping(value="/book")
-    public @ResponseBody List<String> bookingHotel(@RequestBody Booking booking) throws IOException, ParseException {
-		
+    public @ResponseBody Response bookingHotel(@RequestBody Booking booking) throws IOException, ParseException {
 		return bookHotelService.bookinghotel(booking);
     }
 	
 	@RequestMapping(value="/viewBookings/{customerID}")
-    public @ResponseBody List<Booking> viewBooking(@PathVariable("customerID") Long customerID) throws IOException, ParseException {
-		System.out.println("fetching bookings of customer "+customerID);
+    public @ResponseBody Response viewBooking(@PathVariable("customerID") Long customerID) throws IOException, ParseException {
 		return bookHotelService.viewBookings(customerID);
     }
 }

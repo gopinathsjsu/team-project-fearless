@@ -44,6 +44,7 @@ public class ModelToEntityMapper {
 				customer.getCustEmail(), 
 				customer.getCustAddress(), 
 				customer.getLoyaltyPoints(), 
+				customer.getBookingCount(),
 				customer.getContactNumber());
 		return customerEntity;
 	}
