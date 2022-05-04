@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="amenity")
 @Table(name = "amenity")
 @Component
 public class AmenityEntity {

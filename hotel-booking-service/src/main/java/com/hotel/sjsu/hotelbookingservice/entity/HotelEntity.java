@@ -1,6 +1,8 @@
 package com.hotel.sjsu.hotelbookingservice.entity;
 
 
+import com.hotel.sjsu.hotelbookingservice.model.Hotel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +15,7 @@ import javax.persistence.*;
 @Entity(name = "hotel")
 @Table(name = "hotel")
 @Component
+//@NoArgsConstructor
 public class HotelEntity {
 
     @Id
@@ -30,13 +33,15 @@ public class HotelEntity {
     private String hotel_address;
 
     @Column(name = "hotel_zip_code")
-    private Integer hotelZipCode;
+//    private Integer hotelZipCode;
+    private String hotelZipCode;
 
     @Column(name = "hotel_contact")
     private String hotelContact;
 
     @Column(name = "hotel_manager_name")
     private String hotelManagerName;
+
 
 	public Long getHotelId() {
 		return hotelId;
@@ -70,11 +75,11 @@ public class HotelEntity {
 		this.hotel_address = hotel_address;
 	}
 
-	public Integer getHotelZipCode() {
+	public String getHotelZipCode() {
 		return hotelZipCode;
 	}
 
-	public void setHotelZipCode(Integer hotelZipCode) {
+	public void setHotelZipCode(String hotelZipCode) {
 		this.hotelZipCode = hotelZipCode;
 	}
 
@@ -94,10 +99,34 @@ public class HotelEntity {
 		this.hotelManagerName = hotelManagerName;
 	}
 
+    public HotelEntity(Hotel hotel){
+        this.hotelId = hotel.getHotelId();
+        this.hotelname = hotel.getHotelname();
+        this.hotelLocation = hotel.getHotelLocation();
+        this.hotel_address = hotel.getHotel_address();
+        this.hotelZipCode = hotel.getHotelZipCode();
+        this.hotelContact = hotel.getHotelContact();
+        this.hotelManagerName = hotel.getHotelManagerName();
+
+    }
 
 //    @Column(name = "hotelEmail")
 //    private String hotelEmail;
-    
-    
 
+
+    public HotelEntity() {
+        super();
+
+    }
+
+    public HotelEntity(String hotelname, String hotelLocation, String hotel_address, String hotelZipCode, String hotelContact, String hotelManagerName) {
+        super();
+
+        this.hotelname = hotelname;
+        this.hotelLocation = hotelLocation;
+        this.hotel_address = hotel_address;
+        this.hotelZipCode = hotelZipCode;
+        this.hotelContact = hotelContact;
+        this.hotelManagerName = hotelManagerName;
+    }
 }

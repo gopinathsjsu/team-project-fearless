@@ -23,6 +23,13 @@ public class CancelBookingController {
     @Autowired
     private CancelBookingService cancelBookingService;
 
+//    @RequestMapping(value="/cancel/{booking_id}", method = RequestMethod.PUT)
+//    public String cancelBooking(@PathVariable("booking_id") Long  booking_id) throws IOException, ParseException {
+//
+//        return cancelBookingService.cancelBooking(booking_id);
+//
+//    }
+
     @RequestMapping(value="/cancel/{booking_id}", method = RequestMethod.PUT)
     public String cancelBooking(@PathVariable("booking_id") Long  booking_id) throws IOException, ParseException {
 

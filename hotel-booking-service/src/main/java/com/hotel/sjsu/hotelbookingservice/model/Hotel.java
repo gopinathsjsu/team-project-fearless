@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+
 @Getter
 @Setter
 @Component
@@ -14,10 +16,10 @@ public class Hotel {
     private String hotelname;
     private String hotelLocation;
     private String hotel_address;
-    private Integer hotelZipCode;
+    private String hotelZipCode;
     private String hotelContact;
     private String hotelManagerName;
-    //private String hotelEmail;
+//    private String hotelEmail;
 
 
     public Hotel (HotelEntity hotelEntity){
@@ -28,7 +30,7 @@ public class Hotel {
         this.hotelZipCode = hotelEntity.getHotelZipCode();
         this.hotelContact = hotelEntity.getHotelContact();
         this.hotelManagerName = hotelEntity.getHotelManagerName();
-        //this.hotelEmail = hotelEntity.getHotelEmail();
+//        this.hotelEmail = hotelEntity.getHotelEmail();
     }
 
 
@@ -72,12 +74,12 @@ public class Hotel {
 	}
 
 
-	public Integer getHotelZipCode() {
+	public String getHotelZipCode() {
 		return hotelZipCode;
 	}
 
 
-	public void setHotelZipCode(Integer hotelZipCode) {
+	public void setHotelZipCode(String hotelZipCode) {
 		this.hotelZipCode = hotelZipCode;
 	}
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 @EnableJpaRepositories
+
 public interface CancelRepository extends CrudRepository<BookingEntity, Long> {
 
 
@@ -27,6 +28,14 @@ public interface CancelRepository extends CrudRepository<BookingEntity, Long> {
     @Modifying
     @Query("UPDATE customer c set c.loyaltyPoints=?1 where c.customerId=?2" )
     void updateLoyaltyPoints(Integer loyalty_points, Long customer_id );
+
+
+    //refund paid amt
+    @Modifying
+    @Query("UPDATE booking b set b.totalAmount=?1 where b.bookingId=?2" )
+    void updateTotalAmount(Double total_amount, Long booking_id );
+
+
 
 
 

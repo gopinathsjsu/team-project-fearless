@@ -1,6 +1,9 @@
 package com.hotel.sjsu.hotelbookingservice.entity;
 
+import com.hotel.sjsu.hotelbookingservice.model.Hotel;
+import com.hotel.sjsu.hotelbookingservice.model.HotelRoomsMap;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +14,7 @@ import javax.persistence.*;
 @Entity(name = "hotel_rooms_map")
 @Table(name = "hotel_rooms_map")
 @Component
+//@NoArgsConstructor
 public class HotelRoomsMapEntity {
 
     @Id
@@ -27,5 +31,24 @@ public class HotelRoomsMapEntity {
     @Column(name = "total_rooms")
     private Integer totalRooms;
 
+    public HotelRoomsMapEntity(HotelRoomsMap hotelRoomsMap){
+        this.hotelId = hotelRoomsMap.getHotelId();
+        this.roomCode = hotelRoomsMap.getRoomCode();
+        this.totalRooms = hotelRoomsMap.getTotalRooms();
+//        this.Id = hotelRoomsMap.getId();
 
+    }
+
+    public HotelRoomsMapEntity(Integer hotelId, String roomCode, Integer totalRooms) {
+        super();
+//        this.Id = id;
+        this.hotelId = hotelId;
+        this.roomCode = roomCode;
+        this.totalRooms = totalRooms;
+    }
+
+    public HotelRoomsMapEntity() {
+
+        super();
+    }
 }
