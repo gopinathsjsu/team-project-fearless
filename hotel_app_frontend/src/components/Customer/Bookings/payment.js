@@ -3,8 +3,8 @@ import axios from 'axios';
 import {useLocation} from 'react-router-dom';
 import { setDate } from 'date-fns';
 export  default function Payment(){
-    const location = useLocation()
-    const [data,setData]=useState({})
+    const location = useLocation();
+    const [data,setData]=useState({});
 
     useEffect(()=>{
 
@@ -16,9 +16,8 @@ export  default function Payment(){
 
     })
     return(
-        <div>Bookings Confirmation page <br/>
-      
+<div>Payment</div>
 
-        </div>
+      
     )
 }

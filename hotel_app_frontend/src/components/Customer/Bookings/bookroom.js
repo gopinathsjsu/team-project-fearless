@@ -4,63 +4,30 @@ import React, { useEffect, useState } from 'react';
 import { Card, Form, ListGroup, Row, Col, Button } from 'react-bootstrap';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
+import hotelimg from './hotel.jpg';
+
+var dr = "DR";
+var sr = "SR";
+
+var amenity = "";
+var cb = "CB";
+var fr = "FR";
+var sj = "SJ";
+var dp = "DP";
+var bf = "BF";
+var ln = "LN";
+var dn = "DN";
+var room;
 
 export default function BookRoom(props) {
-    const {id}=useParams();
-
-    const nav=useNavigate();
-    
-  const [hotel,setHotel]=useState({});
-  const [roomdata, setRoomData]=useState({ });
-  const price=300;
-//   hotelid:id, SR:"", DR:"", noOfguests:""
-  const amenities=
-    [
-        {
-            "amenityId": 1,
-            "amenityCode": "CB",
-            "amenityType": "Daily Continental Breakfast",
-            "amenityCost": 25
-        },
-        {
-            "amenityId": 2,
-            "amenityCode": "FR",
-            "amenityType": "Access to fitness room",
-            "amenityCost": 25
-        },
-        {
-            "amenityId": 3,
-            "amenityCode": "SJ",
-            "amenityType": "Access to Swimming Pool/Jacuzzi",
-            "amenityCost": 25
-        },
-        {
-            "amenityId": 4,
-            "amenityCode": "DP",
-            "amenityType": "Daily Parking",
-            "amenityCost": 10
-        },
-        {
-            "amenityId": 5,
-            "amenityCode": "BF",
-            "amenityType": "Breakfast",
-            "amenityCost": 10
-        },
-        {
-            "amenityId": 6,
-            "amenityCode": "LN",
-            "amenityType": "Lunch",
-            "amenityCost": 10
-        },
-        {
-            "amenityId": 7,
-            "amenityCode": "DN",
-            "amenityType": "Dinner",
-            "amenityCost": 10
-        }
-    ]
-  
+  const {id}=useParams();
  
+  const nav=useNavigate();
+//    const [ratingdata, setRatingData]=useState({}); 
+  const [hotel,setHotel]=useState({});
+  const [roomdata, setRoomData]=useState({ customerId:"",hotelId:"",fromDate:"",toDate:"",room:"",amenity:"",noOfGuest:"",cost:""});
+  
+
 
 //   useEffect(()=>{
 //     axios.get('http://localhost:8081/hotel/'+id)
@@ -77,33 +44,80 @@ export default function BookRoom(props) {
 
 
 
-const handleChange=(event)=>{
-    setRoomData({...roomdata,[event.target.name]:event.target.value});
-    console.log(" on change :");
-    // console.log(roomdata);
+const amenities=JSON.parse(localStorage.getItem('amenities'));
+
+const noGuestHandler=(e)=>{
+    setRoomData({...roomdata,[e.target.name]:e.target.value});
 }
 
-  const handleSubmit=()=>{
-      console.log(" after handle submit");
+const handleChange=(event)=>{
+    //    console.log(event.target.checked.value)
+     
+        if (event.target.name == 'DR')
+            dr = "DR" + event.target.value
+        if (event.target.name == 'SR')
+            sr = "SR" + event.target.value
+
+        if (event.target.name == 'CB' && (event.target.value=='on' || amenity.includes("CB")))
+            amenity = amenity + "CB" + "-"
+        
+        if (event.target.name == 'FR' && event.target.value=='on')
+            amenity = amenity + "FR" + "-"
+        
+        if (event.target.name == 'SJ' && event.target.value=='on')
+            amenity = amenity + "SJ" + "-"
+        
+        if (event.target.name == 'DP' && event.target.value=='on')
+            amenity = amenity + "DP" + "-"
+        
+        if (event.target.name == 'BF' && event.target.value=='on')
+            amenity = amenity + "BF" + "-"
+        
+        if (event.target.name == 'LN' && event.target.value=='on')
+            amenity = amenity + "LN" + "-"
+        
+        if (event.target.name == 'DN' && event.target.value=='on')
+            amenity = amenity + "DN" + "-"
+
+        room = dr+"-"+sr
+     
+        console.log("Room Value",room)
+
+        console.log("Amenity Value",amenity);
+}
+
+const onCheckPrice=()=>{
+    room = dr+"-"+sr
+    
+    setRoomData({...roomdata,[room]:room});
+  
+      console.log(" after check price");
       console.log(roomdata);
+    //   setPrice(10000);
+      
     
   axios.post('http://localhost:8081/api/calculateprice',roomdata)
   .then(response => response.data).then((data) => {
     console.log(data);
+    // setPrice(10000);
  });
-      nav('/payment',{state:roomdata});
+    
 
   } 
 
-    if(hotel){
+  const NavtoPayment=()=>{
+   nav('/payment',{state:roomdata});
+  }
+
+   
         return (
         
            
             <React.Fragment>
-<Card border="success">
-    <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
+<Card border="success" style={{backgroundImage: `url(${hotelimg})`}} >
+    <Card.Header style={{textAlign:'center',  color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
     <Card.Body>
-        Hotel Name : {hotel.hotelName}
+        {/* Hotel Name : {hotel.hotelName} */}
         Hotel address:
 
 </Card.Body>
@@ -111,7 +125,7 @@ const handleChange=(event)=>{
 
 <Card border="success">
     <Card.Body>
-        <form onSubmit={handleSubmit} onChange={handleChange}>
+        <form  onChange={handleChange}>
             <Form.Group>
             <Form.Label style={{ color:'green', fontStyle:"italic"}}>Select from Available Rooms</Form.Label>
             <ListGroup.Item>
@@ -138,55 +152,61 @@ const handleChange=(event)=>{
             </ListGroup.Item>
             </Form.Group>
           <br></br>
-            <Form.Group>
-                <Row>
-                    <Col> <Form.Label style={{ color:'green', fontStyle:"italic"}} >Enter No of Guests</Form.Label>
-                    </Col>
-                    <Col>            <Form.Control type="number" placeholder="Enter guests" name="noOfguests" />
-                    </Col>
-                </Row>
+            <Form.Group style={{marginLeft:'20rem'}}>   
+                     <Form.Label style={{ color:'green', fontStyle:"italic"}} >Enter No of Guests</Form.Label>
+                     <Form.Control type="number" placeholder="Enter guests" name="noOfGuest" style={{ width: '10rem' }} onChange={noGuestHandler} />
             </Form.Group>
         <br></br>
-
             <Form.Group>
             <Form.Label style={{ color:'green', fontStyle:"italic"}}>Add amenities</Form.Label>
 
-            {amenities.map((amenity) => (
+            {/* {amenities.map((amenity) => (
     <div key={amenity.amenityId} className="mb-3">
       <Form.Check type="checkbox" >
         <Form.Check.Input type="checkbox"  name={amenity.amenityCode}  isValid />
         
-        <Form.Check.Label>{amenity.amenityType}</Form.Check.Label>
+        <Form.Check.Label>
+            
+            </Form.Check.Label>
         
       </Form.Check>
     </div>
-  ))}
-            {/* <ListGroup.Item>
+  ))} */}   
                         {amenities?.map(amenity=>{
                     return(
                         <ListGroup.Item key={amenity.amenityId} >
+                            <Form.Check type="checkbox" >
                             <Row >
-                            <Col>{amenity.amenityType} 
+                            
+                            <Col> <Form.Check.Input type="checkbox" style={{marginLeft:'1rem'}} name={amenity.amenityCode}  isValid />
+                            </Col>
+                            <Col style={{marginLeft:'-20rem'}}>{amenity.amenityType} 
                             </Col>
                             <Col>
                             {amenity.amenityCost}$
                             </Col>
-                            <Col> 
-                            <input type="checkbox" name={amenity.amenityType}   />
-                         
-                            </Col>
                             </Row>
-                            
+                            </Form.Check>
                             </ListGroup.Item>                     
                         );
                 })}
-                        </ListGroup.Item> */}
+                       
             </Form.Group>
             <br></br>
-            <Button variant="success" type="submit" style={{marginLeft:350}}>Checkout</Button>
+            <Row>
+                <Col> <Button variant="success" style={{marginLeft:"20rem"}} onClick={onCheckPrice}> Check Price </Button>
+                </Col>
+                <Col style={{ color:"#E75480", fontSize:"25px", fontWeight:"bolder"}} > Total Price :  $
+                </Col>
+            </Row>
+       
           </form>
         
       
+    </Card.Body>
+
+    <Card.Body>
+        <Button  variant="outline-warning"   onClick={NavtoPayment}>PAY $</Button>
     </Card.Body>
 </Card>
             </React.Fragment>
@@ -195,4 +215,3 @@ const handleChange=(event)=>{
 
     }
     
-}
