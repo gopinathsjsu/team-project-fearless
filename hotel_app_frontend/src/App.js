@@ -12,19 +12,27 @@ import BookingsPage from './components/Customer/Bookings/bookings';
 import DisplayHotels from './components/Customer/DisplayHotels/displayHotels';
 import BookRoom from './components/Customer/Bookings/bookroom';
 import LandingPage from './components/Home/LandingPage';
+import Profile from './components/Home/Profile';
+import UpcomingBookings from './components/Home/UpcomingBookings';
+import PastBookings from './components/Home/PastBookings';
 import Payment from './components/Customer/Bookings/payment';
+import  Header  from './components/Home/Header';
 // import Amenities from './components/Customer/Bookings/amenities';
 
 function App(){
   return(
     <BrowserRouter>
- <Routes>
+    <Header/>
+    <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterUser />} />
         <Route path="displayhotels" element={<DisplayHotels/>} />
          <Route path="displayhotels/hotel/:id" element={<BookRoom/>} />
          <Route path="payment" element={<Payment/>} />
+         <Route path="/profile" element={<Profile/>}/>
+          <Route path="/upcomingBookings" element={<UpcomingBookings/>} />
+          <Route path="/pastBookings" element={<PastBookings/>} />
       </Routes>
     </BrowserRouter>
    

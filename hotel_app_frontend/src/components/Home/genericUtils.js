@@ -1,11 +1,31 @@
 export var getUserEmail = () => {
-    const email = localStorage.getItem("email")
-    return email
+    let user = localStorage.getItem("user")
+       if(user){
+        let userObj = JSON.parse(user);
+        if(userObj.object)
+            return userObj.object.custEmail
+       }
+        return null
 }
 
-export var getUserName = () => {
-    const username = localStorage.getItem("user")
-    return username
+export var getUserFirstName = () => {
+    let user = localStorage.getItem("user")
+    if(user){
+     let userObj = JSON.parse(user);
+     if(userObj.object)
+         return userObj.object.custFirstName
+    }
+     return null
+}
+
+export var getUserLastName = () => {
+    let user = localStorage.getItem("user")
+    if(user){
+     let userObj = JSON.parse(user);
+     if(userObj.object)
+         return userObj.object.custLastName
+    }
+     return null
 }
 
 export var getRewardPoints = () => {

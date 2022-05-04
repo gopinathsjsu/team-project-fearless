@@ -23,7 +23,7 @@ export default function LoginForm(){
     const handleSubmit=(event)=>{
 
         event.preventDefault();
-        console.log(user);
+        //console.log(user);
         const user={email,password};
         console.log(user);
         axios.post("http://localhost:8081/login",user).then(res=>{

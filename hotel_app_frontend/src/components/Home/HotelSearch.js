@@ -6,44 +6,58 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
 import {getLocationBasedHotels} from './Fetchjson';
 import Header from "./Header";
 import './HotelSearch.css';
+import utilObj from '../Utils/utils';
 
 function HotelSearch(props) {
     const navigate = useNavigate();
     const [location, setLocation] = useState("");
-    const [checkIn, setCheckIn] = useState("");
-    const [checkOut, setCheckOut] = useState("");
+    const [from, setCheckIn] = useState(new Date().toISOString().substring(0,10));
+    const [to, setCheckOut] = useState(new Date().toISOString().substring(0,10));
+    
     const updateLocation=(e)=>{
-      debugger;
       setLocation(e.target.value)
     }
-    
+   
     const handleSearch = async (e) => {
         e.preventDefault();
-        
-        //navigate("../find", {replace:true})
-       props.updateHotelList(getLocationBasedHotels(location))
-       /*await axios({
-         method:'post',
-         //TODO: update backend URL
-         url:"",
-         data:{location,checkIn,checkOut},
-         config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-       }).then((response)=>{
-         if(response.status >= 500){
-           throw new Error("Bad response from server")
-         }
-         return response.data;
-       }).then((responseData)=>{
-         //TODO: uncomment below after backend api implementation
-         //updateHotelList(responseData.message)
-         
-       })*/
+        if(utilObj.getDays(from, to) > 7){
+          alert("Please choose 7 or less days")
+          return;
+        }
+        if(!utilObj.isValidCheckinAndCheckout(from, to)){
+          alert("Checkout date should be later than checkin")
+          return;
+        }
+        localStorage.setItem("from", from);
+        localStorage.setItem("to", to);
+        localStorage.setItem("location", location);
+       props.updateHotelList(getLocationBasedHotels(location, from, to))
+       
+       const data = {from, to, location}
+       console.log(data);
 
-    };
+      /* axios({
+              method: "post",
+              url: utilObj.urls.backendURL+"/api/hotel/search",
+              headers: {
+              "Content-Type": "application/json",
+            },
+             data}).then(res=>{
+              if (res.status==200){
+                  updateHotelList(res.message)
+                  console.log(res.data);
+              }
+              else{
+                  console.log("Bad response from server");
+              }
+              
+          });*/
+
+      };
 
     return (
         <div>
@@ -69,11 +83,11 @@ function HotelSearch(props) {
           <div className="date_picker">
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
-                allowSameDateSelection={true}                
+                allowSameDateSelection={true}
                 label="CheckIn"
                 inputFormat="MM/dd/yyyy"
-                value={checkIn}
-                onChange={(d) => setCheckIn(d)}
+                value={from}
+                onChange={(d) => setCheckIn(d.toISOString().substring(0,10))}
                 renderInput={(params) => <TextField fullWidth={true} {...params} />}
               />
             </LocalizationProvider>
@@ -85,8 +99,8 @@ function HotelSearch(props) {
                   allowSameDateSelection={true}
                   label="CheckOut"
                   inputFormat="MM/dd/yyyy"
-                  value={checkOut}
-                  onChange={(d) => setCheckOut(d)}
+                  value={to}
+                  onChange={(d) => setCheckOut(d.toISOString().substring(0,10))}
                   renderInput={(params) => <TextField fullWidth={true} {...params} />}
                 />
               </LocalizationProvider>
