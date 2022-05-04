@@ -4,8 +4,16 @@ import utilObj  from "../Utils/utils";
 import Logout from "../Customer/Login/logout";
 
 function Header() {
-  const data = JSON.parse(localStorage.getItem("user"));
-  console.log(data);
+  /*const data = JSON.parse(localStorage.getItem("user"));
+
+  try {
+      let data = JSON.parse(localStorage.getItem("user"));
+        if(data)
+          return data
+    }catch(err) {
+      console.log('Error: ', err.message);
+}*/
+  //console.log(data);
   /*return (
     <div>
       <Link to="/register">Signup</Link>

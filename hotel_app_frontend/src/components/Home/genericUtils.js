@@ -1,19 +1,27 @@
 export var getUserEmail = () => {
     let user = localStorage.getItem("user")
-       if(user){
+    try {
         let userObj = JSON.parse(user);
-        if(userObj.object)
-            return userObj.object.custEmail
-       }
+            if(userObj.object)
+             return userObj.object.custEmail
+    }catch(err) {
+        console.log('Error: ', err.message);
+    }
         return null
 }
 
 export var getUserFirstName = () => {
     let user = localStorage.getItem("user")
     if(user){
-     let userObj = JSON.parse(user);
-     if(userObj.object)
-         return userObj.object.custFirstName
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj.object)
+                 return userObj.object.custFirstName
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+     
+     
     }
      return null
 }
@@ -21,9 +29,13 @@ export var getUserFirstName = () => {
 export var getUserLastName = () => {
     let user = localStorage.getItem("user")
     if(user){
-     let userObj = JSON.parse(user);
-     if(userObj.object)
-         return userObj.object.custLastName
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj.object)
+                 return userObj.object.LastName
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
     }
      return null
 }

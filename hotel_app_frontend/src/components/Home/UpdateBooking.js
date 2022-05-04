@@ -75,7 +75,6 @@ function UpdateBooking(props) {
     }
 
     const changeAmenity = (e) => {
-    debugger;
       let currAmenity = e.target.name;
       if(e.target.checked)
         updatedAmenities.push(currAmenity)
@@ -211,7 +210,6 @@ function UpdateBooking(props) {
             <Form.Label style={{ color:'green', fontStyle:"italic"}}>Add amenities</Form.Label>
 
             {amenities.map((amenity) => {
-              debugger;
               let isBooked = (bookedAmenities.indexOf(amenity.amenityCode) > -1)
               if(isBooked)
                 updatedAmenities.push(amenity.amenityCode)
