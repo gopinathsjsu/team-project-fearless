@@ -21,14 +21,23 @@ var room;
 
 export default function BookRoom(props) {
   const {id}=useParams();
+  const [hotel,setHotel]=useState({});  //get from local storage 
+  const amenities=JSON.parse(localStorage.getItem('amenities'));
+
+  const customerId=JSON.parse(localStorage.getItem('user'));
+  const hotelId=id;
+  const fromDate=JSON.parse(localStorage.getItem('fromDate'));
+  const toDate=JSON.parse(localStorage.getItem('toDate'));
+
+const [noOfGuest,setNoOfGuest]=useState({});
+const [roomdata,setRoomData]=useState({room:"",noOfGuest:"",amenity:"",hotelId:""});
+
  
   const nav=useNavigate();
 //    const [ratingdata, setRatingData]=useState({}); 
-  const [hotel,setHotel]=useState({});
-  const [roomdata, setRoomData]=useState({ customerId:"",hotelId:"",fromDate:"",toDate:"",room:"",amenity:"",noOfGuest:"",cost:""});
+
+//   const [roomdata, setRoomData]=useState({ customerId:"",hotelId:"",fromDate:"",toDate:"",room:"",amenity:"",noOfGuest:"",cost:""});
   
-
-
 //   useEffect(()=>{
 //     axios.get('http://localhost:8081/hotel/'+id)
 //     .then(response => response.data)
@@ -42,13 +51,11 @@ export default function BookRoom(props) {
 
 //   })
 
-
-
-const amenities=JSON.parse(localStorage.getItem('amenities'));
-
 const noGuestHandler=(e)=>{
-    setRoomData({...roomdata,[e.target.name]:e.target.value});
+    setNoOfGuest(e.target.value);
 }
+
+
 
 const handleChange=(event)=>{
     //    console.log(event.target.checked.value)
@@ -84,12 +91,16 @@ const handleChange=(event)=>{
         console.log("Room Value",room)
 
         console.log("Amenity Value",amenity);
+
+        setRoomData({...roomdata,room,amenity,noOfGuest:noOfGuest,hotelId:hotelId});
+        
+        
 }
 
 const onCheckPrice=()=>{
     room = dr+"-"+sr
     
-    setRoomData({...roomdata,[room]:room});
+    // setRoomData({...roomdata,noOfGuest:noOfGuest,hotelId:hotelId});
   
       console.log(" after check price");
       console.log(roomdata);
@@ -146,7 +157,7 @@ const onCheckPrice=()=>{
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
-                            <Form.Control type="number" style={{width:100}} name="DR"/>
+                            <Form.Control type="number" style={{width:100}} name="DR" />
                             </Col>
                             </Row>             
             </ListGroup.Item>
