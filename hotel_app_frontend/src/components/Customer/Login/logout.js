@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from "react-bootstrap"
+import { useNavigate } from 'react-router-dom';
 
-export default function Logout({setUser}){
-    
-    //const [user,setUser]=useState();
+export default function Logout(){
+    const navigate = useNavigate();
+    const [user,setUser]=useState();
     const loggedInuser=localStorage.getItem("user");
     setUser(loggedInuser);
 
@@ -12,7 +13,9 @@ export default function Logout({setUser}){
     const handleLogout=()=>{
         setUser({});
         localStorage.clear();
-        setMsg ("Logged out successfully")
+        
+        setMsg ("Logged out successfully");
+        //navigate('/');
     }
 
     return (
@@ -23,4 +26,4 @@ export default function Logout({setUser}){
     )
 }
 
-//export default Logout;
+//export default logout;

@@ -3,8 +3,6 @@ import HotelSearch from "./HotelSearch";
 import HotelList from "./HotelList";
 import Header from "./Header";
 
-
-
 function LandingPage() {
     const [hotelList, setHotelList] = useState("");
     const updateHotelList = (hotelList) => {
@@ -12,11 +10,8 @@ function LandingPage() {
     }
     return (
         <div>
-            <Header/>
             <HotelSearch updateHotelList={updateHotelList}/>
-            <HotelList hotelList = {hotelList}/>
-
-            
+            <HotelList hotelList = {hotelList}/> 
         </div>
     )
 

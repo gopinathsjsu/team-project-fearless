@@ -6,58 +6,58 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
 import {getLocationBasedHotels} from './Fetchjson';
 import Header from "./Header";
 import './HotelSearch.css';
-//import {urls} from 'Utils';
+import utilObj from '../Utils/utils';
 
 function HotelSearch(props) {
     const navigate = useNavigate();
     const [location, setLocation] = useState("");
-    const [from, setCheckIn] = useState("");
-    const [to, setCheckOut] = useState("");
+    const [from, setCheckIn] = useState(new Date().toISOString().substring(0,10));
+    const [to, setCheckOut] = useState(new Date().toISOString().substring(0,10));
+    
     const updateLocation=(e)=>{
       setLocation(e.target.value)
     }
-    
+   
     const handleSearch = async (e) => {
         e.preventDefault();
-        
-        //navigate("../find", {replace:true})
-       props.updateHotelList(getLocationBasedHotels(location))
-       /*await axios({
-         method:'post',
-         //TODO: update backend URL
-         url:"",
-         data:{location,checkIn,checkOut},
-         config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-       }).then((response)=>{
-         if(response.status >= 500){
-           throw new Error("Bad response from server")
-         }
-         return response.data;
-       }).then((responseData)=>{
-         //TODO: uncomment below after backend api implementation
-         //updateHotelList(responseData.message)
-         
-       })*/
-       const data = JSON.stringify({from, to, location})
-      // "{'from':"+ from+",'to':"+to+",'location':"+location+"}";
-        //  console.log(data);
-        console.log(data)
-
-      /* axios.post("http://localhost:3000/",data).then(res=>{
-        if (res.status==200){
-            console.log(res.data);
+        if(utilObj.getDays(from, to) > 7){
+          alert("Please choose 7 or less days")
+          return;
         }
-        else{
-            console.log("wrong user");
+        if(!utilObj.isValidCheckinAndCheckout(from, to)){
+          alert("Checkout date should be later than checkin")
+          return;
         }
-        
-    });*/
+        localStorage.setItem("from", from);
+        localStorage.setItem("to", to);
+        localStorage.setItem("location", location);
+       props.updateHotelList(getLocationBasedHotels(location, from, to))
+       
+       const data = {from, to, location}
+       console.log(data);
 
-    };
+      /* axios({
+              method: "post",
+              url: utilObj.urls.backendURL+"/api/hotel/search",
+              headers: {
+              "Content-Type": "application/json",
+            },
+             data}).then(res=>{
+              if (res.status==200){
+                  updateHotelList(res.message)
+                  console.log(res.data);
+              }
+              else{
+                  console.log("Bad response from server");
+              }
+              
+          });*/
+
+      };
 
     return (
         <div>
@@ -83,11 +83,11 @@ function HotelSearch(props) {
           <div className="date_picker">
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
-                allowSameDateSelection={true}                
+                allowSameDateSelection={true}
                 label="CheckIn"
                 inputFormat="MM/dd/yyyy"
                 value={from}
-                onChange={(d) => setCheckIn(d)}
+                onChange={(d) => setCheckIn(d.toISOString().substring(0,10))}
                 renderInput={(params) => <TextField fullWidth={true} {...params} />}
               />
             </LocalizationProvider>
@@ -100,7 +100,7 @@ function HotelSearch(props) {
                   label="CheckOut"
                   inputFormat="MM/dd/yyyy"
                   value={to}
-                  onChange={(d) => setCheckOut(d)}
+                  onChange={(d) => setCheckOut(d.toISOString().substring(0,10))}
                   renderInput={(params) => <TextField fullWidth={true} {...params} />}
                 />
               </LocalizationProvider>
