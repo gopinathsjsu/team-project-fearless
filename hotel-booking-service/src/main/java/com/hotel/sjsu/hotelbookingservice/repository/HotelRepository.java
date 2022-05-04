@@ -14,14 +14,20 @@ public interface HotelRepository extends JpaRepository<HotelEntity, String> {
 
 
     @Query("SELECT h.hotelId from hotel h where h.hotelLocation=?1" )
+
     //public List<HotelEntity> gethotelIdByhotelLocation(String hotel_location);
+
     public List<Integer> gethotelIdByhotelLocation(String hotel_location);
 
 
 
     @Query("SELECT b from booking b where b.hotelId=?1 and b.bookingStatus='Booked' and (booking_date_from BETWEEN ?2 AND ?3 or booking_date_to BETWEEN ?2 AND ?3)" )
+
     //public List<HotelEntity> gethotelIdByhotelLocation(String hotel_location);
+
     public List<BookingEntity> getbookingIdsByhotelId(Long hotel_id, String fromDate, String toDate);
+
+//    @Query("Select h.hotelId from hotel h where h.hotelLocation=?1 and h.hotelname=?2 and h.")
 
 
 }

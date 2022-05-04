@@ -13,12 +13,15 @@ public class Amenity {
     private String amenityCode;
     private String amenityType;
     private Double amenityCost;
+    private Double amenityCostSpl;
+
 
     public Amenity (AmenityEntity amenityEntity){
         this.amenityId = amenityEntity.getAmenityId();
         this.amenityCode = amenityEntity.getAmenityCode();
         this.amenityType = amenityEntity.getAmenityType();
         this.amenityCost = amenityEntity.getAmenityCost();
+        this.amenityCostSpl = amenityEntity.getAmenityCostSpl();
 
     }
 }

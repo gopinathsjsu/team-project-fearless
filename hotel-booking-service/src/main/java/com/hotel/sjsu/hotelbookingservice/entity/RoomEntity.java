@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="room")
 @Table(name = "room")
 @Component
 public class RoomEntity {
@@ -32,18 +32,18 @@ public class RoomEntity {
 	private Double roomCostSpl;
 	
 
-	public RoomEntity() {
-		super();
-	}
-
-	public RoomEntity(int roomId, String roomCode, String roomType, Double roomCost, Double roomCostSpl) {
-		super();
-		this.roomId = roomId;
-		this.roomCode = roomCode;
-		this.roomType = roomType;
-		this.roomCost = roomCost;
-		this.roomCostSpl = roomCostSpl;
-	}
+	//public RoomEntity() {
+	//	super();
+	//}
+//
+//	public RoomEntity(int roomId, String roomCode, String roomType, Double roomCost, Double roomCostSpl) {
+//		super();
+//		this.roomId = roomId;
+//		this.roomCode = roomCode;
+//		this.roomType = roomType;
+//		this.roomCost = roomCost;
+//		this.roomCostSpl = roomCostSpl;
+//	}
 
 	public int getRoomId() {
 		return roomId;
@@ -91,4 +91,19 @@ public class RoomEntity {
 				+ roomCost + ", roomCostSpl=" + roomCostSpl + "]";
 	}
 
+    public RoomEntity(Integer roomId, String roomCode, String roomType, Double roomCost, Double roomCostSpl) {
+
+        super();
+
+        this.roomId = roomId;
+        this.roomCode = roomCode;
+        this.roomType = roomType;
+        this.roomCost = roomCost;
+		this.roomCostSpl = roomCostSpl;
+    }
+
+    public RoomEntity() {
+
+        super();
+    }
 }

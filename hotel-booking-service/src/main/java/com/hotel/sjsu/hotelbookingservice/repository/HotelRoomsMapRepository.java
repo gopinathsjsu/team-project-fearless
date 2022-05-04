@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 @Repository
-
 public interface HotelRoomsMapRepository extends JpaRepository<HotelRoomsMapEntity, String> {
 
     @Query("SELECT totalRooms from hotel_rooms_map where hotelId=?1 and roomCode=?2")
     Integer getTotalRooms(Integer hotel_id, String room_code);
+
+    @Query("SELECT roomCost from room where roomCode=?1")
+    Integer getRoomCost(String room_code);
 
 }
