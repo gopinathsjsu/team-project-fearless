@@ -18,10 +18,15 @@ const getDays = (fromDate, toDate) =>{
    const getCustomerId = () => {
        let user = localStorage.getItem("user")
        if(user){
-        let userObj = JSON.parse(user);
-        if(userObj.object)
-            return userObj.object.customerId
-       }
+
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj.object)
+                 return userObj.object.custId
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
         return null
    }
 

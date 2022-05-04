@@ -4,16 +4,20 @@ import axios from 'axios';
 import utilObj from '../Utils/utils'
 import { useNavigate } from 'react-router-dom';
 
-function CancelBooking(bookingId, checkIn){
+function CancelBooking(){
     const navigate = useNavigate();
     const onCancelClick = () => {
-        var currDate = new Date().toISOString().substring(0,10)
-        if(utilObj.getDays(currDate, checkIn) <= 2){
-            alert("Cannot cancel booking before 48 hours of checkin")
+        var currDate = new Date();
+        var from = localStorage.getItem("from");
+        console.log(utilObj.getDays(currDate,from));
+        if(utilObj.getDays(currDate, from) <= 2){
+            alert("Cannot cancel booking before 48 hours of checkin");
             return
+        }else{
+            alert("Booking has been cancelled succesfully!!");
         }
         //send axios request to cancel
-        axios({
+        /*axios({
             method: "put",
             url: utilObj.urls.backendURL+"/api/hotel/cancel"+{bookingId},
             headers: {
@@ -29,7 +33,7 @@ function CancelBooking(bookingId, checkIn){
                 console.log("Bad response from server");
             }
             
-        });
+        });*/
         
     }
     return <Button onClick = {onCancelClick}>Cancel Booking</Button>
