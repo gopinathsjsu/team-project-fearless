@@ -26,13 +26,14 @@ export default function LoginForm(){
         console.log(user);
         const user={email,password};
         console.log(user);
-        axios.post("/customer/login",{user}).then(res=>{
+        axios.post("http://localhost:8081/login",user).then(res=>{
             if (res.status==200){
                 //set state of user
                 setUser(res.data)
 
                 // store the user in localStorage
-                localStorage.setItem('user', res.data)
+                localStorage.setItem('user', "Customer1");
+             
                 console.log(res.data)
 
                 // navigate(-1);

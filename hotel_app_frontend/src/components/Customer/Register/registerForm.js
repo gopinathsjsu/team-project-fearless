@@ -20,8 +20,9 @@ export default function RegisterUser(){
     const handleSubmit=(event)=>{
         event.preventDefault();
         console.log(regUserdata);
+ 
 
-        axios.post("/register",{regUserdata})
+        axios.post("http://localhost:8081//register",{regUserdata})
     
         .then(res=>{
             if (res.status==200){
