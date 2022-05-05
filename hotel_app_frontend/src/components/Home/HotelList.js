@@ -31,7 +31,7 @@ function HotelList(props) {
                               {currHotel.hotel_address}
                             </Card.Text>
                             <Card.Text>
-                                <Link  to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel  }} ><Button style={{backgroundColor:`#044831`}} className="select-hotel">Select</Button></Link>
+                                <Link  to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel}} ><Button style={{backgroundColor:`#044831`}} className="select-hotel">Select</Button></Link>
                             </Card.Text>
                         </Card.Body>
                     {/*isUserLoggedIn()?<Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel  }} > Select</Link> :<Link to="/login">Select</Link>*/}

@@ -45,9 +45,9 @@ function Profile(){
              <div className="navbookings">
                     {/*<Button onClick={profile} style={{backgroundColor:`#044831` , width:`10em`}}>Profile</Button>*/}
                     <br/><br/>
-                    <Button onClick={showPastBookings} style={{backgroundColor:`#044831`, width:`10em`}}>Past bookings</Button>
+                    <Button onClick={showPastBookings} variant="success" style={{width:`10.5em`}}>Past bookings</Button>
                     <br/><br/>
-                    <Button onClick={showUpcomingBookings} style={{backgroundColor:`#044831`, width:`10em`}}>Upcoming bookings</Button>      
+                    <Button onClick={showUpcomingBookings} variant="success">Upcoming bookings</Button>      
              </div>
         </div>
         </div>

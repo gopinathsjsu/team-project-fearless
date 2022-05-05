@@ -37,7 +37,7 @@ function Header() {
       <br/>
       <Link to ="/">Home</Link>
       <br/>
-      {isUserLoggedIn()? <Logout></Logout>:<Link to="/login">SignIn</Link> }
+      {isUserLoggedIn()? <Logout/>:<Link to="/login">SignIn</Link> }
     </nav>
   )
 };
