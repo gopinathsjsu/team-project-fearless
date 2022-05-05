@@ -4,7 +4,8 @@ import {getBookings} from './Fetchjson.js'
 import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './genericUtils.js'
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
-import utilObj from '../Utils/utils'
+import utilObj from '../Utils/utils';
+import './Styles/Profile.css'
 
 class UpcomingBookings extends Component{
     state={
@@ -66,19 +67,30 @@ class UpcomingBookings extends Component{
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             if(isUpcoming){
                 markup.push(
-                    <Card key={i}>
-                        HotelID: {currBooking.hotelId}
-                        <br/>
+                    <Card border="success" key={i} className="past-upcoming">
+                        <Card.Body>
+                        <Card.Text>
+                        Hotel Name: {currBooking.hotelId}
+                        </Card.Text>
+                        <Card.Text>  
                         CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
-                        <br/>
-                        Checkout: {new Date(currBooking.bookingDateTo).toDateString()}
-                        <br/>
-                        No. of Guests: {currBooking.noOfGuest}
-                        <br/>                        
+                        </Card.Text> 
+                        <Card.Text> 
+                        Check Out: {new Date(currBooking.bookingDateTo).toDateString()}
+                        </Card.Text>  
+                        <Card.Text>
+                        Guest Count: {currBooking.noOfGuest}
+                        </Card.Text>
+                        <div className="update-cancel">                  
                         <UpdateBooking currBooking={currBooking}/>
+                        </div>
                         <br/>
+                        <div className="update-cancel">
                        <CancelBooking bookingId= {currBooking.bookingId} checkIn={currBooking.bookingDateFrom}/>
+                       </div>
+                       </Card.Body>  
                     </Card>
+                    
                 )
             }
         }

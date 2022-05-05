@@ -1,0 +1,30 @@
+.hotellist {
+    position: relative;
+    top: 120px;
+    margin: 25px;
+    width: 77%;
+    height: 130px;
+    left: 8%;
+    border-color: white;
+    border-width: 2em;
+    box-sizing: border-box;
+}
+
+.hotellocation {
+    position: relative;
+    top:15px;
+    font-size:large;
+    font-weight: 400;
+    font-style: oblique;
+
+}
+
+.select-hotel {
+    position: relative;
+    bottom:18px;
+    left: 88%;
+    height: 3.25em;
+    width: 7em;         
+}
+
+

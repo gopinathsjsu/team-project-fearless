@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { Card, Form, Row,Col, Button } from "react-bootstrap";
 import logout from "./logout";
 
@@ -7,6 +7,7 @@ import logout from "./logout";
 import axios from "axios";
 
 export default function LoginForm(){
+    const navigate = useNavigate();
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
 
@@ -26,7 +27,7 @@ export default function LoginForm(){
         //console.log(user);
         const user={email,password};
         console.log(user);
-        axios.post("http://localhost:8081/login",user).then(res=>{
+        /*axios.post("http://localhost:8081/login",user).then(res=>{
             if (res.status==200){
                 //set state of user
                 setUser(res.data)
@@ -36,14 +37,14 @@ export default function LoginForm(){
              
                 console.log(res.data)
 
-                // navigate(-1);
+                // navigate('/profile');
                 console.log("logged in");
             }
             else{
                 console.log("wrong user");
             }
             
-        });
+        });*/
         // setUser({email:"",password:""})
         }
 
@@ -51,12 +52,17 @@ export default function LoginForm(){
 //check if user is already logged in        
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-      window.alert("Already logged in");
-    //   navigate(-1);
+        try {
+            const foundUser = JSON.parse(loggedInUser);
+            //window.alert("Already logged in");
+            setUser(foundUser); 
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+        
 
     }
+    
 
 //If not then return this login form      
     return(
@@ -90,7 +96,7 @@ export default function LoginForm(){
              </Form.Group>
              <Row>
                  <Col>
-                 <Button type="submit" variant="success" size="md" active>Login</Button>
+                 <Button type="submit" variant="success" size="md" active >Login</Button>
                  </Col>
                  <Col> <Link to="/register"style={{color:"green", fontStyle:"italic"}}>New User? Register</Link>
                  </Col>
