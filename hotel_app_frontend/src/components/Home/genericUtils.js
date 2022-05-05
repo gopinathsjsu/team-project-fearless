@@ -21,7 +21,6 @@ export var getUserFirstName = () => {
             console.log('Error: ', err.message);
         }
      
-     
     }
      return null
 }

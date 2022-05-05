@@ -148,7 +148,7 @@ function UpdateBooking(props) {
     setRooms(currBooking.room)
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="primary" styles={{backgroundColor:`#044831`, width:`10em`}}  onClick={handleShow} >
           Update
         </Button>
   
@@ -257,7 +257,7 @@ function UpdateBooking(props) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleUpdate}>
+            <Button variant="primary" onClick={handleUpdate} styles={{backgroundColor:`#044831`, width:`10em`}}>
               Update
             </Button>
           </Modal.Footer>
