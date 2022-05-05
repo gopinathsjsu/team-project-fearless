@@ -16,6 +16,8 @@ import Profile from './components/Home/Profile';
 import UpcomingBookings from './components/Home/UpcomingBookings';
 import PastBookings from './components/Home/PastBookings';
 import Payment from './components/Customer/Bookings/payment';
+import Exit from './components/Customer/Exit/exit';
+import Error from './components/Customer/Exit/error';
 import  Header  from './components/Home/Header';
 // import Amenities from './components/Customer/Bookings/amenities';
 
@@ -30,6 +32,8 @@ function App(){
         <Route path="displayhotels" element={<DisplayHotels/>} />
          <Route path="displayhotels/hotel/:id" element={<BookRoom/>} />
          <Route path="payment" element={<Payment/>} />
+         <Route path="exit" element={<Exit/>}></Route>
+         <Route path="error" element={<Error/>}></Route>
          <Route path="/profile" element={<Profile/>}/>
           <Route path="/upcomingBookings" element={<UpcomingBookings/>} />
           <Route path="/pastBookings" element={<PastBookings/>} />

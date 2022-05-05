@@ -21,14 +21,26 @@ var room;
 
 export default function BookRoom(props) {
   const {id}=useParams();
- 
+  const hotel=JSON.parse(localStorage.getItem('hotel'));  //get from local storage 
+  const amenities=JSON.parse(localStorage.getItem('amenities'));
+  console.log("local storage hotel is ",hotel);
+
+  const customerId=JSON.parse(localStorage.getItem('user'));
+  const hotelId=id;
+  const fromDate=JSON.parse(localStorage.getItem('fromDate'));
+  const toDate=JSON.parse(localStorage.getItem('toDate'));
+    
+const [noOfGuest,setNoOfGuest]=useState({});
+const [roomdata,setRoomData]=useState({room:"",noOfGuest:"",amenity:"",hotelId:"", price:""});
+
+localStorage.setItem('bookingDetails',JSON.stringify(roomdata));
+
+const [price,setPrice]=useState({});
   const nav=useNavigate();
 //    const [ratingdata, setRatingData]=useState({}); 
-  const [hotel,setHotel]=useState({});
-  const [roomdata, setRoomData]=useState({ customerId:"",hotelId:"",fromDate:"",toDate:"",room:"",amenity:"",noOfGuest:"",cost:""});
-  
 
-
+//   const [data, setData]=useState({ customerId:"",hotelId:"",fromDate:"",toDate:"",room:"",amenity:"",noOfGuest:"",cost:""});
+  const [data,setData]=useState({hotelId:id});
 //   useEffect(()=>{
 //     axios.get('http://localhost:8081/hotel/'+id)
 //     .then(response => response.data)
@@ -42,15 +54,17 @@ export default function BookRoom(props) {
 
 //   })
 
-
-
-const amenities=JSON.parse(localStorage.getItem('amenities'));
-
 const noGuestHandler=(e)=>{
-    setRoomData({...roomdata,[e.target.name]:e.target.value});
+    setNoOfGuest(e.target.value);
 }
 
+
+
 const handleChange=(event)=>{
+     setData({...data,[event.target.name]:event.target.value});
+
+
+
     //    console.log(event.target.checked.value)
      
         if (event.target.name == 'DR')
@@ -84,13 +98,16 @@ const handleChange=(event)=>{
         console.log("Room Value",room)
 
         console.log("Amenity Value",amenity);
+
+        setRoomData({...roomdata,room,amenity,noOfGuest:noOfGuest,hotelId:hotelId});
+        
+        
 }
 
 const onCheckPrice=()=>{
     room = dr+"-"+sr
     
-    setRoomData({...roomdata,[room]:room});
-  
+    // setRoomData({...roomdata,noOfGuest:noOfGuest,hotelId:hotelId});
       console.log(" after check price");
       console.log(roomdata);
     //   setPrice(10000);
@@ -99,14 +116,16 @@ const onCheckPrice=()=>{
   axios.post('http://localhost:8081/api/calculateprice',roomdata)
   .then(response => response.data).then((data) => {
     console.log(data);
-    // setPrice(10000);
+
+    //get cost value from response and set it to price 
+    setPrice(1000);
  });
     
 
   } 
 
   const NavtoPayment=()=>{
-   nav('/payment',{state:roomdata});
+   nav('/payment',{state:data});
   }
 
    
@@ -114,14 +133,15 @@ const onCheckPrice=()=>{
         
            
             <React.Fragment>
-<Card border="success" style={{backgroundImage: `url(${hotelimg})`}} >
-    <Card.Header style={{textAlign:'center',  color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
-    <Card.Body>
-        {/* Hotel Name : {hotel.hotelName} */}
-        Hotel address:
+            <Card border="success" style={{backgroundImage: `url(${hotelimg})`}} >
+            <Card.Header style={{textAlign:'center',  color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
+            <Card.Body>
+            {/* Hotel Name : {hotel.hotelName} */}
+                                     Hotel address:
 
-</Card.Body>
-</Card>
+            </Card.Body>
+            </Card>
+
 
 <Card border="success">
     <Card.Body>
@@ -135,7 +155,7 @@ const onCheckPrice=()=>{
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
-                            <Form.Control type="number" style={{width:100}} name="SR" />
+                            <Form.Control type="number" min="1" max="10" style={{width:100}} name="SR"  />
                             </Col>
                             </Row>             
             </ListGroup.Item>
@@ -146,7 +166,7 @@ const onCheckPrice=()=>{
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
-                            <Form.Control type="number" style={{width:100}} name="DR"/>
+                            <Form.Control type="number" min="1" max="10" style={{width:100}} name="DR" />
                             </Col>
                             </Row>             
             </ListGroup.Item>
@@ -154,7 +174,7 @@ const onCheckPrice=()=>{
           <br></br>
             <Form.Group style={{marginLeft:'20rem'}}>   
                      <Form.Label style={{ color:'green', fontStyle:"italic"}} >Enter No of Guests</Form.Label>
-                     <Form.Control type="number" placeholder="Enter guests" name="noOfGuest" style={{ width: '10rem' }} onChange={noGuestHandler} />
+                     <Form.Control type="number" placeholder="Enter guests" name="noOfGuest" style={{ width: '10rem' }} onChange={noGuestHandler} required/>
             </Form.Group>
         <br></br>
             <Form.Group>
