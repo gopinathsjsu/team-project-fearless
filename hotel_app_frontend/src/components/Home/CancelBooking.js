@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import utilObj from '../Utils/utils'
 import { useNavigate } from 'react-router-dom';
+import './Styles/Profile.css';
 
 function CancelBooking(bookingId, checkIn){
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ function CancelBooking(bookingId, checkIn){
         });*/
         
     }
-    return <Button onClick = {onCancelClick} styles={{backgroundColor:`#044831`, width:`10em`}}>Cancel Booking</Button>
+    return <Button variant = "success" onClick = {onCancelClick}>Cancel</Button>
         
 } 
 

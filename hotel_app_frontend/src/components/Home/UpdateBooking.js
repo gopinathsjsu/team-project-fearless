@@ -50,6 +50,24 @@ function UpdateBooking(props) {
        // console.log("noOfGuests: ",noOfGuests,"  ", "checkIn: ", checkIn, "  ", "checkOut:", checkOut)
         //TODO: add axios post request to update booking and send required input parameters
         // If successful, show an alert message as booking is updated
+
+         /* axios({
+              method: "post",
+              url: utilObj.urls.backendURL+"/hotel/book",
+              headers: {
+              "Content-Type": "application/json",
+            },
+             data}).then(res=>{
+              if (res.status==200){
+                 swal("booking updated")
+                  //updateHotelList(res.message)
+                  console.log(res.data);
+              }
+              else{
+                  console.log("Bad response from server");
+              }
+              
+          });*/
     }
 
     //Call below apis before axios request
@@ -148,7 +166,7 @@ function UpdateBooking(props) {
     setRooms(currBooking.room)
     return (
       <>
-        <Button variant="primary" styles={{backgroundColor:`#044831`, width:`10em`}}  onClick={handleShow} >
+        <Button variant="success" onClick={handleShow} >
           Update
         </Button>
   
@@ -257,7 +275,7 @@ function UpdateBooking(props) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleUpdate} styles={{backgroundColor:`#044831`, width:`10em`}}>
+            <Button variant="success" onClick={handleUpdate}>
               Update
             </Button>
           </Modal.Footer>

@@ -5,7 +5,7 @@ import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './g
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
 import utilObj from '../Utils/utils';
-import './Styles/Profile.css'
+import './Styles/Profile.css';
 
 class UpcomingBookings extends Component{
     state={
@@ -24,21 +24,21 @@ class UpcomingBookings extends Component{
 
         //TODO: uncomment below after backend api implementation
         //TODO: Send username or userid to backend API, and get upcoming books of current user
-        /*await axios({
-            method:'get',
-            //TODO: update backend URL
-            url:"/upcomingBookings",
-            data:{user},
-            config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-          }).then((response)=>{
-            if(response.status >= 500){
-              throw new Error("Bad response from server")
-            }
-            return response.data;
-          }).then((responseData)=>{
-            this.setState({
-                bookings: responseData
-            })
+        /*axios({
+              method: "get",
+              url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
+              headers: {
+              "Content-Type": "application/json",
+            },
+             data}).then(res=>{
+              if (res.status==200){
+                  //updateHotelList(res.message)
+                  console.log(res.data);
+              }
+              else{
+                  console.log("Bad response from server");
+              }
+              
           })*/
     }
 
