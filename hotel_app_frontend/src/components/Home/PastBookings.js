@@ -1,24 +1,22 @@
 import React, { Component, useState } from "react";
 import {  Container, Card } from "react-bootstrap";
 import {getBookings} from './Fetchjson.js'
-import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './genericUtils.js'
+import {getUserFirstName,getUserLastName} from './genericUtils.js'
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
 import utilObj from '../Utils/utils'
 
-class UpcomingBookings extends Component{
+class PastBookings extends Component{
     state={
         "bookings" : ""
     }
 
     componentDidMount(){
         const username = getUserFirstName()+" "+getUserLastName()
-        const email = getUserEmail()
-        const rewards = getRewardPoints()
         //TODO: Comment it later
-        const bookings = getBookings(username, email, rewards)
+        const bookings = getBookings(username)
         this.setState({
-            bookings: bookings
+            bookings
         })
 
         //TODO: uncomment below after backend api implementation
@@ -63,21 +61,21 @@ class UpcomingBookings extends Component{
         const currDate = new Date().toISOString().substring(0,10);
         for(let i=0; i<bookings.length; i++){
             let currBooking = bookings[i]
-            let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
-            if(isUpcoming){
+            let isPast = (utilObj.getDays(currBooking.bookingDateTo, currDate) > 0)
+            if(isPast){
                 markup.push(
                     <Card key={i}>
-                        HotelID: {currBooking.hotelId}
+                        {currBooking.hotelId}
                         <br/>
-                        CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
+                        {currBooking.bookingDateFrom}
                         <br/>
-                        Checkout: {new Date(currBooking.bookingDateTo).toDateString()}
+                        {currBooking.bookingDateTo}
                         <br/>
-                        No. of Guests: {currBooking.noOfGuest}
-                        <br/>                        
-                        <UpdateBooking currBooking={currBooking}/>
+                        {currBooking.noOfGuest}
                         <br/>
-                       <CancelBooking bookingId= {currBooking.bookingId} checkIn={currBooking.bookingDateFrom}/>
+                        
+                        
+                        
                     </Card>
                 )
             }
@@ -86,4 +84,4 @@ class UpcomingBookings extends Component{
         
     }
 }
-export default UpcomingBookings
+export default PastBookings

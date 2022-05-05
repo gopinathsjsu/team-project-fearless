@@ -9,7 +9,7 @@ export  default function Payment(){
     const location = useLocation();
     const [data,setData]=useState({});
     const [payment,setPayment]=useState({});
-
+  
     useEffect(()=>{ 
         setData(location.state);
      
@@ -18,12 +18,14 @@ export  default function Payment(){
     
     const handleChange=(e)=>{
         setPayment(e.target.value);
-         
+        setData(payment);
+        
+        
      
     }
 
     const handleClick=()=>{
-        console.log(data);
+     
         console.log("payment",payment);
         console.log("data to be sent to api",{data,payment});
 
@@ -37,11 +39,11 @@ export  default function Payment(){
                 console.log(res.data)
 
                 nav('/exit');
-                console.log("registration successful");
+                console.log("booking successful");
             }
             else{
                 nav('/error');
-                console.log("registration unsuccessful");
+                console.log("booking unsuccessful");
             }
             
         });
@@ -56,25 +58,31 @@ export  default function Payment(){
             <br>
             </br><br>
             </br>
-          
+             
             <div class="container">
   <div class="card-columns d-flex justify-content-center">
   <Card style={{backgroundImage: `url(${hotelimg})`}}>
                 <Card.Title  style={{textAlign:'center', color:'green', fontStyle:"italic"}}>
+           
                     .................
                     .................
                     ................
                 </Card.Title>
                 <ListGroup>
                 <ListGroup.Item style={{textAlign:'center', color:'green', fontStyle:"italic"}}>
-                       Your Bookings
+                       Your Bookings     
                     </ListGroup.Item>
                 <ListGroup.Item>
                         Hotel ID : {data.hotelId}
                     </ListGroup.Item>
-                    <ListGroup.Item>
+                    
+                    if({data.SR}){
+                        <ListGroup.Item>
                         Total Single Rooms Booked : {data.SR}
                     </ListGroup.Item>
+                    }
+
+                    
                     <ListGroup.Item>
                         Total Deluxe Rooms Booked : {data.DR}
                     </ListGroup.Item>
@@ -83,6 +91,7 @@ export  default function Payment(){
                     </ListGroup.Item>
                     <ListGroup.Item>
                         Total Cost : 700$
+                     
                     </ListGroup.Item>
         
             
