@@ -59,17 +59,17 @@ export default function DisplayHotels() {
     console.log("Amenities type =",typeof(JSON.stringify(amenities)));
 
     localStorage.setItem("amenities",JSON.stringify(amenities));
-    
-    useEffect(()=>{
-        localStorage.setItem("hotels",JSON.stringify(hotels));
-        // localStorage.setItem("amenities",JSON.stringify(amenities));
    
-    },[hotels]);
+    // useEffect(()=>{
+    //     localStorage.setItem("hotels",JSON.stringify(hotels));
+    //     // localStorage.setItem("amenities",JSON.stringify(amenities));
+   
+    // },[hotels]);
     console.log(typeof(hotels));
 
 
-    const onHotelSelect=(event)=>{
-        console.log("Hotel selected: ",event.target.value);
+    const onSelectHotel=(val)=>{
+        localStorage.setItem('hotel',JSON.stringify(val));
 
     }
 
@@ -91,7 +91,8 @@ export default function DisplayHotels() {
                             {hotel.hotel.hotelLocation}
                             </Col>
                             <Col>
-                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`hotel/${hotel.hotel.hotelId}`, state:hotel}} > Select</Link>
+                           
+                            <Link style={{variant:"success", fontStyle:"italic", color:"green"}} onClick={onSelectHotel(hotel)} to={{pathname :`hotel/${hotel.hotel.hotelId}`, state:hotel}} > Select</Link>
                             </Col>
                             </Row>
                             <Row>
