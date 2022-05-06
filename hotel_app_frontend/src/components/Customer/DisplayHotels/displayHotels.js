@@ -82,6 +82,7 @@ export default function DisplayHotels() {
               
         <ListGroup >
                 {hotels.map(hotel=>{
+                
                     return(
                         <ListGroup.Item key={hotel.hotel.hotelId} >
                             <Row >

@@ -2,10 +2,12 @@ import { margin } from '@mui/system';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card, Form, ListGroup, Row, Col, Button } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image'
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 import hotelimg from './hotel.jpg';
-
+import SRimg from './singleRoom.jpg';
+import DRimg from './deluxeRoom.jpg';
 var dr = "DR";
 var sr = "SR";
 
@@ -20,9 +22,54 @@ var dn = "DN";
 var room;
 
 export default function BookRoom(props) {
+    const amenities=
+    [
+        {
+            "amenityId": 1,
+            "amenityCode": "CB",
+            "amenityType": "Daily Continental Breakfast",
+            "amenityCost": 25
+        },
+        {
+            "amenityId": 2,
+            "amenityCode": "FR",
+            "amenityType": "Access to fitness room",
+            "amenityCost": 25
+        },
+        {
+            "amenityId": 3,
+            "amenityCode": "SJ",
+            "amenityType": "Access to Swimming Pool/Jacuzzi",
+            "amenityCost": 25
+        },
+        {
+            "amenityId": 4,
+            "amenityCode": "DP",
+            "amenityType": "Daily Parking",
+            "amenityCost": 10
+        },
+        {
+            "amenityId": 5,
+            "amenityCode": "BF",
+            "amenityType": "Breakfast",
+            "amenityCost": 10
+        },
+        {
+            "amenityId": 6,
+            "amenityCode": "LN",
+            "amenityType": "Lunch",
+            "amenityCost": 10
+        },
+        {
+            "amenityId": 7,
+            "amenityCode": "DN",
+            "amenityType": "Dinner",
+            "amenityCost": 10
+        }
+    ]
   const {id}=useParams();
   const hotel=JSON.parse(localStorage.getItem('hotel'));  //get from local storage 
-  const amenities=JSON.parse(localStorage.getItem('amenities'));
+//   const amenities=JSON.parse(localStorage.getItem('amenities'));
   console.log("local storage hotel is ",hotel);
 
   const customerId=JSON.parse(localStorage.getItem('user'));
@@ -130,12 +177,23 @@ const onCheckPrice=()=>{
    nav('/payment',{state:data});
   }
 
+  const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 5
+        }}
+    />
+);
+
    
         return (
         
            
             <React.Fragment>
-            <Card border="success" style={{backgroundImage: `url(${hotelimg})`}} >
+                <Card>
+            {/* <Card border="success" style={{backgroundImage: `url(${hotelimg})`}} > */}
             <Card.Header style={{textAlign:'center',  color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
             <Card.Body>
             {/* Hotel Name : {hotel.hotelName} */}
@@ -156,21 +214,44 @@ const onCheckPrice=()=>{
                             <Form.Text className="text-muted">Sea-Facing, TV set, Bathroom </Form.Text>
                             </Col>
                             <Col>
+                                <Image src={SRimg} width={200} height={150}></Image>
+                                </Col> 
+                            <Col>
+                            <Form.Text >$$</Form.Text>
+                            </Col>
+                            <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
                             <Form.Control type="number" min="1" max="10" style={{width:100}} name="SR"  />
                             </Col>
-                            </Row>             
+                          </Row> 
+                            {/* <Row>
+                                <Col>
+                                <Image src={SRimg} width={200} height={150}></Image>
+                                </Col> 
+                            </Row>           */} 
             </ListGroup.Item>
+            <ColoredLine color="red" />
             <ListGroup.Item>
                             <Row>
                             <Col> Deluxe Room  {" "}
                             <Form.Text className="text-muted">Sea-Facing, TV set, Bathroom </Form.Text>
                             </Col>
                             <Col>
+                                <Image src={DRimg} width={200} height={150}></Image>
+                                </Col> 
+                            <Col>
+                            <Form.Text >$$</Form.Text>
+                            </Col>
+                            <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
                             <Form.Control type="number" min="1" max="10" style={{width:100}} name="DR" />
                             </Col>
-                            </Row>             
+                            </Row>
+                            {/* <Row>
+                                <Col>
+                                <Image src={DRimg} width={200} height={150}></Image>
+                                </Col> 
+                            </Row>                  */}
             </ListGroup.Item>
             </Form.Group>
           <br></br>
