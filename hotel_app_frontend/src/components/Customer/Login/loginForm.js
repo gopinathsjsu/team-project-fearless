@@ -8,12 +8,12 @@ import axios from "axios";
 
 export default function LoginForm(){
     const navigate = useNavigate();
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
+    const [custEmail,setEmail]=useState("")
+    const [custPassword,setPassword]=useState("")
 
     const [user, setUser]=useState({
-        email :"",
-        password :""
+        custEmail:"",
+        custPassword :""
     })
     
 
@@ -25,27 +25,31 @@ export default function LoginForm(){
 
         event.preventDefault();
         //console.log(user);
-        const user={email,password};
+        const user={custEmail,custPassword};
         console.log(user);
-        /*axios.post("http://localhost:8081/login",user).then(res=>{
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/customer/login",user).then(res=>{
             if (res.status==200){
+
+
+                console.log("res data ",res.data.object);
+                localStorage.setItem("custId",JSON.stringify(res.data.object));
                 //set state of user
-                setUser(res.data)
+                setUser(res.data);
 
                 // store the user in localStorage
-                localStorage.setItem('user', "Customer1");
+                localStorage.setItem("user", 1);
              
                 console.log(res.data)
 
-                // navigate('/profile');
+                navigate('/');
                 console.log("logged in");
             }
             else{
                 console.log("wrong user");
             }
             
-        });*/
-        // setUser({email:"",password:""})
+        });
+        setUser({custEmail:"",custPassword:""})
         }
 
 
@@ -81,14 +85,14 @@ export default function LoginForm(){
                  
                  
                  <Form.Floating className="mb-3">
-                 <Form.Control type="email"   id="Email" name="email" placeholder="Email" onChange={({target})=>setEmail(target.value)} required/>
+                 <Form.Control type="email"   id="Email" name="custEmail" placeholder="Email" onChange={({target})=>setEmail(target.value)} required/>
                  <label htmlFor="Email" style={{marginLeft:10}} > Email</label>
                  </Form.Floating>
 
                 
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="password"  id="Password" name="password" placeholder="Password" onChange={({target})=>setPassword(target.value)} required/>
+                 <Form.Control type="password"  id="Password" name="custPassword" placeholder="Password" onChange={({target})=>setPassword(target.value)} required/>
                  <label htmlFor="Password" style={{marginLeft:10}}> Password</label>
                  </Form.Floating>
 
@@ -111,8 +115,8 @@ export default function LoginForm(){
          </Row>
   
         
-         <logout setUser={setUser}></logout>
-     
+         {/* <logout setUser={setUser}></logout>
+      */}
      
 </React.Fragment>
         

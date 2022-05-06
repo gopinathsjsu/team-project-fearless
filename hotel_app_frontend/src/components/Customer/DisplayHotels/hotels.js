@@ -45,7 +45,7 @@ exports.hotels=[
             }
         ],
         "hotel": {
-            "hotelId": 100,
+            "hotelId": 1,
             "hotelname": "The Ocean Pearl",
             "hotelLocation": "Mangalore",
             "hotel_address": "Navabharath Cir, KA, India",
@@ -104,7 +104,7 @@ exports.hotels=[
             }
         ],
         "hotel": {
-            "hotelId": 400,
+            "hotelId": 4,
             "hotelname": "Hilton",
             "hotelLocation": "Mangalore",
             "hotel_address": "Navabharath Cir, KA, India",

@@ -1,5 +1,5 @@
 const urls = {
-    backendURL : "http://localhost:8081"
+    // backendURL : "http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/"
 }
 
 const getDays = (fromDate, toDate) =>{
