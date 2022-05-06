@@ -27,8 +27,8 @@ export default function BookRoom(props) {
 
   const customerId=JSON.parse(localStorage.getItem('user'));
   const hotelId=id;
-  const fromDate=JSON.parse(localStorage.getItem('fromDate'));
-  const toDate=JSON.parse(localStorage.getItem('toDate'));
+  const bookingDateFrom=localStorage.getItem("from");
+  const bookingDateTo=localStorage.getItem("to");
     
 const [noOfGuest,setNoOfGuest]=useState({});
 const [roomdata,setRoomData]=useState({room:"",noOfGuest:"",amenity:"",hotelId:"", price:""});
@@ -61,7 +61,7 @@ const noGuestHandler=(e)=>{
 
 
 const handleChange=(event)=>{
-     setData({...data,[event.target.name]:event.target.value});
+     setData({...data,[event.target.name]:event.target.value});   // setting data to pass to payment page
 
 
 
@@ -95,16 +95,17 @@ const handleChange=(event)=>{
 
         room = dr+"-"+sr
      
-        console.log("Room Value",room)
+        
 
-        console.log("Amenity Value",amenity);
-
-        setRoomData({...roomdata,room,amenity,noOfGuest:noOfGuest,hotelId:hotelId});
+        setRoomData({...roomdata,customerId:3,hotelId:hotelId,bookingDateFrom,bookingDateTo,room,amenity,noOfGuest:noOfGuest});     //setting data for api
         
         
 }
 
 const onCheckPrice=()=>{
+
+    console.log("Room Value",room)
+    console.log("Amenity Value",amenity);
     room = dr+"-"+sr
     
     // setRoomData({...roomdata,noOfGuest:noOfGuest,hotelId:hotelId});
@@ -119,6 +120,7 @@ const onCheckPrice=()=>{
 
     //get cost value from response and set it to price 
     setPrice(1000);
+  
  });
     
 
