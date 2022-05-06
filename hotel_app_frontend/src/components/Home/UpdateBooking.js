@@ -267,8 +267,8 @@ function UpdateBooking(props) {
           </form>
         
       
-    </Card.Body>
-</Card>
+          </Card.Body>
+      </Card>
             </React.Fragment>
           </Modal.Body>
           <Modal.Footer>

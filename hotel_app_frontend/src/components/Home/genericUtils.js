@@ -40,6 +40,6 @@ export var getUserLastName = () => {
 }
 
 export var getRewardPoints = () => {
-    const username = localStorage.getItem("rewardPoints")
+    const username = localStorage.getItem("loyaltyPoints")
     return username
 }

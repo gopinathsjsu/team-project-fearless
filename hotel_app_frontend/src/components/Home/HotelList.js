@@ -21,7 +21,6 @@ function HotelList(props) {
             let currHotel = props.hotelList[i].hotel;
             markup.push(
                 <Card border="success"  className="hotellist" key={i}>
-                    {/*<div className="hotellocation">*/}
                         <Card.Img variant="left" src=""/>
                         <Card.Title>
                             {currHotel.hotelname}

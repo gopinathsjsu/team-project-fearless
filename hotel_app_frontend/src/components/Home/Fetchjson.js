@@ -318,3 +318,16 @@ export const getBookings = (user) => {
         
     )
 }
+
+export const roomRates = () => {
+    return([
+            {
+                "roomDR":"DR",
+                "roomSR":"SR",
+                "roomCostDR":250,
+                "roomCostSR":300
+            }
+        ]
+
+    )
+}
