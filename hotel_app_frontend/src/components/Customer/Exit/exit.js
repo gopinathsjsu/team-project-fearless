@@ -8,8 +8,13 @@ import {useLocation} from 'react-router-dom';
 export default function Exit(){
 
     return(
-        <div>
-            Your booking is confirmed.
-        </div>
+       <React.Fragment>
+           <Card style={{margin: "auto",
+  width: "50",
+  border: "3px solid green",
+  padding: "10px"}}>
+               <p>Yours bookings are confirmed</p>
+           </Card>
+       </React.Fragment>
     )
 }

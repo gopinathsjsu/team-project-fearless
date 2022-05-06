@@ -9,30 +9,28 @@ export  default function Payment(){
     const location = useLocation();
     const [data,setData]=useState({});
     const [payment,setPayment]=useState({});
+    const roomdata=localStorage.getItem('bookingDetails');
   
     useEffect(()=>{ 
+      
         setData(location.state);
-     
+
 
     })
     
     const handleChange=(e)=>{
         setPayment(e.target.value);
-        setData(payment);
-        
-        
-     
+
     }
 
     const handleClick=()=>{
      
-        console.log("payment",payment);
-        console.log("data to be sent to api",{data,payment});
+        console.log("data to be sent to api",{roomdata,payment});
 
     nav('/exit');
 
 
-        axios.post("http://localhost:8081//hotel//book",{data,payment})
+        axios.post("http://localhost:8081//hotel//book",{roomdata,payment})
     
         .then(res=>{
             if (res.status==200){
