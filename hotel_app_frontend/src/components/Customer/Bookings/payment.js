@@ -10,10 +10,13 @@ export  default function Payment(){
     const [data,setData]=useState({});
     const [payment,setPayment]=useState({});
     const roomdata=localStorage.getItem('bookingDetails');
+    
+    
   
     useEffect(()=>{ 
       
         setData(location.state);
+     
 
 
     })

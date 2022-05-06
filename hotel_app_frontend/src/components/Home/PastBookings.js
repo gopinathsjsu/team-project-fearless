@@ -5,19 +5,44 @@ import {getUserFirstName,getUserLastName} from './genericUtils.js'
 import UpdateBooking from './UpdateBooking';
 import CancelBooking from './CancelBooking';
 import utilObj from '../Utils/utils';
+import axios from "axios";
 import './Styles/Profile.css';
 
 class PastBookings extends Component{
     state={
         "bookings" : ""
     }
-
+    
     componentDidMount(){
+        const id=JSON.parse(localStorage.getItem("custId"));
         const username = getUserFirstName()+" "+getUserLastName()
         //TODO: Comment it later
-        const bookings = getBookings(username)
-        this.setState({
-            bookings
+   
+        // const bookings = getBookings(username)
+        // this.setState({
+        //     bookings
+        // })
+
+        axios({
+            method: "get",
+            url:"http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/viewBookings/"+id,
+         
+          //   url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
+            headers: {
+            "Content-Type": "application/json",
+          }}).then(res=>{
+            if (res.status==200){
+                //updateHotelList(res.message)
+                console.log(res.data);
+                this.setState({
+                    bookings:res.data.object
+                })
+               
+            }
+            else{
+                console.log("Bad response from server");
+            }
+            
         })
 
         //TODO: uncomment below after backend api implementation
@@ -59,10 +84,13 @@ class PastBookings extends Component{
     displayBookings(){
         let markup = []
         const bookings = this.state.bookings
+        
         const currDate = new Date().toISOString().substring(0,10);
         for(let i=0; i<bookings.length; i++){
             let currBooking = bookings[i]
+            console.log("current booking",currBooking)
             let isPast = (utilObj.getDays(currBooking.bookingDateTo, currDate) > 0)
+            console.log("past",isPast);
             if(isPast){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming" >

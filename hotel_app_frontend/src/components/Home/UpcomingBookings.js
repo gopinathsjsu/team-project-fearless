@@ -5,7 +5,7 @@ import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './g
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
 import utilObj from '../Utils/utils';
-import axios from 'axios';
+import axios from "axios";
 import './Styles/Profile.css';
 
 class UpcomingBookings extends Component{
@@ -14,25 +14,36 @@ class UpcomingBookings extends Component{
     }
 
     componentDidMount(){
-        const id = utilObj.getCustomerId;
+        // const id = utilObj.getCustomerId;
         const username = getUserFirstName()+" "+getUserLastName()
         const email = getUserEmail()
+        // const id = utilObj.getCustomerId;
+        const id=JSON.parse(localStorage.getItem("custId"));
+
         const rewards = getRewardPoints()
         //TODO: Comment it later
-        const bookings = getBookings(username, email, rewards)
-        this.setState({
-            bookings: bookings
-        })
+        // const bookings = getBookings(username, email, rewards)
+        // this.setState({
+        //     bookings: bookings
+        // })
+        console.log("cust id", id);
 
         //TODO: uncomment below after backend api implementation
         //TODO: Send username or userid to backend API, and get upcoming books of current user
-        /*axios({
-              method: "post",
-              url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
+        axios({
+              method: "get",
+              url:"http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/viewBookings/"+id,
+           
+            //   url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
               headers: {
               "Content-Type": "application/json",
-              }.then(res=>{
+            }}).then(res=>{
               if (res.status==200){
+                this.setState({
+                    bookings:res.data.object
+                })
+
+
                   //updateHotelList(res.message)
                   this.setState({
                       bookings:res.data
@@ -44,7 +55,6 @@ class UpcomingBookings extends Component{
               }
               
           })
-        })*/
     }
 
     render(){
@@ -68,8 +78,11 @@ class UpcomingBookings extends Component{
         const bookings = this.state.bookings
         const currDate = new Date().toISOString().substring(0,10);
         for(let i=0; i<bookings.length; i++){
-            let currBooking = bookings[i]
+            let currBooking = bookings[i];
+            console.log("curr booking",currBooking);
+            localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
+            console.log("upcoming",isUpcoming);
             if(isUpcoming){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming">

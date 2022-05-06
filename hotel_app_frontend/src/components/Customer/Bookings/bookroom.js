@@ -22,6 +22,19 @@ var dn = "DN";
 var room;
 
 export default function BookRoom(props) {
+    // {
+    //     "customerId": 1,
+    //     "hotelId": 1,
+    //     "fromDate": "2022-04-27",
+    //     "toDate": "2022-05-02",
+    //     "room": "DR3-SR3",
+    //     "amenity": "CB-DP",
+    //     "noOfGuest": 2,
+    //     "cost": 0.0,
+    //     "description": "",
+    //     "loyaltyPointsUsed":20
+    // }
+    
     const amenities=
     [
         {
@@ -67,15 +80,22 @@ export default function BookRoom(props) {
             "amenityCost": 10
         }
     ]
+
+
+//     let year = "2020";
+// let iyear = parseInt(year, 10);
+// console.log(iyear);//2020
+
   const {id}=useParams();
   const hotel=JSON.parse(localStorage.getItem('hotel'));  //get from local storage 
 //   const amenities=JSON.parse(localStorage.getItem('amenities'));
   console.log("local storage hotel is ",hotel);
-
-  const customerId=JSON.parse(localStorage.getItem('user'));
-  const hotelId=id;
-  const bookingDateFrom=localStorage.getItem("from");
-  const bookingDateTo=localStorage.getItem("to");
+ 
+//   const customerId=JSON.parse(localStorage.getItem("user"));
+  let hotelId=parseInt(id,10);
+  console.log("hotel id in int",hotelId);
+  const fromDate=localStorage.getItem("from");
+  const toDate=localStorage.getItem("to");
     
 const [noOfGuest,setNoOfGuest]=useState({});
 const [roomdata,setRoomData]=useState({room:"",noOfGuest:"",amenity:"",hotelId:"", price:""});
@@ -144,12 +164,13 @@ const handleChange=(event)=>{
      
         
 
-        setRoomData({...roomdata,customerId:3,hotelId:hotelId,bookingDateFrom,bookingDateTo,room,amenity,noOfGuest:noOfGuest});     //setting data for api
+        setRoomData({...roomdata,customerId:1,hotelId:hotelId,fromDate,toDate,room,amenity,noOfGuest:parseInt(noOfGuest), loyaltyPointsUsed:20,description:""});     //setting data for api
         
         
 }
 
 const onCheckPrice=()=>{
+ 
 
     console.log("Room Value",room)
     console.log("Amenity Value",amenity);
@@ -161,12 +182,12 @@ const onCheckPrice=()=>{
     //   setPrice(10000);
       
     
-  axios.post('http://localhost:8081/api/calculateprice',roomdata)
+  axios.post('http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/rates/amount',roomdata)
   .then(response => response.data).then((data) => {
-    console.log(data);
+    console.log("Total cost for the room",data.object.cost);
 
     //get cost value from response and set it to price 
-    setPrice(1000);
+   setPrice(data.object.cost);
   
  });
     
@@ -191,7 +212,9 @@ const onCheckPrice=()=>{
         return (
         
            
+           
             <React.Fragment>
+          
                 <Card>
             {/* <Card border="success" style={{backgroundImage: `url(${hotelimg})`}} > */}
             <Card.Header style={{textAlign:'center',  color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {id}</Card.Header>
@@ -299,7 +322,11 @@ const onCheckPrice=()=>{
             <Row>
                 <Col> <Button variant="success" style={{marginLeft:"20rem"}} onClick={onCheckPrice}> Check Price </Button>
                 </Col>
-                <Col style={{ color:"#E75480", fontSize:"25px", fontWeight:"bolder"}} > Total Price :  $
+              
+                
+
+
+                <Col style={{ color:"#E75480", fontSize:"25px", fontWeight:"bolder"}} > Total Price  $
                 </Col>
             </Row>
        

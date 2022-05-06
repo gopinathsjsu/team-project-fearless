@@ -40,22 +40,23 @@ function HotelSearch(props) {
        const data = {from, to, location}
        console.log(data);
 
-      /* axios({
+      axios({
               method: "post",
-              url: utilObj.urls.backendURL+"/api/hotel/search",
+              url:"http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/api/hotel/search",
+              // url: utilObj.urls.backendURL+"/api/hotel/search",
               headers: {
               "Content-Type": "application/json",
             },
              data}).then(res=>{
               if (res.status==200){
-                  updateHotelList(res.message)
+                  // updateHotelList(res.message)
                   console.log(res.data);
               }
               else{
                   console.log("Bad response from server");
               }
               
-          });*/
+          });
 
       };
 
@@ -74,8 +75,11 @@ function HotelSearch(props) {
                   label="Where?"
                   onChange={updateLocation}
                 >
-                  <MenuItem value={"London"}>London</MenuItem>
+                  <MenuItem value={"San Francisco"}>San Francisco</MenuItem>
                   <MenuItem value={"Mangalore"}>Mangalore</MenuItem>
+                  <MenuItem value={"Udupi"}>Udupi</MenuItem>
+                  <MenuItem value={"Santa Cruz"}>Sanat Cruz</MenuItem>
+                  <MenuItem value={"New Delhi"}>New Delhi</MenuItem>
                 </Select>
               </FormControl>
             </div>
