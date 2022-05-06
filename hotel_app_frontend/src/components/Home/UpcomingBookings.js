@@ -4,7 +4,8 @@ import {getBookings} from './Fetchjson.js'
 import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './genericUtils.js'
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
-import utilObj from '../Utils/utils'
+import utilObj from '../Utils/utils';
+import './Styles/Profile.css';
 
 class UpcomingBookings extends Component{
     state={
@@ -23,21 +24,21 @@ class UpcomingBookings extends Component{
 
         //TODO: uncomment below after backend api implementation
         //TODO: Send username or userid to backend API, and get upcoming books of current user
-        /*await axios({
-            method:'get',
-            //TODO: update backend URL
-            url:"/upcomingBookings",
-            data:{user},
-            config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-          }).then((response)=>{
-            if(response.status >= 500){
-              throw new Error("Bad response from server")
-            }
-            return response.data;
-          }).then((responseData)=>{
-            this.setState({
-                bookings: responseData
-            })
+        /*axios({
+              method: "get",
+              url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
+              headers: {
+              "Content-Type": "application/json",
+            },
+             data}).then(res=>{
+              if (res.status==200){
+                  //updateHotelList(res.message)
+                  console.log(res.data);
+              }
+              else{
+                  console.log("Bad response from server");
+              }
+              
           })*/
     }
 
@@ -66,19 +67,30 @@ class UpcomingBookings extends Component{
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             if(isUpcoming){
                 markup.push(
-                    <Card key={i}>
-                        HotelID: {currBooking.hotelId}
-                        <br/>
+                    <Card border="success" key={i} className="past-upcoming">
+                        <Card.Body>
+                        <Card.Text>
+                        Hotel Name: {currBooking.hotelId}
+                        </Card.Text>
+                        <Card.Text>  
                         CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
-                        <br/>
-                        Checkout: {new Date(currBooking.bookingDateTo).toDateString()}
-                        <br/>
-                        No. of Guests: {currBooking.noOfGuest}
-                        <br/>                        
+                        </Card.Text> 
+                        <Card.Text> 
+                        Check Out: {new Date(currBooking.bookingDateTo).toDateString()}
+                        </Card.Text>  
+                        <Card.Text>
+                        Guest Count: {currBooking.noOfGuest}
+                        </Card.Text>
+                        <div className="update-cancel">                  
                         <UpdateBooking currBooking={currBooking}/>
+                        </div>
                         <br/>
+                        <div className="update-cancel">
                        <CancelBooking bookingId= {currBooking.bookingId} checkIn={currBooking.bookingDateFrom}/>
+                       </div>
+                       </Card.Body>  
                     </Card>
+                    
                 )
             }
         }

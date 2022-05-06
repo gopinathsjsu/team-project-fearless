@@ -3,18 +3,19 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import utilObj from '../Utils/utils'
 import { useNavigate } from 'react-router-dom';
+import './Styles/Profile.css';
 
-function CancelBooking(){
+function CancelBooking(bookingId, checkIn){
     const navigate = useNavigate();
     const onCancelClick = () => {
         var currDate = new Date();
         var from = localStorage.getItem("from");
-        console.log(utilObj.getDays(currDate,from));
-        if(utilObj.getDays(currDate, from) <= 2){
+        if(utilObj.getDays(currDate, checkIn) <= 2){
             alert("Cannot cancel booking before 48 hours of checkin");
             return
         }else{
             alert("Booking has been cancelled succesfully!!");
+            navigate('/profile');
         }
         //send axios request to cancel
         /*axios({
@@ -36,7 +37,7 @@ function CancelBooking(){
         });*/
         
     }
-    return <Button onClick = {onCancelClick}>Cancel Booking</Button>
+    return <Button variant = "success" onClick = {onCancelClick}>Cancel</Button>
         
 } 
 

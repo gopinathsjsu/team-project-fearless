@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import {getRewardPoints, getUserEmail, getUserLastName, getUserFirstName} from "./genericUtils.js"
+import {getRewardPoints, getUserEmail, getUserLastName, getUserFirstName} from "./genericUtils.js";
+import './Styles/Profile.css';
+import avatar from './Styles/avatar.jpeg';
 
 //TODO: add reward points
 function Profile(){
@@ -22,29 +24,33 @@ function Profile(){
         navigate("../upcomingBookings", {replace:true})
     }
     return(
+        <div className="profile">
+            <div className="avatar">
+                 <img src={avatar} alt="avatar"></img>
+            </div>
+        <div className="userDetails">
         <Container>
             <Row>
-                <Col>Username:</Col>
-                <Col>{getUserFirstName()+" "+getUserLastName()}</Col>
+                <Col>Username: {getUserFirstName()+" "+getUserLastName()}</Col>
             </Row>
+            <br/>
             <Row>
-                <Col>Email:</Col>
-                <Col>{getUserEmail()}</Col>
+                <Col>Email: {getUserEmail()}</Col>
             </Row>
+            <br/>
             <Row>
-                <Col>Reward Points:</Col>
-                <Col>{getRewardPoints()}</Col>
-            </Row>
-            <Row>
-                <div>
-                    <Button onClick={profile}>Profile</Button>
-                    <Button onClick={showPastBookings}>Past bookings</Button>
-                    <Button onClick={showUpcomingBookings}>Upcoming bookings</Button>
-                    
-                </div>
-                {/*<Button onClick={showUpcomingBookings}>Upcoming bookings</Button>*/}
+                <Col>Reward Points: {getRewardPoints()}</Col>
             </Row>
         </Container>
+             <div className="navbookings">
+                    {/*<Button onClick={profile} style={{backgroundColor:`#044831` , width:`10em`}}>Profile</Button>*/}
+                    <br/><br/>
+                    <Button onClick={showPastBookings} variant="success" style={{width:`10.5em`}}>Past bookings</Button>
+                    <br/><br/>
+                    <Button onClick={showUpcomingBookings} variant="success">Upcoming bookings</Button>      
+             </div>
+        </div>
+        </div>
     )
 }
 

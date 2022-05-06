@@ -172,3 +172,34 @@ select * from hotel_rooms_map;
 
 #-----------------------------------------------------------------------------------
 
+drop table employee;
+
+create table employee(
+	employee_id int not null auto_increment,
+	emp_first_name  varchar(500),
+	emp_last_name  varchar(500),
+    emp_email varchar(500),
+	emp_password  varchar(500),
+	emp_contact_number varchar(500),
+	primary key (employee_id)
+);
+
+INSERT INTO employee
+(emp_first_name, emp_last_name, emp_email, emp_password, emp_contact_number)
+VALUES
+('Paul','Newmen','paul@gmail.com','paul123','6692418563');
+
+INSERT INTO employee
+(emp_first_name, emp_last_name, emp_email, emp_password, emp_contact_number)
+VALUES
+('Mary','Jane','mary@gmail.com','mary123','6697489652');
+
+INSERT INTO employee
+(emp_first_name, emp_last_name, emp_email, emp_password, emp_contact_number)
+VALUES
+('Harry','Turner','harry@gmail.com','harry123','6698406952');
+
+select * from employee;
+
+#---------------------------------------------------------------------------------------------------
+

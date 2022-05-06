@@ -9,7 +9,7 @@ import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import {getLocationBasedHotels} from './Fetchjson';
 import Header from "./Header";
-import './HotelSearch.css';
+import './Styles/HotelSearch.css';
 import utilObj from '../Utils/utils';
 
 function HotelSearch(props) {
@@ -35,7 +35,7 @@ function HotelSearch(props) {
         localStorage.setItem("from", from);
         localStorage.setItem("to", to);
         localStorage.setItem("location", location);
-       props.updateHotelList(getLocationBasedHotels(location, from, to))
+        props.updateHotelList(getLocationBasedHotels(location, from, to))
        
        const data = {from, to, location}
        console.log(data);
@@ -61,58 +61,55 @@ function HotelSearch(props) {
 
     return (
         <div>
-        <div className="searchfilter">
-        <form className="search_form">
-        <div className="searchDestination">
-           <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Where?</InputLabel>
-              <Select
-                defaultValue={location}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={location}
-                label="Where?"
-                onChange={updateLocation}
-              >
-                <MenuItem value={"London"}>London</MenuItem>
-                <MenuItem value={"Mangalore"}>Mangalore</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <br/>
-          <div className="date_picker">
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                allowSameDateSelection={true}
-                label="CheckIn"
-                inputFormat="MM/dd/yyyy"
-                value={from}
-                onChange={(d) => setCheckIn(d.toISOString().substring(0,10))}
-                renderInput={(params) => <TextField fullWidth={true} {...params} />}
-              />
-            </LocalizationProvider>
-          </div>
-          <br/>
-          <div className="date_picker">
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <div className="search-bar">
+          <form>
+            <div className="search-location form-search">
+             <FormControl fullWidth >
+                <InputLabel id="demo-simple-select-label">Where?</InputLabel>
+                <Select
+                  defaultValue={location}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={location}
+                  label="Where?"
+                  onChange={updateLocation}
+                >
+                  <MenuItem value={"London"}>London</MenuItem>
+                  <MenuItem value={"Mangalore"}>Mangalore</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <div className="date_picker search-from form-search">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  allowSameDateSelection={true}
-                  label="CheckOut"
+                  allowSameDateSelection={false}
+                  label="CheckIn"
                   inputFormat="MM/dd/yyyy"
-                  value={to}
-                  onChange={(d) => setCheckOut(d.toISOString().substring(0,10))}
+                  value={from}
+                  onChange={(d) => setCheckIn(d.toISOString().substring(0,10))}
                   renderInput={(params) => <TextField fullWidth={true} {...params} />}
                 />
               </LocalizationProvider>
-          </div>
-          <br/>
-          <div className="searchHotel">
-            <Button className = "button"
-              onClick={handleSearch}>
-              Search
-            </Button>
-          </div>
-        </form>
+            </div>
+            <div className="date_picker search-to form-search">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    allowSameDateSelection={false}
+                    label="CheckOut"
+                    inputFormat="MM/dd/yyyy"
+                    value={to}
+                    onChange={(d) => setCheckOut(d.toISOString().substring(0,10))}
+                    renderInput={(params) => <TextField fullWidth={true} {...params} />}
+                  />
+                </LocalizationProvider>
+            </div>
+            <div className="searchHotel">
+              <Button className = "button-search"
+                onClick={handleSearch}>
+                Search
+              </Button>
+            </div>
+          </form>
         </div>
     </div>
     );
