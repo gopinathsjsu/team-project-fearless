@@ -1,11 +1,13 @@
-import React,{useState} from "react";
+import React,{Component, useState} from "react";
 import { Link, useNavigate} from "react-router-dom";
 import { Card, Form, Row,Col, Button } from "react-bootstrap";
-import logout from "./logout";
-
-
+import { roomRates } from "../Home/Fetchjson";
 import axios from "axios";
 
-export default function UpdateRoomCosts(){
+function UpdateRoomCosts(){
+
+    
 
 }
+
+export default UpdateRoomCosts;
