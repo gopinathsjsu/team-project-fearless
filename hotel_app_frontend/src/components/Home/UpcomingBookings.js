@@ -14,6 +14,7 @@ class UpcomingBookings extends Component{
     }
 
     componentDidMount(){
+        // const id = utilObj.getCustomerId;
         const username = getUserFirstName()+" "+getUserLastName()
         const email = getUserEmail()
         // const id = utilObj.getCustomerId;
@@ -44,6 +45,9 @@ class UpcomingBookings extends Component{
 
 
                   //updateHotelList(res.message)
+                  this.setState({
+                      bookings:res.data
+                  })
                   console.log(res.data);
               }
               else{
