@@ -25,6 +25,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/hotel/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HotelController {
     @Autowired
     ManageHotelService manageHotelService;

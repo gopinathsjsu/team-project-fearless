@@ -225,4 +225,10 @@ public class ManageHotelService {
 //        return result;
 //    }
 
+
+    public String getHotelName(Long hotelId) {
+    	
+    	HotelEntity hotelEntity = hotelRepository.findByHotelId(hotelId);
+		return hotelEntity.getHotelname();
+    }
 }

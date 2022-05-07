@@ -6,6 +6,7 @@ public class Booking {
 
 	private	Long bookingId;
 	private	Long hotelId;
+	private String hotelName;
 	private	Long customerId;
 	private String room;
 	private	String amenity;
@@ -22,6 +23,16 @@ public class Booking {
 	public Booking() {
 		super();
 	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
 
 
 	public Booking(Long bookingId, Long hotelId, Long customerId, String room,
