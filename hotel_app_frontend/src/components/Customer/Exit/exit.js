@@ -9,11 +9,14 @@ export default function Exit(){
 
     return(
        <React.Fragment>
-           <Card style={{margin: "auto",
-  width: "50",
+           <Card  style={{ marginTop:'10rem', margin: "auto", maxWidth: '40rem',
+  width: "100",
   border: "3px solid green",
   padding: "10px"}}>
-               <p>Yours bookings are confirmed</p>
+               <p><i><b>
+               Yours bookings are confirmed !!! HOPE YOU ENJOY YOUR STAY : )
+               </b>
+                   </i></p>
            </Card>
        </React.Fragment>
     )

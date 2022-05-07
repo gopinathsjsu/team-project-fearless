@@ -8,8 +8,18 @@ import {useLocation} from 'react-router-dom';
 export default function Error(){
 
     return(
-        <div>
-           There was an error. Please try again !!!!
-        </div>
+        <React.Fragment>
+        <Card  style={{ marginTop:'15rem',
+            
+            margin: "auto", maxWidth: '40rem',
+width: "100",
+border: "3px solid red",
+padding: "10px"}}>
+            <p><i><b>
+                OOPS !! Could not Process your request. Try Again : )
+            </b>
+                </i></p>
+        </Card>
+    </React.Fragment>
     )
 }
