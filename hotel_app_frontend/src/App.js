@@ -31,7 +31,7 @@ function App(){
         <Route path="/" element={<LandingPage />} />
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterUser />} />
-        <Route path="displayhotels" element={<DisplayHotels/>} />
+        {/* <Route path="displayhotels" element={<DisplayHotels/>} /> */}
          <Route path="displayhotels/hotel/:id" element={<BookRoom/>} />
          <Route path="payment" element={<Payment/>} />
          <Route path="exit" element={<Exit/>}></Route>

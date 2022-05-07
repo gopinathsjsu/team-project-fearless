@@ -55,7 +55,8 @@ function HotelSearch(props) {
             },
              data}).then(res=>{
               if (res.status==200){
-                  localStorage.setItem("hotelList", JSON.stringify(res.data))
+                  localStorage.setItem("hotelList", JSON.stringify(res.data));
+                  console.log("local storage hotel list is :",JSON.parse(localStorage.getItem("hotelList")));
                   props.updateHotelList(JSON.stringify(res.data))
                   console.log(res.data);
 
