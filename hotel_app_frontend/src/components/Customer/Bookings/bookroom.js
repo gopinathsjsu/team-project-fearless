@@ -130,7 +130,7 @@ const [roomdata,setRoomData]=useState({room:"",noOfGuest:"",amenity:"",hotelId:"
 localStorage.setItem('bookingDetails',JSON.stringify(roomdata));
 
 
-var loyaltyPointsUsed;
+var loyaltyPointsUsed=0;
 const nav=useNavigate();
 //    const [ratingdata, setRatingData]=useState({}); 
 
@@ -175,7 +175,7 @@ const noGuestHandler=(e)=>{
 }
 const lptsHandler=(e)=>{
     if((e.target.value)>loyaltyPoints){
-        window.alert("OOpsss !!! You have only"+loyaltyPoints+"Points");
+        window.alert("OOpsss !!! You have only "+loyaltyPoints+" Points");
         document.getElementById('loyaltyPointsUsed').value = "";
 
     }

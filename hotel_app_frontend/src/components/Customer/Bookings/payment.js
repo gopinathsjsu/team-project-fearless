@@ -20,7 +20,7 @@ export  default function Payment(){
     console.log("roomdata",roomdata.room);
     const price=localStorage.getItem('price');
     
-    const bookData={hotelId:hotel.hotel.hotelId,customerId:custId,room:roomdata.room,amenity:roomdata.amenity,bookingDateFrom:fromDate,bookingDateTo:toDate,noOfGuest:roomdata.noOfGuest,bookingStatus:"",amount:price,totalAmount:"",paymentMethod:payment,roomNumbers:"",loyaltyPointsUsed:roomdata.loyaltyPointsUsed};
+    const bookData={hotelId:hotel.hotel.hotelId,customerId:custId,room:roomdata.room,amenity:roomdata.amenity,bookingDateFrom:fromDate,bookingDateTo:toDate,noOfGuest:roomdata.noOfGuest,bookingStatus:"booked",amount:price,totalAmount:"",paymentMethod:payment,roomNumbers:"",loyaltyPointsUsed:roomdata.loyaltyPointsUsed};
   
     useEffect(()=>{ 
       
