@@ -1,7 +1,8 @@
-import React from "react";
+import React , {useState} from "react";
 import { Link } from "react-router-dom";
 import utilObj  from "../Utils/utils";
 import Logout from "../Customer/Login/logout";
+import LoginForm from "../Customer/Login/loginForm";
 
 function Header() {
   /*const data = JSON.parse(localStorage.getItem("user"));
@@ -23,6 +24,8 @@ function Header() {
       if(data != null ? <Link to="/">Logout</Link>:<Link to="/login">SignIn</Link> )
     </div>
   )*/
+  const [login, setLogin] = useState(false);
+  const [logout, setLogout] = useState(false);
   const isUserLoggedIn = () =>{
     let customerId = utilObj.getCustomerId()
     return (customerId != null)
@@ -37,8 +40,7 @@ function Header() {
       <br/>
       <Link to ="/">Home</Link>
       <br/>
-     
-      {isUserLoggedIn()? <Logout/>:<Link to="/login">SignIn</Link> }
+      {isUserLoggedIn()? <Logout setLogout={setLogout}/>:<Link to="/login">SignIn</Link> }
     </nav>
   )
 };
