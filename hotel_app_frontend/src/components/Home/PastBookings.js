@@ -14,7 +14,8 @@ class PastBookings extends Component{
     }
     
     componentDidMount(){
-        const id=JSON.parse(localStorage.getItem("custId"));
+        const user=JSON.parse(localStorage.getItem("custId"));
+        const id = user.customerId
         const username = getUserFirstName()+" "+getUserLastName()
         //TODO: Comment it later
    
@@ -32,12 +33,10 @@ class PastBookings extends Component{
             "Content-Type": "application/json",
           }}).then(res=>{
             if (res.status==200){
-                //updateHotelList(res.message)
                 console.log(res.data);
                 this.setState({
                     bookings:res.data.object
-                })
-               
+                })  
             }
             else{
                 console.log("Bad response from server");
@@ -74,8 +73,8 @@ class PastBookings extends Component{
                 )
         } else {
             return (
-                <div>
-                    No bookings
+                <div styles={{backgroundColor:`white`}}>
+                   <h1> No previous bookings to show</h1>
                 </div>
             )
         }
@@ -84,19 +83,19 @@ class PastBookings extends Component{
     displayBookings(){
         let markup = []
         const bookings = this.state.bookings
-        
         const currDate = new Date().toISOString().substring(0,10);
         for(let i=0; i<bookings.length; i++){
             let currBooking = bookings[i]
-            console.log("current booking",currBooking)
+            console.log("current booking",currBooking);
+            localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isPast = (utilObj.getDays(currBooking.bookingDateTo, currDate) > 0)
             console.log("past",isPast);
-            if(isPast){
+            if((isPast)&&(currBooking.bookingStatus!="Cancelled")){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming" >
                         <Card.Body>
                             <Card.Text>
-                            Hotel Name: {currBooking.hotelId}
+                            Hotel Name: {currBooking.hotelName}
                             </Card.Text>
                             <Card.Text>
                             Check In: {new Date(currBooking.bookingDateFrom).toDateString()}
@@ -110,6 +109,9 @@ class PastBookings extends Component{
                         </Card.Body>
                     </Card>
                 )
+            }
+            else{
+                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
             }
         }
         return markup

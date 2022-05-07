@@ -9,7 +9,7 @@ function CancelBooking(bookingId, checkIn){
     const navigate = useNavigate();
     const onCancelClick = () => {
         
-        var currBooking=JSON.parse(localStorage.getItem("currBooking"));
+     var currBooking=JSON.parse(localStorage.getItem("currBooking"));
         // console.log("Current booking in cancel compo",localStorage.getItem("currBooking"));
       const bookingId=currBooking.bookingId;
       console.log("Booking iD in cancel compo",bookingId);
@@ -18,11 +18,8 @@ function CancelBooking(bookingId, checkIn){
         var currDate = new Date();
         // var bookingId = localStorage.getItem("bookingId");
         if(utilObj.getDays(currDate, checkIn) <= 2){
-            alert("Cannot cancel booking before 48 hours of checkin");
+            //alert("Cannot cancel booking before 48 hours of checkin");
             return
-        }else{
-            alert("Booking has been cancelled succesfully!!");
-            navigate('/profile');
         }
         //send axios request to cancel
         axios({

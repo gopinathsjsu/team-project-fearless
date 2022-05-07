@@ -16,13 +16,13 @@ const getDays = (fromDate, toDate) =>{
    }
 
    const getCustomerId = () => {
-       let user = localStorage.getItem("user")
+       let user = localStorage.getItem("custId")
        if(user){
 
         try {
             let userObj = JSON.parse(user);
-                if(userObj.object)
-                 return userObj.object.custId
+                if(userObj)
+                 return userObj.customerId
         }catch(err) {
             console.log('Error: ', err.message);
         }

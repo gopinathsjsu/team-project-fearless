@@ -50,7 +50,7 @@ export default function LoginForm(){
             
         });
         setUser({custEmail:"",custPassword:""})
-        }
+    }
 
 
 //check if user is already logged in        
