@@ -28,6 +28,12 @@ function HotelSearch(props) {
           alert("Please choose 7 or less days")
           return;
         }
+        /*
+        if(utilObj.getDays(new Date(), from) < 0){
+          
+          alert("Invalid date selection")
+          return;
+        }*/
         if(!utilObj.isValidCheckinAndCheckout(from, to)){
           alert("Checkout date should be later than checkin")
           return;
@@ -35,7 +41,7 @@ function HotelSearch(props) {
         localStorage.setItem("from", from);
         localStorage.setItem("to", to);
         localStorage.setItem("location", location);
-        props.updateHotelList(getLocationBasedHotels(location, from, to))
+        //props.updateHotelList(getLocationBasedHotels(location, from, to))
        
        const data = {from, to, location}
        console.log(data);
@@ -49,7 +55,8 @@ function HotelSearch(props) {
             },
              data}).then(res=>{
               if (res.status==200){
-                  // updateHotelList(res.message)
+                  localStorage.setItem("hotelList", JSON.stringify(res.data))
+                  props.updateHotelList(JSON.stringify(res.data))
                   console.log(res.data);
 
                   // //limeka
@@ -66,7 +73,7 @@ function HotelSearch(props) {
               }
               
           });
-
+         
       };
 
     return (

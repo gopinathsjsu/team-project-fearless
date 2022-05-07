@@ -59,7 +59,7 @@ public class CustomerService {
 		return result;
 	}
 
-	private boolean validateLogin(Customer customer, boolean result, StringBuilder message) {
+	public boolean validateLogin(Customer customer, boolean result, StringBuilder message) {
 		if(customer.getCustEmail()==null || customer.getCustEmail().equals("") ) {
 			message.append("Please enter email address."+"\n");
 			result = false;
@@ -82,7 +82,10 @@ public class CustomerService {
 			
 			if(customerEntityResult!= null && customerEntityResult.getCustomerId()>0
 					&& customerEntityResult.getCustPassword().equals(customer.getCustPassword())) {
-				return new Response((Long)customerEntityResult.getCustomerId(), "Login Successfully");
+				customerEntityResult.setCustPassword("****");
+				Customer cust = entityToModelMapper.mapCustomer(customerEntityResult);
+				return new Response((Customer)cust, "Login Successfully");
+			
 			}else {
 				return new Response(-1, "Incorrect email or password. Please check again");
 			}

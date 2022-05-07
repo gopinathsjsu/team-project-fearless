@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import {getRewardPoints, getUserEmail, getUserLastName, getUserFirstName} from "./genericUtils.js";
+import {getRewardPoints, getUserEmail, getUserLastName, getUserFirstName, getBookingCount, getAddress, getContact} from "./genericUtils.js";
 import './Styles/Profile.css';
 import avatar from './Styles/avatar.jpeg';
 
@@ -31,7 +31,7 @@ function Profile(){
         <div className="userDetails">
         <Container>
             <Row>
-                <Col>Username: {getUserFirstName()+" "+getUserLastName()}</Col>
+                <Col>User Name: {getUserFirstName()+" "+getUserLastName()}</Col>
             </Row>
             <br/>
             <Row>
@@ -39,7 +39,19 @@ function Profile(){
             </Row>
             <br/>
             <Row>
+                <Col>Address: {getAddress()}</Col>
+            </Row>
+            <br/>
+            <Row>
+                <Col>Contact: {getContact()}</Col>
+            </Row>
+            <br/>
+            <Row>
                 <Col>Reward Points: {getRewardPoints()}</Col>
+            </Row>
+            <br/>
+            <Row>
+                <Col>Previous Visits: {getBookingCount()}</Col>
             </Row>
         </Container>
              <div className="navbookings">

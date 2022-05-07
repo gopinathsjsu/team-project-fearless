@@ -18,7 +18,8 @@ class UpcomingBookings extends Component{
         const username = getUserFirstName()+" "+getUserLastName()
         const email = getUserEmail()
         // const id = utilObj.getCustomerId;
-        const id=JSON.parse(localStorage.getItem("custId"));
+        const user=JSON.parse(localStorage.getItem("custId"));
+        const id = user.customerId
 
         const rewards = getRewardPoints()
         //TODO: Comment it later
@@ -38,18 +39,12 @@ class UpcomingBookings extends Component{
               headers: {
               "Content-Type": "application/json",
             }}).then(res=>{
-              if (res.status==200){
-                this.setState({
-                    bookings:res.data.object
-                })
-
-
-                  //updateHotelList(res.message)
-                  this.setState({
-                      bookings:res.data
-                  })
-                  console.log(res.data);
-              }
+                    if (res.status==200){
+                        console.log(res.data);
+                        this.setState({
+                            bookings:res.data.object
+                        })  
+                    }
               else{
                   console.log("Bad response from server");
               }
@@ -83,12 +78,12 @@ class UpcomingBookings extends Component{
             localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             console.log("upcoming",isUpcoming);
-            if(isUpcoming){
+            if(isUpcoming&&currBooking.bookingStatus!="Cancelled"){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming">
                         <Card.Body>
                         <Card.Text>
-                        Hotel Name: {currBooking.hotelId}
+                        Hotel Name: {currBooking.hotelName}
                         </Card.Text>
                         <Card.Text>  
                         CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
