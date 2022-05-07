@@ -22,7 +22,7 @@ const getDays = (fromDate, toDate) =>{
         try {
             let userObj = JSON.parse(user);
                 if(userObj)
-                 return userObj.customerId
+                 return userObj        //limeka
         }catch(err) {
             console.log('Error: ', err.message);
         }

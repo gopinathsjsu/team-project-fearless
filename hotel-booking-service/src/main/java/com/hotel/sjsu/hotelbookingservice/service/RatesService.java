@@ -108,7 +108,13 @@ public class RatesService {
 		for(String roomCode : roomArray) {
 			
 			String code = roomCode.substring(0, 2);
-			int numberOfRooms = Integer.parseInt(roomCode.substring(2));
+			
+			int numberOfRooms =0;
+			
+			if(code.length()>2) {
+				numberOfRooms = Integer.parseInt(roomCode.substring(2));				
+			}
+			
 			switch(code){
 			
 			case "DR":
@@ -220,7 +226,7 @@ public class RatesService {
 		return new Response(-1, message.toString());
 	}
 
-	private boolean validateRating(Rating rating, StringBuilder message) {
+	public boolean validateRating(Rating rating, StringBuilder message) {
 		boolean result = true;
 		
 		if(rating.getRoom()==null || rating.getRoom().equals("") ) {
