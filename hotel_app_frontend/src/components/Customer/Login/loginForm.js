@@ -32,17 +32,18 @@ export default function LoginForm(){
 
 
                 console.log("res data ",res.data.object);
-                localStorage.setItem("custId",JSON.stringify(res.data.object));
+                localStorage.setItem("customer",JSON.stringify(res.data.object));
+                localStorage.setItem("custName",JSON.stringify(res.data.object.custFirstName));
+                localStorage.setItem("custId",JSON.stringify(res.data.object.customerId));
+                localStorage.setItem("custLP",JSON.stringify(res.data.object.loyaltyPoints));
+                console.log("LP",localStorage.getItem("custLP"));
+                console.log("setting customer Id in local storage",localStorage.getItem("custId")); //output = 13
+
+
                 //set state of user
-                setUser(res.data);
-
-                // store the user in localStorage
-                localStorage.setItem("user", 1);
-             
-                console.log(res.data)
-
+                setUser(res.data.object);
                 navigate('/');
-                console.log("logged in");
+              
             }
             else{
                 console.log("wrong user");
@@ -54,18 +55,18 @@ export default function LoginForm(){
 
 
 //check if user is already logged in        
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-        try {
-            const foundUser = JSON.parse(loggedInUser);
-            //window.alert("Already logged in");
-            setUser(foundUser); 
-        }catch(err) {
-            console.log('Error: ', err.message);
-        }
+    // const loggedInUser = localStorage.getItem("user");
+    // if (loggedInUser) {
+    //     try {
+    //         const foundUser = JSON.parse(loggedInUser);
+    //         //window.alert("Already logged in");
+    //         setUser(foundUser); 
+    //     }catch(err) {
+    //         console.log('Error: ', err.message);
+    //     }
         
 
-    }
+    // }
     
 
 //If not then return this login form      

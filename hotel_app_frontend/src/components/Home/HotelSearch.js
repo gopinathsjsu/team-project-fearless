@@ -51,6 +51,15 @@ function HotelSearch(props) {
               if (res.status==200){
                   // updateHotelList(res.message)
                   console.log(res.data);
+
+                  // //limeka
+                  // localStorage.setItem("HotelList",JSON.stringify(res.data));
+                  // console.log("the hotel list is ",JSON.parse(localStorage.getItem("HotelList")));
+                  // // const selectedHotel=JSON.parse(localStorage.getItem("selectedHotel"));
+                  // // console.log("amenities",selectedHotel.amenities);
+                  // //limeka
+
+
               }
               else{
                   console.log("Bad response from server");
