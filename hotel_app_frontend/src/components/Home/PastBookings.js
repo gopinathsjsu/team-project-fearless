@@ -16,13 +16,6 @@ class PastBookings extends Component{
     componentDidMount(){
         const user=JSON.parse(localStorage.getItem("custId"));
         const id = user.customerId
-        const username = getUserFirstName()+" "+getUserLastName()
-        //TODO: Comment it later
-   
-        // const bookings = getBookings(username)
-        // this.setState({
-        //     bookings
-        // })
 
         axios({
             method: "get",
@@ -43,25 +36,6 @@ class PastBookings extends Component{
             }
             
         })
-
-        //TODO: uncomment below after backend api implementation
-        //TODO: Send username or userid to backend API, and get upcoming books of current user
-        /*await axios({
-            method:'get',
-            //TODO: update backend URL
-            url:"/upcomingBookings",
-            data:{user},
-            config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-          }).then((response)=>{
-            if(response.status >= 500){
-              throw new Error("Bad response from server")
-            }
-            return response.data;
-          }).then((responseData)=>{
-            this.setState({
-                bookings: responseData
-            })
-          })*/
     }
 
     render(){
@@ -73,8 +47,8 @@ class PastBookings extends Component{
                 )
         } else {
             return (
-                <div styles={{backgroundColor:`white`}}>
-                   <h1> No previous bookings to show</h1>
+                <div>
+                   No bookings to show
                 </div>
             )
         }
@@ -111,7 +85,7 @@ class PastBookings extends Component{
                 )
             }
             else{
-                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
+                markup.push(<div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>)  
             }
         }
         return markup

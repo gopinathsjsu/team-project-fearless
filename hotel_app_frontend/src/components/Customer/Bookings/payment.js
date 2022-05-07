@@ -33,7 +33,7 @@ export  default function Payment(){
     nav('/exit');
 
 
-        axios.post("http://localhost:8081//hotel//book",{roomdata,payment})
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/book",{roomdata,payment})
     
         .then(res=>{
             if (res.status==200){
