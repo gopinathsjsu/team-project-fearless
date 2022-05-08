@@ -114,7 +114,6 @@ export  default function Payment(){
 
                 {/* <Card.Body>
                    
-
                 </Card.Body> */}
                 </Card>
                 <Card>

@@ -14,28 +14,16 @@ class UpcomingBookings extends Component{
     }
 
     componentDidMount(){
-        // const id = utilObj.getCustomerId;
         const username = getUserFirstName()+" "+getUserLastName()
         const email = getUserEmail()
-        // const id = utilObj.getCustomerId;
-        const user=JSON.parse(localStorage.getItem("custId"));
-        const id = user.customerId
-
+        const id = utilObj.getCustomerId();
+        //const id = JSON.parse(localStorage.getItem("custId"));
         const rewards = getRewardPoints()
-        //TODO: Comment it later
-        // const bookings = getBookings(username, email, rewards)
-        // this.setState({
-        //     bookings: bookings
-        // })
         console.log("cust id", id);
 
-        //TODO: uncomment below after backend api implementation
-        //TODO: Send username or userid to backend API, and get upcoming books of current user
         axios({
               method: "get",
               url:"http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/viewBookings/"+id,
-           
-            //   url: utilObj.urls.backendURL+"/hotel/viewBookings"+{id},
               headers: {
               "Content-Type": "application/json",
             }}).then(res=>{
@@ -78,7 +66,7 @@ class UpcomingBookings extends Component{
             localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             console.log("upcoming",isUpcoming);
-            if(isUpcoming&&currBooking.bookingStatus!="Cancelled"){
+            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled")){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming">
                         <Card.Body>
@@ -99,16 +87,16 @@ class UpcomingBookings extends Component{
                         </div>
                         <br/>
                         <div className="update-cancel">
-                       <CancelBooking bookingId= {currBooking.bookingId} checkIn={currBooking.bookingDateFrom}/>
+                       <CancelBooking currBooking={currBooking}/>
                        </div>
                        </Card.Body>  
                     </Card>
-                    
                 )
+            }else {
+                 <div><h3 style={{color:`aliceblue`}}>No Upcoming Bookings to show</h3></div>
             }
         }
-        return markup
-        
+        return markup   
     }
 }
 export default UpcomingBookings

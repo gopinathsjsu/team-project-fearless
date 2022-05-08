@@ -4,6 +4,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
+import utilObj from '../Utils/utils';
 import swal from "sweetalert";
 
 function UpdateBooking(props) {
@@ -19,7 +21,7 @@ function UpdateBooking(props) {
     
     //const [checkIn, setCheckIn] = useState(currBooking.checkIn);
     //const [checkOut, setCheckOut] = useState(currBooking.checkOut);
-
+    //const id = utilObj.getCustomerId();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
@@ -42,32 +44,39 @@ function UpdateBooking(props) {
     }
 
     const handleUpdate = () => {
-      let roomStr = getUpdatedRoom()
-      let amenityStr = getUpdatedAmenities()
+      let room = getUpdatedRoom()
+      let amenity = getUpdatedAmenities()
+      let bookingId = currBooking.bookingId
+      let hotelId = currBooking.hotelId
+      let customerId = currBooking.customerId
+      let noOfGuest = setNoOfGuest
+      let bookingDateFrom = currBooking.bookingDateFrom
+      let bookingDateTo = currBooking.bookingDateTo
+      let loyaltyPoints = currBooking.loyaltyPoints
 
-        swal("booking updated")
-        //TODO:axios request, use the strings, roomStr and amenityStr
+        //swal("booking updated")
+        //TODO:axios request, use the strings, roomStr and amenity
        // console.log("noOfGuests: ",noOfGuests,"  ", "checkIn: ", checkIn, "  ", "checkOut:", checkOut)
         //TODO: add axios post request to update booking and send required input parameters
         // If successful, show an alert message as booking is updated
-
-         /* axios({
+        const data = {room,amenity,bookingId,hotelId,customerId,noOfGuest, bookingDateFrom, bookingDateTo}
+          axios({
               method: "post",
-              url: utilObj.urls.backendURL+"/hotel/book",
+              url: "http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/book",
               headers: {
               "Content-Type": "application/json",
             },
              data}).then(res=>{
               if (res.status==200){
                  swal("booking updated")
-                  //updateHotelList(res.message)
+                  
                   console.log(res.data);
               }
               else{
                   console.log("Bad response from server");
               }
               
-          });*/
+          });
     }
 
     //Call below apis before axios request
@@ -100,8 +109,8 @@ function UpdateBooking(props) {
         updatedAmenities.pop(currAmenity)
     }
 
-    const setRooms = (roomsStr) => {
-      let roomsArr = roomsStr.split("-");
+    const setRooms = (rooms) => {
+      let roomsArr = rooms.split("-");
       
       for(let i=0; i<roomsArr.length; i++){
         let room = roomsArr[i];
@@ -177,10 +186,11 @@ function UpdateBooking(props) {
           <Modal.Body>
           <React.Fragment>
 <Card border="success">
-    <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {currBooking.hotelId}</Card.Header>
+    <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {currBooking.hotelName}</Card.Header>
     <Card.Body>
-        Hotel Name : {currBooking.hotelName}<br/>
-        Hotel address: {currBooking.hotelAddress}
+        Check In : {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
+        <br/>
+        Check Out: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
 
 </Card.Body>
 </Card>

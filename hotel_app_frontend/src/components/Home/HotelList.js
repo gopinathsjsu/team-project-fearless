@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Button, Card} from 'react-bootstrap';
-import { useHistory,Link ,useNavigate, Navigate} from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import utilObj  from "../Utils/utils";
 import './Styles/HotelList.css';
 import img from './Styles/new.jpg'
@@ -26,7 +26,6 @@ function HotelList(props) {
 
     const isUserLoggedIn = () =>{
         let customerId = utilObj.getCustomerId()
-        
         return (customerId != null)
        // return false
       }
@@ -61,7 +60,6 @@ function HotelList(props) {
 
     return (
         <div>{markup}</div>
-        //displays list of cards
     )
 
 }

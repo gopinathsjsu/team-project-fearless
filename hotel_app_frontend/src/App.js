@@ -43,7 +43,7 @@ function App(){
          <Route path="/profile" element={<Profile/>}/>
           <Route path="/upcomingBookings" element={<UpcomingBookings/>} />
           <Route path="/pastBookings" element={<PastBookings/>} />
-          <Route path="/updateRoomCost" element={<UpdateRoomCosts/>} />
+          <Route path="/updateRoomCosts" element={<UpdateRoomCosts/>} />
           <Route path ="/" element={<Logout/>}/>
 
 
