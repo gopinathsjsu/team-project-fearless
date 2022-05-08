@@ -4,24 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 function Logout(props){
     const navigate = useNavigate();
-    //const [user,setUser]=useState();
-    //const loggedInuser=localStorage.getItem("user");
-    //setUser(loggedInuser);
-
-    //const [msg, setMsg]=useState("");
     
     const handleLogout=()=>{
-        //setUser({});
         localStorage.clear();
         props.setLogout(true)
         alert("Logged out succesfully!!"); 
-        //setMsg ("Logged out successfully");
         navigate('/');
     }
 
     return (
         <div>
-            <Button onClick={handleLogout}>Logout</Button>  
+            <Button variant = "success" onClick={handleLogout}>Logout</Button>  
         </div>
     )
 }

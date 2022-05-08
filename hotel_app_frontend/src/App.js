@@ -21,6 +21,7 @@ import Error from './components/Customer/Exit/error';
 import  Header  from './components/Home/Header';
 import Logout from './components/Customer/Login/logout';
 import UpdateRoomCosts from './components/Employee/UpdateRoomCosts';
+
 // import Amenities from './components/Customer/Bookings/amenities';
 
 function App(){
@@ -39,7 +40,7 @@ function App(){
          <Route path="/profile" element={<Profile/>}/>
           <Route path="/upcomingBookings" element={<UpcomingBookings/>} />
           <Route path="/pastBookings" element={<PastBookings/>} />
-          <Route path="/updateRoomCost" element={<UpdateRoomCosts/>} />
+          <Route path="/updateRoomCosts" element={<UpdateRoomCosts/>} />
           <Route path ="/" element={<Logout/>}/>
       </Routes>
     </BrowserRouter>

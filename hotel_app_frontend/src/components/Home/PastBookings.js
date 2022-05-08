@@ -14,8 +14,7 @@ class PastBookings extends Component{
     }
     
     componentDidMount(){
-        const user=JSON.parse(localStorage.getItem("custId"));
-        const id = user.customerId
+        const id = utilObj.getCustomerId();
 
         axios({
             method: "get",
@@ -47,9 +46,7 @@ class PastBookings extends Component{
                 )
         } else {
             return (
-                <div>
-                   No bookings to show
-                </div>
+                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
             )
         }
     }
@@ -72,10 +69,10 @@ class PastBookings extends Component{
                             Hotel Name: {currBooking.hotelName}
                             </Card.Text>
                             <Card.Text>
-                            Check In: {new Date(currBooking.bookingDateFrom).toDateString()}
+                            Check In: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
                             </Card.Text>
                             <Card.Text>
-                            Check Out: {new Date(currBooking.bookingDateTo).toDateString()}
+                            Check Out: {new Date(currBooking.bookingDateTo).toISOString().substring(0,10)}
                             </Card.Text>
                             <Card.Text>
                             Guest Count: {currBooking.noOfGuest}
@@ -85,7 +82,7 @@ class PastBookings extends Component{
                 )
             }
             else{
-                markup.push(<div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>)  
+                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
             }
         }
         return markup

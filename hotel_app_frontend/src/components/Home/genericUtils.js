@@ -1,5 +1,5 @@
 export var getUserEmail = () => {
-    let user = localStorage.getItem("custId")
+    let user = localStorage.getItem("customer")
     try {
         let userObj = JSON.parse(user);
             if(userObj)
@@ -11,7 +11,7 @@ export var getUserEmail = () => {
 }
 
 export var getUserFirstName = () => {
-    let user = localStorage.getItem("custId")
+    let user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);
@@ -26,7 +26,7 @@ export var getUserFirstName = () => {
 }
 
 export var getUserLastName = () => {
-    let user = localStorage.getItem("custId")
+    let user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);
@@ -40,7 +40,7 @@ export var getUserLastName = () => {
 }
 
 export var getRewardPoints = () => {
-    const user = localStorage.getItem("custId")
+    const user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);
@@ -54,7 +54,7 @@ export var getRewardPoints = () => {
 }
 
 export var getAddress = () => {
-    const user = localStorage.getItem("custId")
+    const user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);
@@ -68,7 +68,7 @@ export var getAddress = () => {
 }
 
 export var getBookingCount = () => {
-    const user = localStorage.getItem("custId")
+    const user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);
@@ -82,7 +82,7 @@ export var getBookingCount = () => {
 }
 
 export var getContact = () => {
-    const user = localStorage.getItem("custId")
+    const user = localStorage.getItem("customer")
     if(user){
         try {
             let userObj = JSON.parse(user);

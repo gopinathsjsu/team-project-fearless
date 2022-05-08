@@ -17,9 +17,10 @@ function CancelBooking(props){
           }
            }).then(res=>{
             if (res.status==200){
-                alert(res.message)
+                alert(res.data.result);
                 navigate('../upcomingBookings')
                 console.log("cancel api response",res.data);
+                
             }
             else{
                 console.log("Bad response from server");

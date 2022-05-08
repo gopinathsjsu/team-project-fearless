@@ -5,6 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import utilObj from '../Utils/utils';
 import swal from "sweetalert";
 
 function UpdateBooking(props) {
@@ -20,7 +21,7 @@ function UpdateBooking(props) {
     
     //const [checkIn, setCheckIn] = useState(currBooking.checkIn);
     //const [checkOut, setCheckOut] = useState(currBooking.checkOut);
-
+    //const id = utilObj.getCustomerId();
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
@@ -43,20 +44,22 @@ function UpdateBooking(props) {
     }
 
     const handleUpdate = () => {
-      let roomStr = getUpdatedRoom()
+      let room = getUpdatedRoom()
       let amenity = getUpdatedAmenities()
       let bookingId = currBooking.bookingId
       let hotelId = currBooking.hotelId
       let customerId = currBooking.customerId
       let noOfGuest = setNoOfGuest
-
+      let bookingDateFrom = currBooking.bookingDateFrom
+      let bookingDateTo = currBooking.bookingDateTo
+      let loyaltyPoints = currBooking.loyaltyPoints
 
         //swal("booking updated")
         //TODO:axios request, use the strings, roomStr and amenity
        // console.log("noOfGuests: ",noOfGuests,"  ", "checkIn: ", checkIn, "  ", "checkOut:", checkOut)
         //TODO: add axios post request to update booking and send required input parameters
         // If successful, show an alert message as booking is updated
-        const data = {roomStr,amenity,bookingId,hotelId,customerId,noOfGuest}
+        const data = {room,amenity,bookingId,hotelId,customerId,noOfGuest, bookingDateFrom, bookingDateTo}
           axios({
               method: "post",
               url: "http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/book",
@@ -90,12 +93,12 @@ function UpdateBooking(props) {
     }
 
     const getUpdatedAmenities = () =>{
-      let amenity=""
+      let amenityStr=""
       for( let i=0; i< updatedAmenities.length; i++){
         let curr = updatedAmenities[i];
-        amenity += curr+"-";
+        amenityStr += curr+"-";
       }
-      return amenity.substring(0, amenity.length-1)
+      return amenityStr.substring(0, amenityStr.length-1)
     }
 
     const changeAmenity = (e) => {
@@ -185,8 +188,9 @@ function UpdateBooking(props) {
 <Card border="success">
     <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {currBooking.hotelName}</Card.Header>
     <Card.Body>
-        Hotel Name : {currBooking.hotelName}<br/>
-        Hotel address: {currBooking.hotelAddress}
+        Check In : {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
+        <br/>
+        Check Out: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
 
 </Card.Body>
 </Card>

@@ -3,7 +3,7 @@ body {
     background-image:url('splash1.jpg');
     background-size: cover;
     width: 100%;
-    opacity: 0.8;
+    opacity: 0.9;
 }
     
     .search-bar{
@@ -44,6 +44,10 @@ body {
         background-color: #044831;
         height: 3.5em;
         width: 10em;    
+    }
+
+    nav .navbar-nav li a{
+        color: aliceblue !important;
     }
 
 

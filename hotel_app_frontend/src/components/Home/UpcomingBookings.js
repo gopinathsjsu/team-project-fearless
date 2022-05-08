@@ -17,6 +17,7 @@ class UpcomingBookings extends Component{
         const username = getUserFirstName()+" "+getUserLastName()
         const email = getUserEmail()
         const id = utilObj.getCustomerId();
+        //const id = JSON.parse(localStorage.getItem("custId"));
         const rewards = getRewardPoints()
         console.log("cust id", id);
 
@@ -65,7 +66,7 @@ class UpcomingBookings extends Component{
             localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             console.log("upcoming",isUpcoming);
-            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled" && currBooking.bookingStatus!="")){
+            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled")){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming">
                         <Card.Body>
@@ -73,10 +74,10 @@ class UpcomingBookings extends Component{
                         Hotel Name: {currBooking.hotelName}
                         </Card.Text>
                         <Card.Text>  
-                        CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
+                        CheckIn: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
                         </Card.Text> 
                         <Card.Text> 
-                        Check Out: {new Date(currBooking.bookingDateTo).toDateString()}
+                        Check Out: {new Date(currBooking.bookingDateTo).toISOString().substring(0,10)}
                         </Card.Text>  
                         <Card.Text>
                         Guest Count: {currBooking.noOfGuest}
@@ -92,7 +93,7 @@ class UpcomingBookings extends Component{
                     </Card>
                 )
             }else {
-                 markup.push(<div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>) 
+                 <div><h3 style={{color:`aliceblue`}}>No Upcoming Bookings to show</h3></div>
             }
         }
         return markup   
