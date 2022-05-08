@@ -6,7 +6,11 @@ import axios from "axios";
 
 function UpdateRoomCosts(){
 
-    
+    return(
+       <Card>
+           update cost 
+       </Card>
+    )
 
 }
 
