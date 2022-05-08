@@ -86,10 +86,10 @@ class UpcomingBookings extends Component{
                         Hotel Name: {currBooking.hotelName}
                         </Card.Text>
                         <Card.Text>  
-                        CheckIn: {new Date(currBooking.bookingDateFrom).toDateString()}
+                        CheckIn: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
                         </Card.Text> 
                         <Card.Text> 
-                        Check Out: {new Date(currBooking.bookingDateTo).toDateString()}
+                        Check Out: {new Date(currBooking.bookingDateTo).toISOString().substring(0,10)}
                         </Card.Text>  
                         <Card.Text>
                         Guest Count: {currBooking.noOfGuest}
