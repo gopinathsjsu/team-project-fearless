@@ -21,7 +21,10 @@ import Error from './components/Customer/Exit/error';
 import  Header  from './components/Home/Header';
 import Logout from './components/Customer/Login/logout';
 import UpdateRoomCosts from './components/Employee/UpdateRoomCosts';
-
+import EmployeeLogin from './components/Employee/EmployeeLogin';
+import EmployeeRegister from './components/Employee/EmployeeRegister';
+import EmpHomePage from './components/Employee/EmpHomePage';
+import AddHotels from './components/Employee/AddHotels';
 // import Amenities from './components/Customer/Bookings/amenities';
 
 function App(){
@@ -42,6 +45,15 @@ function App(){
           <Route path="/pastBookings" element={<PastBookings/>} />
           <Route path="/updateRoomCosts" element={<UpdateRoomCosts/>} />
           <Route path ="/" element={<Logout/>}/>
+
+
+
+         <Route path="/employee/login" element={<EmployeeLogin/>} />
+         <Route path="/employee/register" element={<EmployeeRegister/>} />
+         <Route path="/employee/homepage" element={<EmpHomePage/>} />
+         <Route path="/addhotel" element={<AddHotels/>} />
+
+
       </Routes>
     </BrowserRouter>
    
