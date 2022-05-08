@@ -46,8 +46,10 @@ body {
         width: 10em;    
     }
 
-    nav .navbar-nav li a{
+    .header{
         color: aliceblue !important;
+        text-decoration: none;
+        font-size: large;
     }
 
 

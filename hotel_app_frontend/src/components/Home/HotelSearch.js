@@ -41,7 +41,6 @@ function HotelSearch(props) {
         localStorage.setItem("from", from);
         localStorage.setItem("to", to);
         localStorage.setItem("location", location);
-        //props.updateHotelList(getLocationBasedHotels(location, from, to))
        
        const data = {from, to, location}
        console.log(data);

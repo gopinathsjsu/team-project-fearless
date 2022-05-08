@@ -15,17 +15,13 @@ function Header() {
 
   return(
     <nav className="navbar navbar-dark bg-dark">
-       <Link to="/register">Signup</Link>
+       <Link className="header" to="/employee/login">Employee View</Link>  
       <br/>
-      <Link to="/profile">My Profile</Link>
+      <Link className="header" to ="/">Home</Link>
       <br/>
-      <Link to ="/">Home</Link>
+      <Link className="header" to="/profile">My Profile</Link>
       <br/>
-      {isUserLoggedIn()? <Logout setLogout={setLogout}/>:<Link to="/login">SignIn</Link> }
-
-      <br/>
-      
-      <Link to="/employee/login">Hotel Employee</Link>  
+      {isUserLoggedIn()? <Logout setLogout={setLogout}/>:<Link className="header" to="/login">SignIn</Link> }      
     </nav>
   )
 };

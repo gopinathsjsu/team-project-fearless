@@ -4,6 +4,7 @@ import axios from 'axios';
 import utilObj from '../Utils/utils'
 import { useNavigate } from 'react-router-dom';
 import './Styles/Profile.css';
+import swal from "sweetalert";
 
 function CancelBooking(props){
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ function CancelBooking(props){
           }
            }).then(res=>{
             if (res.status==200){
-                alert(res.data.result);
+                swal(res.data.result);
                 navigate('../upcomingBookings')
                 console.log("cancel api response",res.data);
                 

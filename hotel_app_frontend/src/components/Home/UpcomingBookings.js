@@ -66,7 +66,7 @@ class UpcomingBookings extends Component{
             localStorage.setItem("currBooking",JSON.stringify(currBooking));
             let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
             console.log("upcoming",isUpcoming);
-            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled")){
+            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled"&&currBooking.bookingStatus!="")){
                 markup.push(
                     <Card border="success" key={i} className="past-upcoming">
                         <Card.Body>
@@ -92,11 +92,12 @@ class UpcomingBookings extends Component{
                        </Card.Body>  
                     </Card>
                 )
-            }else {
-                 <div><h3 style={{color:`aliceblue`}}>No Upcoming Bookings to show</h3></div>
             }
         }
-        return markup   
+        if(markup.length==0){
+            markup.push(<Card border="success" style={{width:"50%", left:"23%", margin:"20px"}}><h3 style={{textAlign:`center`}}>No Upcoming Bookings to show</h3></Card>)
+        }
+        return markup 
     }
 }
 export default UpcomingBookings

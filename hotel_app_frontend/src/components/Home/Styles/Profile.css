@@ -42,3 +42,9 @@
     left: 70%;
     bottom: 120px;
 }
+
+.noShow {
+    position:relative;
+    display: flex;
+    color:aliceblue;
+}

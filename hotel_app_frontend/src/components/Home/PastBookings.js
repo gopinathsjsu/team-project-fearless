@@ -38,7 +38,7 @@ class PastBookings extends Component{
     }
 
     render(){
-        if(this.state.bookings){
+        if(this.state.bookings && this.state.bookings.length>0){
             return(
                 <Container>
                     {this.displayBookings()}
@@ -46,7 +46,7 @@ class PastBookings extends Component{
                 )
         } else {
             return (
-                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
+                <div>No Bookings</div>
             )
         }
     }
@@ -81,11 +81,12 @@ class PastBookings extends Component{
                     </Card>
                 )
             }
-            else{
-                <div><h3 style={{color:`aliceblue`}}>No Previous Bookings to show</h3></div>
-            }
+        }
+        if(markup.length==0){
+            markup.push(<Card border="success" style={{width:"50%", left:"23%", margin:"20px"}}><h3 style={{textAlign:`center`}}>No Previous Bookings to show</h3></Card>)
         }
         return markup
+            
         
     }
 }
