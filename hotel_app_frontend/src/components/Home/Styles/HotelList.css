@@ -3,9 +3,9 @@
     top: 120px;
     margin: 25px;
     width: 77%;
-    height: 130px;
+    height: 165px;
     left: 8%;
-    border-color: white;
+    border-color: aliceblue;
     border-width: 2em;
     box-sizing: border-box;
 }
@@ -22,9 +22,38 @@
 .select-hotel {
     position: relative;
     bottom:18px;
-    left: 88%;
+    left: 10%;
     height: 3.25em;
     width: 7em;         
+}
+
+.description {
+    position: relative;
+    display: flex;
+    left: 30%;
+    bottom:50%;
+}
+
+.selects {
+    position: relative;
+    display: flex;
+    left: 18%;
+    bottom:60%;
+}
+
+.hoteltitle{
+    position: relative;
+    display: flex;
+    left:12%;
+    bottom: 50%
+
+}
+
+.hoteladd{
+    position: relative;
+    display: flex;
+    bottom: 50%;
+    right:55%
 }
 
 
