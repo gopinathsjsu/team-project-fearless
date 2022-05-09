@@ -5,7 +5,6 @@ import {getRewardPoints, getUserEmail, getUserLastName, getUserFirstName, getBoo
 import './Styles/Profile.css';
 import avatar from './Styles/avatar.jpeg';
 
-//TODO: add reward points
 function Profile(){
     const navigate = useNavigate()
 

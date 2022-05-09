@@ -1,76 +1,72 @@
 import React, { Component, useState } from "react";
 import { Modal, Button, Row, Col, Container, Form, Card, ListGroup } from "react-bootstrap";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import utilObj from '../Utils/utils';
 import swal from "sweetalert";
 
 function UpdateBooking(props) {
+    const navigate = useNavigate();
     const currBooking = props.currBooking
     const [show, setShow] = useState(false);
     const [noOfGuest, setNoOfGuest] = useState(parseInt(currBooking.noOfGuest));
     const [room, setRoom] = useState(currBooking.room)
-   // const [SRCount, setSRCount] = useState()
-    //const [DRCount, setDRCount] = useState()
+   
     let SRCount=0, DRCount = 0;
     let updatedAmenities=[];
     const [bookedAmenities, setBookedAmenities] = useState(currBooking.amenity)
-    
-    //const [checkIn, setCheckIn] = useState(currBooking.checkIn);
-    //const [checkOut, setCheckOut] = useState(currBooking.checkOut);
 
+   
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     
-   /* const incrementGuests = () => {
-        setNoOfGuests(noOfGuests+1)
-    }
-    const decrementGuests = () => {
-        setNoOfGuests(noOfGuests-1)
-    }*/
 
     const handleChange=(event)=>{
-     // setRoomData({...roomdata,[event.target.name]:event.target.value});
       console.log(" on change :");
-      // console.log(roomdata);
     }
   
     const handleSubmit=()=>{
         console.log(" after handle submit");
-     //   console.log(roomdata);
     }
 
     const handleUpdate = () => {
-      let roomStr = getUpdatedRoom()
-      let amenityStr = getUpdatedAmenities()
+      let bookingId = currBooking.bookingId;
+      let hotelId = currBooking.hotelId;
+      let customerId = currBooking.customerId;
+      let room = getUpdatedRoom();
+      let amenity = getUpdatedAmenities();
+      let bookingDateFrom = new Date(currBooking.bookingDateFrom).toISOString().substring(0,10);
+      let bookingDateTo = new Date(currBooking.bookingDateTo).toISOString().substring(0,10);
+      let bookingStatus = "booked";
+      let amount = "";
+      let totalAmount = "";
+      let paymentMethod = currBooking.paymentMethod;
+      let roomNumbers = "";
+      let loyaltyPointsUsed = currBooking.loyaltyPointsUsed;
 
-        swal("booking updated")
-        //TODO:axios request, use the strings, roomStr and amenityStr
-       // console.log("noOfGuests: ",noOfGuests,"  ", "checkIn: ", checkIn, "  ", "checkOut:", checkOut)
-        //TODO: add axios post request to update booking and send required input parameters
-        // If successful, show an alert message as booking is updated
-
-         /* axios({
+      const data = {bookingId,hotelId,customerId,room,amenity,bookingDateFrom,bookingDateTo,noOfGuest:noOfGuest,bookingStatus, amount, totalAmount, paymentMethod, roomNumbers, loyaltyPointsUsed }
+          axios({
               method: "post",
-              url: utilObj.urls.backendURL+"/hotel/book",
-              headers: {
-              "Content-Type": "application/json",
-            },
+              url: "http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/book",
              data}).then(res=>{
               if (res.status==200){
-                 swal("booking updated")
-                  //updateHotelList(res.message)
+                 swal(res.data.message);
+                 navigate('../upcomingBookings')
                   console.log(res.data);
               }
               else{
                   console.log("Bad response from server");
               }
               
-          });*/
+          });
     }
 
-    //Call below apis before axios request
+    
+    const noGuestHandler=(e)=>{
+      setNoOfGuest(parseInt(e.target.value));
+   }
+    
     const getUpdatedRoom = () =>{
       let roomStr = ""
       if(SRCount > 0){
@@ -100,8 +96,11 @@ function UpdateBooking(props) {
         updatedAmenities.pop(currAmenity)
     }
 
-    const setRooms = (roomsStr) => {
-      let roomsArr = roomsStr.split("-");
+
+    
+
+    const setRooms = (rooms) => {
+      let roomsArr = rooms.split("-");
       
       for(let i=0; i<roomsArr.length; i++){
         let room = roomsArr[i];
@@ -109,16 +108,16 @@ function UpdateBooking(props) {
         let isDoubleRoom = (room.indexOf("DR") > -1)
         if(isSingleRoom){
           SRCount = parseInt(room.replace("SR", ""))
-         // setSRCount(srcount)
         }
         if(isDoubleRoom){
           DRCount = parseInt(room.replace("DR", ""))
-          //setDRCount(drcount)
         }
       }
     }
+    
+    const amenities=(JSON.parse(localStorage.getItem("selectedHotel"))).amenities;
 
-    const amenities=
+    /*const amenities=
     [
         {
             "amenityId": 1,
@@ -162,7 +161,7 @@ function UpdateBooking(props) {
             "amenityType": "Dinner",
             "amenityCost": 10
         }
-    ]
+    ]*/
     setRooms(currBooking.room)
     return (
       <>
@@ -172,18 +171,18 @@ function UpdateBooking(props) {
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Current Booking</Modal.Title>
+            <Modal.Title style={{color:'green', fontSize:"25px"}}>Current Booking</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <React.Fragment>
-<Card border="success">
-    <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {currBooking.hotelId}</Card.Header>
-    <Card.Body>
-        Hotel Name : {currBooking.hotelName}<br/>
-        Hotel address: {currBooking.hotelAddress}
-
-</Card.Body>
-</Card>
+  <Card border="success">
+      <Card.Header style={{textAlign:'center', color:'green', fontStyle:"italic", fontSize:"40px"}}>HOTEL {currBooking.hotelName}</Card.Header>
+      <Card.Body>
+          Check In : {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
+          <br/>
+          Check Out: {new Date(currBooking.bookingDateTo).toISOString().substring(0,10)}
+      </Card.Body>
+  </Card>
 
 <Card border="success">
     <Card.Body>
@@ -218,7 +217,7 @@ function UpdateBooking(props) {
                 <Row>
                     <Col> <Form.Label style={{ color:'green', fontStyle:"italic"}} >Enter No of Guests</Form.Label>
                     </Col>
-                    <Col>  <Form.Control type="number" placeholder="Enter guests" name="noOfguests" defaultValue={noOfGuest} onChange={setNoOfGuest} />
+                    <Col>  <Form.Control type="number" placeholder="Enter guests" name="noOfguests" defaultValue={noOfGuest} onChange={(e)=>noGuestHandler(e)} />
                     </Col>
                 </Row>
             </Form.Group>
@@ -262,8 +261,8 @@ function UpdateBooking(props) {
                 })}
                         </ListGroup.Item> */}
             </Form.Group>
-            <br></br>
-            <Button variant="success" type="submit" style={{marginLeft:350}}>Checkout</Button>
+           {/*} <br></br>
+            <Button variant="success" type="submit" style={{marginLeft:350}}>Checkout</Button>*/}
           </form>
         
       

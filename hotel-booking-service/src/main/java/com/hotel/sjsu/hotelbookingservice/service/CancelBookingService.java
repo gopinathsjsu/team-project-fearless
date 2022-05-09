@@ -14,16 +14,17 @@ import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.constant.Constable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAccessor;
-import java.util.ArrayList;
-import java.util.Calendar;
+
+import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 
 
 @Service
@@ -42,90 +43,77 @@ public class CancelBookingService {
     @Autowired
     ModelToEntityMapper modelToEntityMapper;
 
-//    public String cancelBooking(Long bookingId, Long customerId, Long hotelId, Booking booking) {
-//
-//        booking.setBookingStatus("Cancelled");
-//        BookingEntity bookingEntity = modelToEntityMapper.map(booking);
-////        System.out.println(bookingEntity);
-//        cancelRepository.save(bookingEntity);
-//        String successMsg;
-//        successMsg= "Booking has been cancelled successfully!!";
-//        return successMsg;
-//    }
+
 
     //public String cancelBooking (Long booking_id) {
     public String cancelBooking (Long booking_id) throws ParseException{
 
 //        if(validateCancelBooking(booking)) {
 
-            BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
-            Booking booking = entityToModelMapper.mapBooking(bookingEntity);
-            Long customerId = booking.getCustomerId();
-            Calendar fromDate = booking.getBookingDateFrom();
+        BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
+        Booking booking = entityToModelMapper.mapBooking(bookingEntity);
+        //           Long customerId = booking.getCustomerId();
 
-            SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
-            String bookingDate = bformat.format(fromDate.getTime());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate dateObj = LocalDate.now();
-            String date = dateObj.format(formatter);
-            System.out.println("fromdate= " + bookingDate);
-            System.out.println("today= " + date);
+        Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
+        cancelRepository.cancelBookingStatus(booking_id);
 
-            LocalDate localDate1 = LocalDate.parse(bookingDate);
-            LocalDate localDate2 = LocalDate.parse(date);
-            long noOfDaysDifference = ChronoUnit.DAYS.between(localDate2, localDate1);
-            System.out.println("No of days diff is : " + noOfDaysDifference);
-            if (noOfDaysDifference > 2) {
+        Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(booking.getCustomerId()) + loyaltyPoints;
+        cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, booking.getCustomerId());
 
-                Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
-                cancelRepository.cancelBookingStatus(booking_id);
+        //refund paid amt
+        Double totalAmount = booking.getTotalAmount();
+        cancelRepository.updateTotalAmount((double) 0, booking_id);
 
-                Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(customerId) + loyaltyPoints;
-                cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, customerId);
+        String output = "{\"result\": \"Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!\"}";
+        JSONObject jsonResult = new JSONObject(output);
+        System.out.println(jsonResult);
 
-                //refund paid amt
-                Double totalAmount = booking.getTotalAmount();
-                cancelRepository.updateTotalAmount((double) 0, booking_id);
 
-                String output = "{\"result\": \"Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!\"}";
-                JSONObject jsonResult = new JSONObject(output);
-                System.out.println(jsonResult);
-                //String cancelled = json.getString("cancelled");
-                //System.out.println(cancelled);
-
-                //return "{'result': 'Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!'}";
-                return output;
-            } else {
-
-                String output = "{\"result\": \"Booking can not be cancelled within 48 hours of booking date!!\"}";
-                JSONObject jsonResult = new JSONObject(output);
-                System.out.println(jsonResult);
-                //String cancelled = json.getString("cancelled");
-                //System.out.println(cancelled);
-
-                //return "{'result': 'Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!'}";
-                return output;
-                //return "{'Booking can not be cancelled within 48 hours of booking date!!'}";
-
-            }
-//        }
-//        else {
-////            message.add("Unable to book rooms due to above reason(s)");
-//            return "-1";
-        }
-
+        return output;
+    }
 
     List<String> message = new ArrayList<String>();
+    public String  validateCancelBooking(Long bookingId) throws ParseException {
 
-    private boolean validateCancelBooking(Booking booking) throws ParseException {
-        boolean result = true;
 
-        if(booking.getBookingId()==null ||booking.getBookingId().equals("0")) {
-            message.add("Booking Id is missing");
-            result = false;
+        String errorMessage = new String("");
+        BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(bookingId);
+
+        if(bookingEntity!=null) {
+            SimpleDateFormat bformatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Calendar bookingCalDate = bookingEntity.getBookingDateFrom();
+            String bookingDate = bformatter.format(bookingCalDate.getTime());
+            LocalDate fBookingDate = LocalDate.parse(bookingDate);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateObj = LocalDate.now();
+            String todayDate = dateObj.format(formatter);
+            LocalDate fTodayDate = LocalDate.parse(todayDate);
+            long noOfDaysDifference = ChronoUnit.DAYS.between(fTodayDate, fBookingDate);
+            if (noOfDaysDifference <= 2){
+                if(noOfDaysDifference < 0){
+                    errorMessage = "Past completed bookings can not be canceled!!";
+                }
+
+                else {
+                    errorMessage = "Booking can not be cancelled within 48 hours of booking date!!";
+
+                }
+            }
+            else if (bookingEntity.getCustomerId() == null){
+                errorMessage = "Customer doesn't exist for given booking ID "+ bookingId;
+
+
+            }
+
         }
 
-        return result;
+        else{
+            errorMessage = "No active booking exist with given booking ID "+ bookingId;
+        }
+
+
+        return errorMessage;
     }
 
 }

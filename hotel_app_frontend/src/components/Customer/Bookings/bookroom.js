@@ -220,7 +220,7 @@ const onCheckPrice=()=>{
                             </Col>
                             <Col>
                                 <Image src={SRimg} width={200} height={150}></Image>
-                                </Col> 
+                            </Col> 
                             <Col>
                             <Form.Text ><b>{hotel.costsOfRooms.SR}$ per Room</b></Form.Text>
                             </Col>

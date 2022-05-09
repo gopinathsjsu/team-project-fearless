@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="hotel-booking-service" target="16" />
+      <module name="hotel-booking-service" target="12" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

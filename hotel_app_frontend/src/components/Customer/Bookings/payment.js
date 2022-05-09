@@ -104,7 +104,7 @@ export  default function Payment(){
                     </ListGroup.Item>
 
                     <ListGroup.Item>
-                        Total Cost : {price} $
+                        Total Cost : $ {price} 
                      
                     </ListGroup.Item>
         
@@ -114,7 +114,6 @@ export  default function Payment(){
 
                 {/* <Card.Body>
                    
-
                 </Card.Body> */}
                 </Card>
                 <Card>

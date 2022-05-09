@@ -41,10 +41,28 @@ public class EmployeeController {
 //    }
 
     @RequestMapping(value="/addhotel", method = RequestMethod.POST, consumes = "application/json")
-    public String  addNewHotel( @RequestBody String payload ) throws ParseException {
-         return employeeService.addNewHotel((payload));
+    public ResponseEntity<?> postBody(@RequestBody String payload ) throws  ParseException{
+        if (payload == null || payload.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please provide valid hotel details");
+        }
+        String checkHotelDetails = employeeService.validateAddNewHotel(payload);
+        if (checkHotelDetails.isEmpty()){
+            return new ResponseEntity<>(employeeService.addNewHotel(payload), HttpStatus.OK);
+        }
 
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(checkHotelDetails);
+        }
     }
+
+
+
+//    @RequestMapping(value="/updateRoomCount", method = RequestMethod.POST, consumes = "application/json")
+//    public String updateRoomsCount( @RequestBody String payload ) throws ParseException {
+//        return employeeService.updateHotelRooms((payload));
+//
+//    }
+
 
 //    @GetMapping("/{zipcode}")
 //    public ResponseEntity<List<Integer>> gethotelIdByzipcode(@PathVariable String hotelZipcode){
