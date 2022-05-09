@@ -1,0 +1,129 @@
+drop table hotel;
+create table hotel(
+	hotel_id int not null auto_increment,
+	hotel_name varchar(500) not null,
+	hotel_location varchar(500) not null,
+	hotel_address varchar(500) not null,
+	hotel_zip_code varchar(500) not null unique,
+	hotel_contact varchar(500) not null,
+	hotel_manager_name varchar(500) not null,
+	hotel_email varchar(500) not null,
+	primary key (hotel_id)
+);
+
+
+
+===============================================================================================================================
+
+
+
+drop table hotel_rooms_map;
+
+create table hotel_rooms_map (
+id int not null auto_increment,
+hotel_id int references hotel(hotel_id),
+room_code  varchar(10),
+total_rooms int,
+primary key (id)
+);
+
+
+
+================================================================================================================================
+
+drop table customer;
+
+create table customer(
+	customer_id int not null auto_increment,
+	cust_first_name  varchar(500),
+	cust_last_name  varchar(500),
+	cust_password  varchar(500),
+	cust_email varchar(500),
+	cust_address varchar(500),
+	loyalty_points int default 100,
+    booking_count int, 
+	contact_number varchar(500),
+	primary key (customer_id)
+);
+
+
+
+
+
+================================================================================================================================================
+
+
+drop table employee;
+
+create table employee(
+	employee_id int not null auto_increment,
+	emp_first_name  varchar(500) not null,
+	emp_last_name  varchar(500) not null,
+    emp_email varchar(500) not null,
+	emp_password  varchar(500) not null,
+	emp_contact_number varchar(500),
+	primary key (employee_id)
+);
+
+
+
+
+========================================================================================================================================
+
+drop table room;
+
+create table room(
+	room_id int not null,
+    room_code varchar(10),
+	room_type  varchar(500),
+	room_cost  varchar(500),
+    room_cost_spl  varchar(500),
+	primary key (room_id)
+);
+
+
+============================================================================================================================================
+
+
+drop table booking;
+select * from booking;
+
+create table booking(	
+	booking_id			int not null auto_increment,
+	hotel_id			int	 not null references hotel(hotel_id),
+	customer_id			int not null references customer(customer_id) , 
+	room 				varchar(100),
+	amenity				varchar(100),
+	booking_date_from 	date not null,
+	booking_date_to 	date not null,
+	no_of_guest			int not null,
+	booking_status		varchar(100),
+	amount				Double,
+	total_amount		Double,
+	payment_method		varchar(100),
+	room_numbers		varchar(100),
+    loyalty_points_used int default 0,
+    primary key (booking_id)
+);
+
+
+----- payment _method = ("Credit Card", "Debit Card")
+----- booking_status = ("Booked" , "Cancelled")
+
+
+=======================================================================================================================================
+
+
+drop table amenity;
+create table amenity(
+	amenity_id int not null,
+    amenity_code varchar(10),
+	amenity_type  varchar(500),
+	amenity_cost  varchar(500),
+	amenity_cost_spl  varchar(500),
+	primary key (amenity_id)
+);
+
+
+====================================================================================================================================
+
