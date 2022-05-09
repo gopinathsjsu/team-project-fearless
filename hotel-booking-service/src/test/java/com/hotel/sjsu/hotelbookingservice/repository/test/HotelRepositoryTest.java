@@ -38,7 +38,7 @@ public class HotelRepositoryTest {
     @Rollback(value = false)
     public void getBookingIdListTest(){
 
-        List<BookingEntity> bookingEntityList = hotelRepository.getbookingIdsByhotelId(4L,"2022-06-01","2022-06-05");
+        List<BookingEntity> bookingEntityList = hotelRepository.getbookingIdsByhotelId(4L,"2022-07-01","2022-07-04");
         Assertions.assertThat(bookingEntityList.size()).isGreaterThan(0);
 
 
