@@ -1,27 +1,28 @@
 package com.hotel.sjsu.hotelbookingservice.service;
-import com.hotel.sjsu.hotelbookingservice.entity.AmenityEntity;
-import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
-import com.hotel.sjsu.hotelbookingservice.entity.HotelEntity;
-import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
-import com.hotel.sjsu.hotelbookingservice.model.Amenity;
-import com.hotel.sjsu.hotelbookingservice.model.Booking;
-import com.hotel.sjsu.hotelbookingservice.model.Hotel;
-import com.hotel.sjsu.hotelbookingservice.model.SearchInput;
-import com.hotel.sjsu.hotelbookingservice.repository.AmenityRepository;
-import com.hotel.sjsu.hotelbookingservice.repository.HotelRepository;
-import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
-import com.hotel.sjsu.hotelbookingservice.repository.HotelRoomsMapRepository;
-import io.swagger.v3.oas.models.security.SecurityScheme;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Tuple;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import com.hotel.sjsu.hotelbookingservice.entity.AmenityEntity;
+import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
+import com.hotel.sjsu.hotelbookingservice.entity.HotelEntity;
+import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
+import com.hotel.sjsu.hotelbookingservice.model.Amenity;
+import com.hotel.sjsu.hotelbookingservice.model.Hotel;
+import com.hotel.sjsu.hotelbookingservice.repository.AmenityRepository;
+import com.hotel.sjsu.hotelbookingservice.repository.HotelRepository;
+import com.hotel.sjsu.hotelbookingservice.repository.HotelRoomsMapRepository;
 
 @Service
 public class ManageHotelService {

@@ -30,7 +30,7 @@ public class RatesServiceTest {
 	void testValidateRating02(){
 				
 		rating = new Rating(1L, 1L,"2022-04-10","2022-04-13","1DR-1SR", "", 1, 100);	
-		assertTrue(ratesSerice.validateRating(rating, message));
+		assertFalse(ratesSerice.validateRating(rating, message));
 	}
 	
 	@Test
