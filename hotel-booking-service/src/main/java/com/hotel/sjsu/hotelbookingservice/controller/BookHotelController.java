@@ -30,7 +30,7 @@ public class BookHotelController {
     }
 	
 	@RequestMapping(value="/viewBookings/{customerID}")
-    public @ResponseBody Response viewBooking(@PathVariable("customerID") Long customerID) throws IOException, ParseException {
+    public @ResponseBody Response viewBooking(@PathVariable("customerID") Long customerID) throws IOException, ParseException{
 		return bookHotelService.viewBookings(customerID);
     }
 }
