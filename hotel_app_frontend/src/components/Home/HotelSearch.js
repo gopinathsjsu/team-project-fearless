@@ -93,10 +93,10 @@ function HotelSearch(props) {
                   onChange={updateLocation}
                 >
                   <MenuItem value={"San Francisco"}>San Francisco</MenuItem>
-                  <MenuItem value={"Mangalore"}>Mangalore</MenuItem>
-                  <MenuItem value={"Udupi"}>Udupi</MenuItem>
+                  <MenuItem value={"Los Angeles"}>Los Angeles</MenuItem>
+                  <MenuItem value={"San Jose"}>San Jose</MenuItem>
                   <MenuItem value={"Santa Cruz"}>Sanat Cruz</MenuItem>
-                  <MenuItem value={"New Delhi"}>New Delhi</MenuItem>
+                
                 </Select>
               </FormControl>
             </div>

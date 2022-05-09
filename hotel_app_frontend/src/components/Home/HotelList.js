@@ -11,15 +11,16 @@ function HotelList(props) {
      
 
     //limeka 
-    const handleClick=(id)=>{
+    const handleSelectClick=(id)=>{
         const HotelList=JSON.parse(localStorage.getItem("hotelList"))
         for (let i=0;i<HotelList.length;i++){
         if (HotelList[i].hotel.hotelId==id){
-            localStorage.setItem("selectedHotel",JSON.stringify(HotelList[i]))
+            localStorage.setItem("selectedHotel",JSON.stringify(HotelList[i]));
+            console.log("selected hotel obj in bookroom data", JSON.parse(localStorage.getItem("selectedHotel")));
+
         }
     }
-    console.log("selected hotel obj in bookroom data", JSON.parse(localStorage.getItem("selectedHotel")));
-
+    
     }
     //limeka
  
@@ -32,10 +33,9 @@ function HotelList(props) {
       }
     let markup = [];
     if(typeof(props.hotelList) != "undefined" && props.hotelList){
+
         for(let i=0; i< props.hotelList.length; i++){
             let currHotel = props.hotelList[i].hotel;
-            localStorage.setItem("currentHotel",JSON.stringify(currHotel));
-            console.log(currHotel);
             markup.push(
                 <Card className="hotellist" key={i}>
                         
@@ -47,8 +47,9 @@ function HotelList(props) {
                               {currHotel.hotel_address}
                             </Card.Text>
                             <Card.Text>
+                             
                                 {/*<Link  to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel}} ><Button style={{backgroundColor:`#044831`}} className="select-hotel">Select</Button></Link>*/}
-                                {isUserLoggedIn()?<Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel}} ><Button style={{backgroundColor:`#044831`}} className="select-hotel" onClick={handleClick(currHotel.hotelId)}>Select</Button></Link> :<Link to="/login"><Button style={{backgroundColor:`#044831`}} className="select-hotel">Select</Button></Link>}
+                                {isUserLoggedIn()?<Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel}}  ><Button style={{backgroundColor:`#044831`}} className="select-hotel" onClick={()=>handleSelectClick(currHotel.hotelId)}>Select</Button></Link> :<Link to="/login"><Button style={{backgroundColor:`#044831`}} className="select-hotel">Select</Button></Link>}
                             </Card.Text>
                         </Card.Body>
                     {/*isUserLoggedIn()?<Link style={{variant:"success", fontStyle:"italic", color:"green"}} to={{pathname :`displayhotels/hotel/${currHotel.hotelId}`, state:currHotel  }} > Select</Link> :<Link to="/login">Select</Link>*/}
