@@ -92,17 +92,16 @@ function HotelSearch(props) {
                   onChange={updateLocation}
                 >
                   <MenuItem value={"San Francisco"}>San Francisco</MenuItem>
-                  <MenuItem value={"Mangalore"}>Mangalore</MenuItem>
-                  <MenuItem value={"Udupi"}>Udupi</MenuItem>
+                  <MenuItem value={"Los Angeles"}>Los Angeles</MenuItem>
+                  <MenuItem value={"San Jose"}>San Jose</MenuItem>
                   <MenuItem value={"Santa Cruz"}>Sanat Cruz</MenuItem>
-                  <MenuItem value={"New Delhi"}>New Delhi</MenuItem>
                 </Select>
               </FormControl>
             </div>
             <div className="date_picker search-from form-search">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  allowSameDateSelection={false}
+                  allowSameDateSelection={true}
                   label="CheckIn"
                   inputFormat="MM/dd/yyyy"
                   value={from}
@@ -114,7 +113,7 @@ function HotelSearch(props) {
             <div className="date_picker search-to form-search">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
-                    allowSameDateSelection={false}
+                    allowSameDateSelection={true}
                     label="CheckOut"
                     inputFormat="MM/dd/yyyy"
                     value={to}

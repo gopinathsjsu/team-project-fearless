@@ -4,7 +4,8 @@ import HotelList from "./HotelList";
 import Header from "./Header";
 
 function LandingPage() {
-    const [hotelList, setHotelList] = useState(JSON.parse(localStorage.getItem("hotelList")));
+    //const [hotelList, setHotelList] = useState(JSON.parse(localStorage.getItem("hotelList")));
+    const [hotelList, setHotelList] = useState();
     const updateHotelList = (hotelList) => {
         hotelList = JSON.parse(hotelList);
         setHotelList(hotelList)
