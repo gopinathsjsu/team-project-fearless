@@ -22,6 +22,9 @@ import com.hotel.sjsu.hotelbookingservice.repository.BookHotelRepository;
 public class BookHotelService {
 	
 	@Autowired
+	ManageHotelService manageService;
+	
+	@Autowired
 	CustomerService customerService;
 	
 	@Autowired
@@ -71,7 +74,7 @@ public class BookHotelService {
 		}
 	}
 
-	private boolean validateBooking(Booking booking) throws ParseException {
+	public boolean validateBooking(Booking booking) throws ParseException {
 		boolean result = true;
 		
 		if(booking.getCustomerId()==null ||booking.getCustomerId().equals("0")) {

@@ -22,7 +22,7 @@ public class HotelRepositoryTest {
 
     @Autowired
     private HotelRepository hotelRepository;
-
+/*
     @Test
     @Order(1)
     @Rollback(value = false)
@@ -42,5 +42,5 @@ public class HotelRepositoryTest {
         Assertions.assertThat(bookingEntityList.size()).isGreaterThan(0);
 
 
-    }
+    }*/
 }

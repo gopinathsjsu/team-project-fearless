@@ -8,7 +8,7 @@ import {useLocation,useNavigate} from 'react-router-dom';
 
 
 export default function RegisterUser(){
-    const [regUserdata, setRegUserdata]=useState({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""});
+    const [regUserdata, setRegUserdata]=useState({custFirstName:"",custLastName:"",  custPassword:"",custEmail:"",custAddress:"",  loyaltyPoints:"", contactNumber:"", bookingCount:""});
    
     const location = useLocation();
     const nav=useNavigate();
@@ -20,14 +20,16 @@ export default function RegisterUser(){
     const handleSubmit=(event)=>{
         event.preventDefault();
         console.log(regUserdata);
+ 
 
-        axios.post("/register",{regUserdata})
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/customer/register",regUserdata)
     
         .then(res=>{
             if (res.status==200){
                 console.log(res.data)
+                nav('/login');
 
-                // navigate("/login");
+       
                 console.log("registration successful");
             }
             else{
@@ -37,10 +39,10 @@ export default function RegisterUser(){
         });
      
        
-        setRegUserdata({first_name:"",last_name:"", address:"", email:"", password:"",  contact:""})
+        setRegUserdata({custFirstName:"",custLastName:"",  custPassword:"",custEmail:"",custAddress:"",  loyaltyPoints:"", contactNumber:"",bookingCount:""})
         
 
-        nav('/login');
+       
     }
 
 return(
@@ -52,31 +54,31 @@ return(
           <form onSubmit={handleSubmit} onChange={handleChange}>
               <Form.Group>
               <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="Limeka" id="first_name" name="first_name" required />
+                 <Form.Control type="text"  placeholder="Limeka" id="first_name" name="custFirstName" required />
                  <label htmlFor="first_name" style={{marginLeft:10}} > First Name</label>
                  </Form.Floating>
                  <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="Dabre" id="last_name" name="last_name" required/>
+                 <Form.Control type="text"  placeholder="Dabre" id="last_name" name="custLastName" required/>
                  <label htmlFor="last_name" style={{marginLeft:10}} > Last Name</label>
                  </Form.Floating>
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="22 W 3rd st" id="address" name="address" />
+                 <Form.Control type="text"  placeholder="22 W 3rd st" id="address" name="custAddress" />
                  <label htmlFor="address" style={{marginLeft:10}} > Address (Optional)</label>
                  </Form.Floating>
                  
                  <Form.Floating className="mb-3">
-                 <Form.Control type="email"  placeholder="email" id="email" name="email" required/>
+                 <Form.Control type="email"  placeholder="email" id="email" name="custEmail" required/>
                  <label htmlFor="Email" style={{marginLeft:10}} > Email</label>
                  </Form.Floating>
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="password" placeholder="Password" id="Password" name="password" required />
+                 <Form.Control type="password" placeholder="Password" id="Password" name="custPassword" required />
                  <label htmlFor="Password" style={{marginLeft:10}}> Password</label>
                  </Form.Floating>
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="66944554687" id="contact" name="contact" required/>
+                 <Form.Control type="text"  placeholder="66944554687" id="contact" name="contactNumber" required/>
                  <label htmlFor="contact" style={{marginLeft:10}} > Contact Number</label>
                  </Form.Floating> 
                  

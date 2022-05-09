@@ -1,14 +1,30 @@
-import React from "react";
+import React , {useState} from "react";
 import { Link } from "react-router-dom";
+import utilObj  from "../Utils/utils";
+import Logout from "../Customer/Login/logout";
+import LoginForm from "../Customer/Login/loginForm";
+import'./Styles/HotelSearch.css';
 
 function Header() {
-  return (
-    <div>
-      <Link to="/login">SignIn or SignUp</Link>
+  const [login, setLogin] = useState(false);
+  const [logout, setLogout] = useState(false);
+  const isUserLoggedIn = () =>{
+    let customerId = utilObj.getCustomerId()
+    return (customerId != null)
+  }
+
+  return(
+    <nav className="navbar navbar-dark bg-dark">
+       <Link className="header" to="/employee/login">Employee View</Link>  
       <br/>
-      <Link to="/profile">My Profile</Link>
-    </div>
+      <Link className="header" to ="/">Home</Link>
+      <br/>
+      <Link className="header" to="/profile">My Profile</Link>
+      <br/>
+      {isUserLoggedIn()? <Logout setLogout={setLogout}/>:<Link className="header" to="/login">SignIn</Link> }      
+    </nav>
   )
 };
 
 export default Header;
+

@@ -29,5 +29,6 @@ public interface HotelRepository extends JpaRepository<HotelEntity, String> {
 
 //    @Query("Select h.hotelId from hotel h where h.hotelLocation=?1 and h.hotelname=?2 and h.")
 
+    HotelEntity findByHotelId(Long hotelId);
 
 }

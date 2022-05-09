@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { Link} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { Card, Form, Row,Col, Button } from "react-bootstrap";
 import logout from "./logout";
 
@@ -7,12 +7,13 @@ import logout from "./logout";
 import axios from "axios";
 
 export default function LoginForm(){
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
+    const navigate = useNavigate();
+    const [custEmail,setEmail]=useState("")
+    const [custPassword,setPassword]=useState("")
 
     const [user, setUser]=useState({
-        email :"",
-        password :""
+        custEmail:"",
+        custPassword :""
     })
     
 
@@ -23,39 +24,50 @@ export default function LoginForm(){
     const handleSubmit=(event)=>{
 
         event.preventDefault();
+        //console.log(user);
+        const user={custEmail,custPassword};
         console.log(user);
-        const user={email,password};
-        console.log(user);
-        axios.post("/customer/login",{user}).then(res=>{
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/customer/login",user).then(res=>{
             if (res.status==200){
+
+
+                console.log("res data ",res.data.object);
+                localStorage.setItem("customer",JSON.stringify(res.data.object));
+                localStorage.setItem("custName",JSON.stringify(res.data.object.custFirstName));
+                localStorage.setItem("custId",JSON.stringify(res.data.object.customerId));
+                localStorage.setItem("custLP",JSON.stringify(res.data.object.loyaltyPoints));
+                console.log("LP",localStorage.getItem("custLP"));
+                console.log("setting customer Id in local storage",localStorage.getItem("custId")); //output = 13
+
+
                 //set state of user
-                setUser(res.data)
-
-                // store the user in localStorage
-                localStorage.setItem('user', res.data)
-                console.log(res.data)
-
-                // navigate(-1);
-                console.log("logged in");
+                setUser(res.data.object);
+                navigate('/');
+              
             }
             else{
                 console.log("wrong user");
             }
             
         });
-        // setUser({email:"",password:""})
-        }
+        setUser({custEmail:"",custPassword:""})
+    }
 
 
 //check if user is already logged in        
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-      window.alert("Already logged in");
-    //   navigate(-1);
+    // const loggedInUser = localStorage.getItem("user");
+    // if (loggedInUser) {
+    //     try {
+    //         const foundUser = JSON.parse(loggedInUser);
+    //         //window.alert("Already logged in");
+    //         setUser(foundUser); 
+    //     }catch(err) {
+    //         console.log('Error: ', err.message);
+    //     }
+        
 
-    }
+    // }
+    
 
 //If not then return this login form      
     return(
@@ -74,14 +86,14 @@ export default function LoginForm(){
                  
                  
                  <Form.Floating className="mb-3">
-                 <Form.Control type="email"   id="Email" name="email" placeholder="Email" onChange={({target})=>setEmail(target.value)} required/>
+                 <Form.Control type="email"   id="Email" name="custEmail" placeholder="Email" onChange={({target})=>setEmail(target.value)} required/>
                  <label htmlFor="Email" style={{marginLeft:10}} > Email</label>
                  </Form.Floating>
 
                 
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="password"  id="Password" name="password" placeholder="Password" onChange={({target})=>setPassword(target.value)} required/>
+                 <Form.Control type="password"  id="Password" name="custPassword" placeholder="Password" onChange={({target})=>setPassword(target.value)} required/>
                  <label htmlFor="Password" style={{marginLeft:10}}> Password</label>
                  </Form.Floating>
 
@@ -89,7 +101,7 @@ export default function LoginForm(){
              </Form.Group>
              <Row>
                  <Col>
-                 <Button type="submit" variant="success" size="md" active>Login</Button>
+                 <Button type="submit" variant="success" size="md" active >Login</Button>
                  </Col>
                  <Col> <Link to="/register"style={{color:"green", fontStyle:"italic"}}>New User? Register</Link>
                  </Col>
@@ -104,8 +116,8 @@ export default function LoginForm(){
          </Row>
   
         
-         <logout setUser={setUser}></logout>
-     
+         {/* <logout setUser={setUser}></logout>
+      */}
      
 </React.Fragment>
         

@@ -266,4 +266,10 @@ public class ManageHotelService {
 
     }
 
+
+    public String getHotelName(Long hotelId) {
+    	
+    	HotelEntity hotelEntity = hotelRepository.findByHotelId(hotelId);
+		return hotelEntity.getHotelname();
+    }
 }

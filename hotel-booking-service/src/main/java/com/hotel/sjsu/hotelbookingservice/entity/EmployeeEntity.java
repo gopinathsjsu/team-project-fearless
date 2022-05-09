@@ -77,6 +77,54 @@ public class EmployeeEntity {
 
     }
 
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getEmpFirstName() {
+		return empFirstName;
+	}
+
+	public void setEmpFirstName(String empFirstName) {
+		this.empFirstName = empFirstName;
+	}
+
+	public String getEmpLastName() {
+		return empLastName;
+	}
+
+	public void setEmpLastName(String empLastName) {
+		this.empLastName = empLastName;
+	}
+
+	public String getEmpEmail() {
+		return empEmail;
+	}
+
+	public void setEmpEmail(String empEmail) {
+		this.empEmail = empEmail;
+	}
+
+	public String getEmpPassword() {
+		return empPassword;
+	}
+
+	public void setEmpPassword(String empPassword) {
+		this.empPassword = empPassword;
+	}
+
+	public String getEmpContactNumber() {
+		return empContactNumber;
+	}
+
+	public void setEmpContactNumber(String empContactNumber) {
+		this.empContactNumber = empContactNumber;
+	}
+
 //
 //
 //    @Override

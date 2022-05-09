@@ -1,0 +1,50 @@
+.profile {
+    background-color: aliceblue;
+    margin:100px 250px;
+    height:400px;
+    border-radius: 10px;
+}
+
+.navbookings{
+    position: relative;
+    width: 20em;
+    margin-right: 15em;
+}
+
+.avatar {
+    position: relative;
+    display:flex;
+    margin: 50px 20px;
+    top: 75px;
+}
+
+ .userDetails {
+    position:relative;
+    margin: 25px;
+    display: flex;
+    left: 25%;
+    bottom:190px;
+}
+
+.past-upcoming {
+    position:relative;
+    display: flex;
+    top: 20px;
+    left: 25%;
+    margin: 25px;
+    width: 50%
+}
+
+.update-cancel {
+    position:relative;
+    display: flex;
+    width:10em;
+    left: 70%;
+    bottom: 120px;
+}
+
+.noShow {
+    position:relative;
+    display: flex;
+    color:aliceblue;
+}

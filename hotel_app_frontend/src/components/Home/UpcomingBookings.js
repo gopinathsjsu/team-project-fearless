@@ -1,9 +1,12 @@
 import React, { Component, useState } from "react";
 import {  Container, Card } from "react-bootstrap";
-import {getUpcomingBookings} from './Fetchjson.js'
-import {getUserName} from './genericUtils.js'
+import {getBookings} from './Fetchjson.js'
+import {getUserEmail,getUserFirstName,getUserLastName,getRewardPoints} from './genericUtils.js'
 import UpdateBooking from './UpdateBooking'
 import CancelBooking from './CancelBooking'
+import utilObj from '../Utils/utils';
+import axios from "axios";
+import './Styles/Profile.css';
 
 class UpcomingBookings extends Component{
     state={
@@ -11,31 +14,30 @@ class UpcomingBookings extends Component{
     }
 
     componentDidMount(){
-        const username = getUserName()
-        //TODO: Comment it later
-        const bookings = getUpcomingBookings(username)
-        this.setState({
-            bookings: bookings
-        })
+        const username = getUserFirstName()+" "+getUserLastName()
+        const email = getUserEmail()
+        const id = utilObj.getCustomerId();
+        //const id = JSON.parse(localStorage.getItem("custId"));
+        const rewards = getRewardPoints()
+        console.log("cust id", id);
 
-        //TODO: uncomment below after backend api implementation
-        //TODO: Send username or userid to backend API, and get upcoming books of current user
-        /*await axios({
-            method:'get',
-            //TODO: update backend URL
-            url:"/upcomingBookings",
-            data:{user},
-            config: {headers: { 'Content-Type': 'multipart/form-data'}} 
-          }).then((response)=>{
-            if(response.status >= 500){
-              throw new Error("Bad response from server")
-            }
-            return response.data;
-          }).then((responseData)=>{
-            this.setState({
-                bookings: responseData
-            })
-          })*/
+        axios({
+              method: "get",
+              url:"http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/hotel/viewBookings/"+id,
+              headers: {
+              "Content-Type": "application/json",
+            }}).then(res=>{
+                    if (res.status==200){
+                        console.log(res.data);
+                        this.setState({
+                            bookings:res.data.object
+                        })  
+                    }
+              else{
+                  console.log("Bad response from server");
+              }
+              
+          })
     }
 
     render(){
@@ -57,28 +59,45 @@ class UpcomingBookings extends Component{
     displayBookings(){
         let markup = []
         const bookings = this.state.bookings
+        const currDate = new Date().toISOString().substring(0,10);
         for(let i=0; i<bookings.length; i++){
-            let currBooking = bookings[i]
-            markup.push(
-                <Card key={i}>
-                    {currBooking.hotelName}
-                    <br/>
-                    {currBooking.checkIn}
-                    <br/>
-                    {currBooking.checkOut}
-                    <br/>
-                    {currBooking.noOfGuests}
-                    <br/>
-                    {currBooking.noOfRooms}
-                    <br/>
-                    <UpdateBooking currBooking={currBooking}/>
-                    <br/>
-                   <CancelBooking/>
-                </Card>
-            )
+            let currBooking = bookings[i];
+            console.log("curr booking",currBooking);
+            localStorage.setItem("currBooking",JSON.stringify(currBooking));
+            let isUpcoming = (utilObj.getDays(currDate, currBooking.bookingDateFrom) > 0)
+            console.log("upcoming",isUpcoming);
+            if(isUpcoming&&(currBooking.bookingStatus!="Cancelled"&&currBooking.bookingStatus!="")){
+                markup.push(
+                    <Card border="success" key={i} className="past-upcoming">
+                        <Card.Body>
+                        <Card.Text>
+                        Hotel Name: {currBooking.hotelName}
+                        </Card.Text>
+                        <Card.Text>  
+                        CheckIn: {new Date(currBooking.bookingDateFrom).toISOString().substring(0,10)}
+                        </Card.Text> 
+                        <Card.Text> 
+                        Check Out: {new Date(currBooking.bookingDateTo).toISOString().substring(0,10)}
+                        </Card.Text>  
+                        <Card.Text>
+                        Guest Count: {currBooking.noOfGuest}
+                        </Card.Text>
+                        <div className="update-cancel">                  
+                        <UpdateBooking currBooking={currBooking}/>
+                        </div>
+                        <br/>
+                        <div className="update-cancel">
+                       <CancelBooking currBooking={currBooking}/>
+                       </div>
+                       </Card.Body>  
+                    </Card>
+                )
+            }
         }
-        return markup
-        
+        if(markup.length==0){
+            markup.push(<Card border="success" style={{width:"50%", left:"23%", margin:"20px"}}><h3 style={{textAlign:`center`}}>No Upcoming Bookings to show</h3></Card>)
+        }
+        return markup 
     }
 }
 export default UpcomingBookings

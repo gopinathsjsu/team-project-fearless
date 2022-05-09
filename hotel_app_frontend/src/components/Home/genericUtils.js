@@ -1,14 +1,96 @@
 export var getUserEmail = () => {
-    const email = localStorage.getItem("email")
-    return email
+    let user = localStorage.getItem("customer")
+    try {
+        let userObj = JSON.parse(user);
+            if(userObj)
+             return userObj.custEmail
+    }catch(err) {
+        console.log('Error: ', err.message);
+    }
+        return null
 }
 
-export var getUserName = () => {
-    const username = localStorage.getItem("user")
-    return username
+export var getUserFirstName = () => {
+    let user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.custFirstName
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+     
+    }
+     return null
+}
+
+export var getUserLastName = () => {
+    let user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.custLastName
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
+     return null
 }
 
 export var getRewardPoints = () => {
-    const username = localStorage.getItem("rewardPoints")
-    return username
+    const user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.loyaltyPoints
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
+     return null
+}
+
+export var getAddress = () => {
+    const user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.custAddress
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
+     return null
+}
+
+export var getBookingCount = () => {
+    const user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.bookingCount
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
+     return null
+}
+
+export var getContact = () => {
+    const user = localStorage.getItem("customer")
+    if(user){
+        try {
+            let userObj = JSON.parse(user);
+                if(userObj)
+                 return userObj.contactNumber
+        }catch(err) {
+            console.log('Error: ', err.message);
+        }
+    }
+     return null
 }
