@@ -20,8 +20,7 @@ public class EmpLoginService {
 
     public Response register(Employee employee) {
 
-//        customer.setLoyaltyPoints(100);
-//        customer.setBookingCount(0);
+
 
         StringBuilder message = new StringBuilder();
         if(validateEmployee(employee,message)) {

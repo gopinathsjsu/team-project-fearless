@@ -41,13 +41,9 @@ public class EmployeeController {
 //    }
 
     @RequestMapping(value="/addhotel", method = RequestMethod.POST, consumes = "application/json")
-//    public String  addNewHotel( @RequestBody String payload ) throws ParseException {
-//         return employeeService.addNewHotel((payload));
-//
-//    }
     public ResponseEntity<?> postBody(@RequestBody String payload ) throws  ParseException{
         if (payload == null || payload.isEmpty()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Provide valid hotel details");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please provide valid hotel details");
         }
         String checkHotelDetails = employeeService.validateAddNewHotel(payload);
         if (checkHotelDetails.isEmpty()){

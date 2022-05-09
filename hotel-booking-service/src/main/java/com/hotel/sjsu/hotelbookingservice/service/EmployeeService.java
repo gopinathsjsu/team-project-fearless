@@ -45,15 +45,6 @@ public class EmployeeService{
     public String addNewHotel(String inputPayload) throws ParseException {
 
         JSONObject json = new JSONObject(inputPayload);
-//        String hotelName = (String) json.get("hotelName");
-//        String hotelLocation = (String) json.get("hotelLocation");
-//        String hotelAddress = (String) json.get("hotelAddress");
-//        String hotelContact = (String) json.get("hotelContact");
-//        String hotelZipcode = (String) json.get("hotelZipcode");
-//        String hotelManagername = (String) json.get("hotelManagername");
-//        Integer DRCount = (Integer) json.get("DRCount");
-//        Integer SRCount = (Integer)json.get("SRCount");
-
         String hotelName = (String) tryToGet(json, "hotelName");
         String hotelLocation = (String) tryToGet(json, "hotelLocation");
         String hotelAddress = (String) tryToGet(json,"hotelAddress");
@@ -63,11 +54,6 @@ public class EmployeeService{
         String hotelEmail = (String) tryToGet(json, "hotelEmail");
         Integer DRCount = (Integer) tryToGet(json, "DRCount");
         Integer SRCount = (Integer) tryToGet(json, "SRCount");
-
-//        if(!validateAddNewHotel(inputPayload)){
-//            System.out.println("Enter details for hotel");
-//        }
-//        else {
 
 
             hotelRepository.save(new HotelEntity(hotelName, hotelLocation, hotelAddress, hotelZipcode,
@@ -84,8 +70,6 @@ public class EmployeeService{
             return output;
         }
 
-
-//    }
 
 
     public List<Room> getRoomDetails () {
@@ -110,8 +94,6 @@ public class EmployeeService{
         Double roomCostSR =  Double.valueOf(IroomCostSR);
 
 
-//        roomRepository.save(new RoomEntity(1001, roomDR, "Deluxe Room", roomCostDR));
-//        roomRepository.save(new RoomEntity(1002, roomSR, "Suite Room", roomCostSR));
         roomRepository.updateroomcost(roomCostDR, roomDR);
         roomRepository.updateroomcost(roomCostSR, roomSR);
 
@@ -121,30 +103,14 @@ public class EmployeeService{
         return output;
     }
 
-//    public String updateHotelRooms (String inputPayload) throws ParseException {
-//
-//        JSONObject json = new JSONObject(inputPayload);
-//        Integer totalDRRooms = (Integer) json.get("totalDRRooms");
-//        Integer totalSRRooms = (Integer) json.get("totalSRRooms");
-//        String roomDRCode = (String) json.get("roomDRCode");
-//        String roomSRCode = (String) json.get("roomSRCode");
-//        Integer hotelId = (Integer) json.get("hotelId");
-//
-//        hotelRoomsMapRepository.updateHotelRooms(totalDRRooms, roomDRCode, Long.valueOf(hotelId));
-//        hotelRoomsMapRepository.updateHotelRooms(totalSRRooms, roomSRCode, Long.valueOf(hotelId));
-//
-//        String output = "{\"result\": \"The room count has been updated!!\"}";
-//        JSONObject jsonResult = new JSONObject(output);
-//        System.out.println(jsonResult);
-//        return output;
-//    }
-
 
     public  static Object tryToGet(JSONObject jsonObj, String key) {
         if (jsonObj.has(key))
             return jsonObj.opt(key);
         return null;
     }
+
+
     public String validateAddNewHotel (String inputPayload) throws ParseException {
 
         JSONObject json;
@@ -156,6 +122,8 @@ public class EmployeeService{
         String hotelContact = (String) tryToGet(json, "hotelContact");
         String hotelZipcode = (String) tryToGet(json, "hotelZipcode");
         String hotelManagername = (String) tryToGet(json, "hotelManagername");
+        String hotelEmail = (String) tryToGet(json, "hotelEmail");
+
         Integer DRCount = (Integer) tryToGet(json, "DRCount");
         Integer SRCount = (Integer) tryToGet(json, "SRCount");
 
@@ -186,8 +154,8 @@ public class EmployeeService{
             errorMessage = errorMessage + "Please enter a manager number for the hotel";
         }
 
-        else if(hotelManagername == null || hotelManagername.isEmpty()) {
-            errorMessage = errorMessage + "Please enter a manager number for the hotel";
+        else if(hotelEmail == null || hotelEmail.isEmpty()) {
+            errorMessage = errorMessage + "Please enter email id for the hotel";
         }
 
         else if(DRCount == null || DRCount.equals("") || DRCount == 0 ) {
@@ -197,31 +165,10 @@ public class EmployeeService{
         else if(SRCount == null || SRCount.equals("") || SRCount ==0 ) {
             errorMessage = errorMessage + "Please enter a valid suite room count for the hotel ";
         }
-        else{
-//            return errorMessage = "Incorrect/Empty hotel details not allowed";
-        }
 
         return errorMessage;
     }
 
-//    public String validateUpdateRoomCost(String inputPayload) throws ParseException, NullPointerException {
-//
-//        JSONObject json;
-//        json = new JSONObject(inputPayload);
-//
-//        String roomDR = (String) tryToGet(json, "roomDR");
-//        String roomSR = (String) tryToGet(json, "roomSR");
-//        Integer IroomCostDR = (Integer) tryToGet(json, "roomCostDR"));
-//        Integer IroomCostSR =  (Integer) tryToGet(json, "roomCostSR"));
-//        Double roomCostDR =  Double.valueOf(IroomCostDR);
-//        Double roomCostSR =  Double.valueOf(IroomCostSR);
-//
-//        String errorMessage = new String("");
-//
-//        if (roomDR == null || roomDR.isEmpty()) {
-//            errorMessage = "Please roomDR";
-//        }
-//
-//    }
+
 }
 

@@ -5,33 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ac3dfca-5d84-458f-8871-3abbc64237c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/CancelBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/CancelBookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/HotelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/controller/HotelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/entity/HotelEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/entity/HotelEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/model/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/model/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/CancelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/CancelRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/HotelRoomsMapRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/HotelRoomsMapRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/HotelRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/repository/HotelRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/CancelBookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/CancelBookingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/EmpLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/EmpLoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/ManageHotelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/java/com/hotel/sjsu/hotelbookingservice/service/ManageHotelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/test/java/com/hotel/sjsu/hotelbookingservice/repository/test/HotelRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hotel-booking-service/src/test/java/com/hotel/sjsu/hotelbookingservice/repository/test/HotelRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/test/java/com/hotel/sjsu/hotelbookingservice/repository/test/HotelRepositoryTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hotel-booking-service/src/test/java/com/hotel/sjsu/hotelbookingservice/service/CancelServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="com.haulmont.jpb.JpaEntity" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,6 +63,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -90,31 +84,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CancelRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SearchAndCancelControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hotel-booking-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.hotel.sjsu.hotelbookingservice.repository.test.*" />
+          <option name="PATTERN" value="com.hotel.sjsu.hotelbookingservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.hotel.sjsu.hotelbookingservice.repository.test" />
-      <option name="MAIN_CLASS_NAME" value="com.hotel.sjsu.hotelbookingservice.repository.test.CancelRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HotelRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hotel-booking-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.hotel.sjsu.hotelbookingservice.repository.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.hotel.sjsu.hotelbookingservice.repository.test" />
-      <option name="MAIN_CLASS_NAME" value="com.hotel.sjsu.hotelbookingservice.repository.test.HotelRepositoryTest" />
+      <option name="PACKAGE_NAME" value="com.hotel.sjsu.hotelbookingservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.hotel.sjsu.hotelbookingservice.controller.SearchAndCancelControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,8 +102,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.HotelBookingServiceApplication" />
-        <item itemvalue="JUnit.CancelRepositoryTest" />
-        <item itemvalue="JUnit.HotelRepositoryTest" />
+        <item itemvalue="JUnit.SearchAndCancelControllerTest" />
+        <item itemvalue="JUnit.SearchAndCancelControllerTest" />
+        <item itemvalue="JUnit.SearchAndCancelControllerTest" />
+        <item itemvalue="JUnit.HotelControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -138,6 +119,17 @@
       <updated>1651289810878</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/final$HotelBookingServiceApplication.ic" NAME="HotelBookingServiceApplication Coverage Results" MODIFIED="1651289759936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

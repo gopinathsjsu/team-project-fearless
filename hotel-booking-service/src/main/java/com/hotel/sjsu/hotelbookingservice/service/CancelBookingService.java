@@ -43,16 +43,7 @@ public class CancelBookingService {
     @Autowired
     ModelToEntityMapper modelToEntityMapper;
 
-//    public String cancelBooking(Long bookingId, Long customerId, Long hotelId, Booking booking) {
-//
-//        booking.setBookingStatus("Cancelled");
-//        BookingEntity bookingEntity = modelToEntityMapper.map(booking);
-////        System.out.println(bookingEntity);
-//        cancelRepository.save(bookingEntity);
-//        String successMsg;
-//        successMsg= "Booking has been cancelled successfully!!";
-//        return successMsg;
-//    }
+
 
     //public String cancelBooking (Long booking_id) {
     public String cancelBooking (Long booking_id) throws ParseException{
@@ -62,22 +53,6 @@ public class CancelBookingService {
         BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
         Booking booking = entityToModelMapper.mapBooking(bookingEntity);
         //           Long customerId = booking.getCustomerId();
-        //         Calendar fromDate = booking.getBookingDateFrom();
-
-        //       SimpleDateFormat bformat = new SimpleDateFormat("yyyy-MM-dd");
-        //     String bookingDate = bformat.format(fromDate.getTime());
-        //   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        // LocalDate dateObj = LocalDate.now();
-        //   String date = dateObj.format(formatter);
-//
-        //      System.out.println("fromdate= " + bookingDate);
-        //          System.out.println("today= " + date);
-
-        //        LocalDate localDate1 = LocalDate.parse(bookingDate);
-        //      LocalDate localDate2 = LocalDate.parse(date);
-        //         long noOfDaysDifference = ChronoUnit.DAYS.between(localDate2, localDate1);
-        //         System.out.println("No of days diff is : " + noOfDaysDifference);
-        //         if (noOfDaysDifference > 2) {
 
         Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
         cancelRepository.cancelBookingStatus(booking_id);
@@ -92,10 +67,8 @@ public class CancelBookingService {
         String output = "{\"result\": \"Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!\"}";
         JSONObject jsonResult = new JSONObject(output);
         System.out.println(jsonResult);
-        //String cancelled = json.getString("cancelled");
-        //System.out.println(cancelled);
 
-        //return "{'result': 'Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!'}";
+
         return output;
     }
 
@@ -136,7 +109,7 @@ public class CancelBookingService {
         }
 
         else{
-            errorMessage = "Booking doesn't exist with given booking ID "+ bookingId;
+            errorMessage = "No active booking exist with given booking ID "+ bookingId;
         }
 
 

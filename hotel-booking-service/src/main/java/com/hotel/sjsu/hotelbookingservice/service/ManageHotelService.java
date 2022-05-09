@@ -6,6 +6,8 @@ import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
 import com.hotel.sjsu.hotelbookingservice.model.Amenity;
 import com.hotel.sjsu.hotelbookingservice.model.Booking;
 import com.hotel.sjsu.hotelbookingservice.model.Hotel;
+import com.hotel.sjsu.hotelbookingservice.model.SearchInput;
+import com.hotel.sjsu.hotelbookingservice.repository.AmenityRepository;
 import com.hotel.sjsu.hotelbookingservice.repository.HotelRepository;
 import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
 import com.hotel.sjsu.hotelbookingservice.repository.HotelRoomsMapRepository;
@@ -35,6 +37,8 @@ public class ManageHotelService {
 
     @Autowired
     AmenityService amenityService;
+    @Autowired
+    AmenityRepository amenityRepository;
 
 //    @Autowired
 //    Booking booking;
@@ -60,10 +64,7 @@ public class ManageHotelService {
         return hotelList;
     }
 
-    //    public List<Hotel>  gethotelDetails(String hotel_id) {
-//        return hotelRepository.gethotel(hotel_location);
-//    }
-//
+
     public static Object tryToGet(JSONObject jsonObj, String key) {
         if (jsonObj.has(key))
             return jsonObj.opt(key);
@@ -95,10 +96,16 @@ public class ManageHotelService {
 
     public String maxDaysBooking(String checkInDate, String checkOutDate)
             throws ParseException {
+        Date firstDate = new Date();
+        Date secondDate = new Date();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date firstDate = sdf.parse(checkInDate);
-        Date secondDate = sdf.parse(checkOutDate);
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            firstDate = sdf.parse(checkInDate);
+            secondDate = sdf.parse(checkOutDate);
+        }catch(ParseException err){
+            return "Unable to parse dates - provide valid check-in/check-out dates";
+        }
 
         long diffInMillies = (secondDate.getTime() - firstDate.getTime());
         if (diffInMillies >0){
@@ -183,8 +190,7 @@ public class ManageHotelService {
                     if (roomsBooked.containsKey(roomType)) {
                         Integer newCount = roomsBooked.get(roomType) - roomCount;
                         roomsBooked.put(roomType, newCount);
-//                        roomsBooked.put("DRCost",roomDRCost);
-//                        roomsBooked.put("SRCost",roomSRCost);
+
                     }
                 }
             }
@@ -201,12 +207,7 @@ public class ManageHotelService {
 
 
 
-
-            //             HashMap<String, Object> result = new HashMap<String, Object>();
-            //           result.put("hotels", hotelList);
-            //            result.put("amenities", amenities);
             hotelDetails.put("availability", roomsBooked);
-            //     hotelDetails.put("costsOfRooms", costs);
             hotelDetails.put("amenities", amenities);
             finalResult.add(hotelDetails);
             //System.out.println("Amenities=  "+amenities);
@@ -217,30 +218,9 @@ public class ManageHotelService {
     }
 
 
-//    public List<String> getbookingIds(Long hotel_id , String fromDate, String toDate) {
-//
-//            List<BookingEntity> bookingEntList = new ArrayList<BookingEntity>();
-//            bookingEntList = hotelRepository.getbookingIdsByhotelId(hotel_id, fromDate, toDate);
-//
-//            //System.out.println("Booking Entity=  "+bookingEntList);
-//            List<String> bookingList = new ArrayList<String>();
-//
-//            for (BookingEntity bookingEntity : bookingEntList) {
-//                bookingList.add(entityToModelMapper.mapBooking(bookingEntity).getRoom());
-//            }
-//
-////        return hotelRepository.getbookingIdsByhotelId(hotel_id);
-//
-//            return bookingList;
-//
-//    }
-
-//    List<String> message = new ArrayList<String>();
-
     public String  validateHotelSearch(JSONObject inputPayload) throws ParseException {
 
-        //        JSONObject json;
-//        json = new JSONObject(inputPayload);
+
         String fromDate = (String) tryToGet(inputPayload, "from");
         String toDate = (String) tryToGet(inputPayload, "to");
         String location = (String) tryToGet(inputPayload,"location");
@@ -250,10 +230,10 @@ public class ManageHotelService {
             errorMessage = "Please provide check-in date";
         }
         else if(toDate==null || toDate.equals("") ) {
-            errorMessage = errorMessage + " Please provide check-out date.";
+            errorMessage = errorMessage + "Please provide check-out date";
         }
         else if (location==null || location.isEmpty()){
-            errorMessage = errorMessage + " Please provide valid hotel location.";
+            errorMessage = errorMessage + "Please provide valid hotel location";
         }
         else  {
             String checkdates = maxDaysBooking(fromDate, toDate);
@@ -267,9 +247,4 @@ public class ManageHotelService {
     }
 
 
-    public String getHotelName(Long hotelId) {
-    	
-    	HotelEntity hotelEntity = hotelRepository.findByHotelId(hotelId);
-		return hotelEntity.getHotelname();
-    }
 }
