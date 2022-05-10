@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hotel.sjsu.hotelbookingservice.entity.BookingEntity;
 import com.hotel.sjsu.hotelbookingservice.entity.CustomerEntity;
+import com.hotel.sjsu.hotelbookingservice.entity.HotelEntity;
 import com.hotel.sjsu.hotelbookingservice.helper.EntityToModelMapper;
 import com.hotel.sjsu.hotelbookingservice.helper.ModelToEntityMapper;
 import com.hotel.sjsu.hotelbookingservice.model.Booking;
 import com.hotel.sjsu.hotelbookingservice.model.Rating;
 import com.hotel.sjsu.hotelbookingservice.model.Response;
 import com.hotel.sjsu.hotelbookingservice.repository.BookHotelRepository;
+import com.hotel.sjsu.hotelbookingservice.repository.HotelRepository;
 
 @Service
 @Transactional
@@ -32,6 +34,9 @@ public class BookHotelService {
 
 	@Autowired
 	BookHotelRepository bookHotelRepository;
+	
+	@Autowired
+	HotelRepository hotelRepository;
 	
 	@Autowired
 	EntityToModelMapper entityToModelMapper;
@@ -130,7 +135,14 @@ public class BookHotelService {
 		List<Booking> bookingList = new ArrayList<Booking>();
 					
 		for(BookingEntity bookingEntity : bookingEntList){
-			bookingList.add(entityToModelMapper.mapBooking(bookingEntity));
+			HotelEntity hotelEntity = hotelRepository.findByHotelId(bookingEntity.getHotelId());
+			
+			Booking booking = entityToModelMapper.mapBooking(bookingEntity);
+			if(hotelEntity!=null) {
+				booking.setHotelName(hotelEntity.getHotelname());				
+			}
+
+			bookingList.add(booking);
 		}
 		
 		return new Response(bookingList, "Bookings retrieved");
