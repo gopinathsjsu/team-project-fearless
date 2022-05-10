@@ -75,7 +75,11 @@ public class EmpLoginService {
 
             if(employeeEntityResult!= null && employeeEntityResult.getEmployeeId()>0
                     && employeeEntityResult.getEmpPassword().equals(employee.getEmpPassword())) {
-                return new Response((Integer)employeeEntityResult.getEmployeeId(), "Login Successfully");
+                employeeEntityResult.setEmpPassword("****");
+                Employee employee1 = new Employee(employeeEntityResult);
+
+              //  return new Response((Integer)employeeEntityResult.getEmployeeId(), "Login Successfully");
+                return new Response((Employee)employee1, "Login Successfully");
             }else {
                 return new Response(-1, "Incorrect email or password. Please check again");
             }
@@ -109,5 +113,4 @@ public class EmpLoginService {
     }
 
 }
-
 

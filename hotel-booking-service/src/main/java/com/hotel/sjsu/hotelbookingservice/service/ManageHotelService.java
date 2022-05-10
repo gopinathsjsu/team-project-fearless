@@ -149,64 +149,55 @@ public class ManageHotelService {
 
         if (hotelList.isEmpty()){
             System.out.println("No hotel found at location " + location);
+            return finalResult;
         }
-
-
 
         for (Hotel entry : hotelList) {
             HashMap<String, Object> hotelDetails = new HashMap<String, Object>();
             ArrayList<String> bookingList = new ArrayList<String>();
-            Long hotelId = entry.getHotelId();
-            System.out.println("Hotel Id found  = " + hotelId);
-            hotelDetails.put("hotel", entry);
-            // adding room cost
-            hotelDetails.put("costOfRooms", getCostOfRoom(hotelId));
-            // adding room availability
-            bookingList = (ArrayList<String>) getbookingIds(hotelId, fromDate, toDate);
 
+            Long hotelId = entry.getHotelId();
+
+            System.out.println("Hotel Id found  = " + hotelId);
+            bookingList = (ArrayList<String>) getbookingIds(hotelId, fromDate, toDate);
             HashMap<String, Integer> roomsBooked = new HashMap<String, Integer>();
             Integer hotelIdInt = hotelId.intValue();
-            // getting room availability
             Integer totalDrCount = hotelRoomsMapRepository.getTotalRooms(hotelIdInt, "DR");
             Integer totalSrCount = hotelRoomsMapRepository.getTotalRooms(hotelIdInt, "SR");
-            if (totalDrCount==null || totalSrCount==null){
-
-
+            if (totalDrCount==null || totalSrCount==null || totalSrCount <= 0 || totalDrCount <= 0){
                 roomsBooked.put("DR", 0);
                 roomsBooked.put("SR", 0);
-                return finalResult;
+                continue;
             }
-
-
+            // calculating room booked
             roomsBooked.put("DR", totalDrCount);
             roomsBooked.put("SR", totalSrCount);
-            // calculating room booked
             for (String booking : bookingList) {
-
                 String[] roomDetails = booking.split("-");
-
                 for (String rooms : roomDetails) {
                     String roomType = rooms.substring(0, 2);
                     Integer roomCount = Integer.valueOf(rooms.substring(2));
                     if (roomsBooked.containsKey(roomType)) {
                         Integer newCount = roomsBooked.get(roomType) - roomCount;
                         roomsBooked.put(roomType, newCount);
-
                     }
                 }
             }
-
             System.out.println("DR rooms count= " + roomsBooked.get("DR"));
             System.out.println("SR rooms count= " + roomsBooked.get("SR"));
-            //hotelDetails.put("availability", roomsBooked);
+            if ((roomsBooked.get("DR") <=0) || (roomsBooked.get("SR") <= 0)){
+                continue;
+            }
+
+            hotelDetails.put("hotel", entry);
+            // adding room cost
+            hotelDetails.put("costOfRooms", getCostOfRoom(hotelId));
+
             List<AmenityEntity> amenityEntities = amenityService.getAllAmenities();
             List<Amenity> amenities = new ArrayList<Amenity>();
-
             amenityEntities.forEach((amenityEntity -> {
                 amenities.add(new Amenity(amenityEntity));
             }));
-
-
 
             hotelDetails.put("availability", roomsBooked);
             hotelDetails.put("amenities", amenities);
@@ -220,8 +211,7 @@ public class ManageHotelService {
 
 
     public String  validateHotelSearch(JSONObject inputPayload) throws ParseException {
-
-
+        
         String fromDate = (String) tryToGet(inputPayload, "from");
         String toDate = (String) tryToGet(inputPayload, "to");
         String location = (String) tryToGet(inputPayload,"location");
