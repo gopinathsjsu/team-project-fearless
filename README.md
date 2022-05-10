@@ -88,43 +88,88 @@ Update room costs
 
 
 
+**Database Design (Tables):**
+
+(link here for db script)
+customer
+hotel
+hotel_rooms_map
+room
+amenity
+booking
+employee
+
+
+
 **Summary of contributions (for each team member):**
 
 
 Limeka Dabre:
 
-Payment using miles
-Reward miles management
-User account (where user can view past and current trips)
-Backend for cancel/update reservation
+bhjhgsjfbsjf
 
 
 
 Simran Memon:
 
-Frontend, backend and database design for,
-Enrolling as a new customer (Register/Sign-up)
-Authenticating as a returning customer/admin (Login)
-Search for flights
-Select flights and book travel
-Rerouting to seat selection & purchase page
-UI Wireframes
-Project Documentation
+Search Hotel on the basis of location, check-in date and check-out date for 7 days
+View searched hotels and select hotel
+Check room availability of selected hotel
+Cancel bookings of customer
+Refund amount paid and manage loyalty points
+Employee - registration and login
+Employee - Add new hotel feature
+Employee - View room details
+Employee - Update room cost
+
 
 Archana Kamath:
 
-Frontend for Cancel/change reservation
-Admin part- update, cancel & edit flights
-Deployment
+Customer - registration and login
+Book a hotel
+Using design patterns(Decorator and Strategy) -  Calculate the total room cost of booked hotel
+View booking details of customer
+Update booking details of customer
+View customer profile details
+Deployment of backend
+
 
 
 Mounica Kamireddy:
 
-Ticket page
-Payment using card
-Seat selection
-Seat purchase
-home page
+jhjsbfjsbfs
+
+
+**Steps to start the application:**
+
+Follow the below steps to get the development environment running:
+
+Clone the repository from GitHub:
+
+git clone https://github.com/gopinathsjsu/team-project-fearless
+
+
+
+
+**ARCHITECTURE DIAGRAM:**
+
+
+**Source Code:** https://github.com/gopinathsjsu/team-project-fearless
+
+**Project board:** https://github.com/orgs/gopinathsjsu/projects/11
+
+**Sprint Task Sheet:** https://docs.google.com/spreadsheets/d/1i8eWHIbbdOpVVJ7bxTmMopMeG-g3bVmW/edit#gid=882345882
+
+**Application:** https://d331f1di2dfhi6.cloudfront.net/
+
+**Postman Collection:** https://drive.google.com/file/d/1tVkhelec57uJbDsGKztUwHY5d40K4Eoh/view
+
+**UI Wireframes:**  (link here)
+
+
+
+
+
 
 
 
