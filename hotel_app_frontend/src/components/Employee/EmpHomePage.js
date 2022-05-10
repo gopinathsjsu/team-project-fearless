@@ -10,7 +10,7 @@ export default function EmpHomePage(){
          navigate('/addhotel');
      }
      const onClickUpdateCost=()=>{
-         navigate('/updateRoomCost');
+         navigate('/updateRoomCosts');
      }
 
 

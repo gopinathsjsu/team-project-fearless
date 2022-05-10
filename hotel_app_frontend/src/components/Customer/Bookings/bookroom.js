@@ -301,7 +301,7 @@ const onCheckPrice=()=>{
                                 <Image src={SRimg} width={200} height={150}></Image>
                             </Col> 
                             <Col>
-                            <Form.Text ><b>{hotel.costsOfRooms.SR}$ per Room</b></Form.Text>
+                            <Form.Text ><b>{hotel.costOfRooms.SR}$ per Room</b></Form.Text>
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
@@ -319,7 +319,7 @@ const onCheckPrice=()=>{
                                 <Image src={DRimg} width={200} height={150}></Image>
                                 </Col> 
                             <Col>
-                            <Form.Text><b>{hotel.costsOfRooms.DR}$ per Room</b></Form.Text>
+                            <Form.Text><b>{hotel.costOfRooms.DR}$ per Room</b></Form.Text>
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}

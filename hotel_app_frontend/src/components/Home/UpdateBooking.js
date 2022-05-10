@@ -115,9 +115,9 @@ function UpdateBooking(props) {
       }
     }
     
-    const amenities=(JSON.parse(localStorage.getItem("selectedHotel"))).amenities;
+   // const amenities=(JSON.parse(localStorage.getItem("selectedHotel"))).amenities;
 
-    /*const amenities=
+    const amenities=
     [
         {
             "amenityId": 1,
@@ -161,7 +161,7 @@ function UpdateBooking(props) {
             "amenityType": "Dinner",
             "amenityCost": 10
         }
-    ]*/
+    ]
     setRooms(currBooking.room)
     return (
       <>
