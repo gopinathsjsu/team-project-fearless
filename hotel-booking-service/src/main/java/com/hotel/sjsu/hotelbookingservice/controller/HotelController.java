@@ -37,6 +37,8 @@ public class HotelController {
     @Autowired
     HotelRoomsMapRepository hotelRoomsMapRepository;
 
+
+    // fetch all hotels
     @GetMapping("/allhotels")
     public List<Hotel> getAllHotels () {
         List<HotelEntity> hotelEntityList = manageHotelService.getAllHotels();
@@ -60,11 +62,7 @@ public class HotelController {
         return new ResponseEntity<>(manageHotelService.gethotelIds(hotel_location), HttpStatus.OK);
     }
 
-//    @RequestMapping(value="/booking_ids/{hotel_id}")
-//    public @ResponseBody List<Booking> getbookingIdByhotelId(@PathVariable("hotel_id") Integer hotel_id) throws IOException, ParseException {
-//        System.out.println("get all bookings for hotelid "+hotel_id);
-//        return manageHotelService.getbookingIds(hotel_id, fromDate, toDate);
-//    }
+
 
     @RequestMapping(value="/search", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> postBody(@RequestBody String payload) throws ParseException {
@@ -89,81 +87,10 @@ public class HotelController {
         }
     }
 
-//        JSONObject json = new JSONObject(payload);
-//        String fromDate = (String)json.get("from");
-//        String toDate = (String)json.get("to");
-//        String location = (String)  json.get("location");
-//
-//        ArrayList<Map> finalResult = new ArrayList<Map>();
-//
-//        ArrayList<Hotel> hotelList = (ArrayList<Hotel>) manageHotelService.getHotel(location);
-//
-//        for (Hotel entry : hotelList) {
-//            HashMap<String, Object> hotelDetails = new HashMap<String, Object>();
-//            ArrayList<String> bookingList = new ArrayList<String>();
-//            Long hotelId = entry.getHotelId();
-//            System.out.println("Hotel Id = "+hotelId);
-//            hotelDetails.put("hotel", entry);
-//            bookingList = (ArrayList<String>) manageHotelService.getbookingIds(hotelId, fromDate, toDate);
-//
-//            HashMap<String, Integer> roomsBooked = new HashMap<String, Integer>();
-//            Integer hotelIdInt = hotelId.intValue();
-//
-//            Integer totalDrCount = hotelRoomsMapRepository.getTotalRooms(hotelIdInt, "DR");
-//            Integer totalSrCount = hotelRoomsMapRepository.getTotalRooms(hotelIdInt, "SR");
-//
-//            //adding room cost
-//            Integer roomDRCost = hotelRoomsMapRepository.getRoomCost("DR");
-//            Integer roomSRCost = hotelRoomsMapRepository.getRoomCost("SR");
-//            System.out.println(roomDRCost);
-//            System.out.println(roomSRCost);
-//            HashMap<String, Integer> costs = new HashMap<String, Integer>();
-//            costs.put("DR",roomDRCost);
-//            costs.put("SR",roomSRCost);
-//
-//
-//            roomsBooked.put("DR", totalDrCount);
-//            roomsBooked.put("SR", totalSrCount);
-//
-//            for (String booking : bookingList){
-//                //System.out.println("Booking details=  "+entry);
-//                String[] roomDetails = booking.split("-");
-//                //System.out.println("room Details=\n" +(String.join("\n", roomDetails)));
-//                for (String rooms : roomDetails){
-//                    String roomType = rooms.substring(0,2);
-//                    Integer roomCount = Integer.valueOf(rooms.substring(2));
-//                    if (roomsBooked.containsKey(roomType)){
-//                        Integer newCount = roomsBooked.get(roomType) - roomCount ;
-//                        roomsBooked.put(roomType, newCount);
-////                        roomsBooked.put("DRCost",roomDRCost);
-////                        roomsBooked.put("SRCost",roomSRCost);
-//                    }
-//                }
-//            }
-//
-//            System.out.println("DR rooms count= "+ roomsBooked.get("DR"));
-//            System.out.println("SR rooms count= "+ roomsBooked.get("SR"));
-//            List<AmenityEntity> amenityEntities = amenityService.getAllAmenities();
-//            List<Amenity> amenities = new ArrayList<Amenity>();
-//
-//            amenityEntities.forEach((amenityEntity -> {
-//                amenities.add(new Amenity(amenityEntity));
-//            }));
-//
-//            //System.out.println("Amenities=  "+amenities);
-//
-//            HashMap<String, Object> result = new HashMap<String, Object>();
-//            result.put("hotels", hotelList);
-//            result.put("amenities", amenities);
-//            hotelDetails.put("availability", roomsBooked);
-//            hotelDetails.put("costsOfRooms", costs);
-//            hotelDetails.put("amenities", amenities);
-//            finalResult.add(hotelDetails);
-//        }
 
-    // return  finalResult;
+
 }
 
 
-//}
+
 

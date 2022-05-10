@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -27,12 +28,6 @@ public class CancelBookingController {
     @Autowired
     private CancelBookingService cancelBookingService;
 
-//    @RequestMapping(value="/cancel/{booking_id}", method = RequestMethod.PUT)
-//    public String cancelBooking(@PathVariable("booking_id") Long  booking_id) throws IOException, ParseException {
-//
-//        return cancelBookingService.cancelBooking(booking_id);
-//
-//    }
 
     @RequestMapping(value="/cancel/{booking_id}", method = RequestMethod.PUT)
     public ResponseEntity<?> cancelBooking(@PathVariable("booking_id") String inputBookingId) throws IOException, ParseException {
@@ -45,7 +40,14 @@ public class CancelBookingController {
             Long bookingId = Long.parseLong(inputBookingId);
             String checkvalidBooking = cancelBookingService.validateCancelBooking(bookingId);
             if (checkvalidBooking.isEmpty()) {
-                return new ResponseEntity<>(cancelBookingService.cancelBooking(bookingId), HttpStatus.OK);
+                String cancelStatus = cancelBookingService.cancelBooking(bookingId);
+                //return new ResponseEntity<>(cancelBookingService.cancelBooking(bookingId), HttpStatus.OK);
+                if (Objects.equals(cancelStatus, "")){
+                    return ResponseEntity.status(HttpStatus.OK).body("Failed to cancel Booking");
+                }
+                else{
+                    return ResponseEntity.status(HttpStatus.OK).body(cancelStatus);
+                }
             } else {
                 return ResponseEntity.status(HttpStatus.OK).body(checkvalidBooking);
 
@@ -56,30 +58,6 @@ public class CancelBookingController {
     }
 }
 
-//    @RequestMapping(value = "/{bookingId}", method = RequestMethod.PUT)
-//    public void updateBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
-//        cancelBookingService.updateBooking(bookingId, booking);
 
-//    @RequestMapping(value = "/{bookingId}", method = RequestMethod.PUT)
-//    public @ResponseBody
-//    String updateBooking(@RequestBody Booking booking, @PathVariable Long bookingId) {
-//        return cancelBookingService.updateBooking(bookingId, booking);
-//
-//    }
 
-//    @GetMapping("/{booking_id}")
-//    public Integer getAllBookingss () {
-//        Integer bkng = cancelBookingService.getAllBookings();
-//
-//
-//        return bkng;
-//    }
-//
-//    @GetMapping("/cancelboo")
-//    public Integer updatingToCancel () {
-//        Integer cncl = cancelBookingService.cancellingBookings();
-//
-//
-//        return cncl;
-//    }
 
