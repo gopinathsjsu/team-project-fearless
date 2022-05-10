@@ -1,4 +1,11 @@
-**HOTEL MANAGEMENT APPLICATION**
+**CMPE202-48 : SOFTWARE SYSTEMS ENGINEERING GROUP**
+
+
+
+
+**GROUP PROJECT:**   **HOTEL MANAGEMENT APPLICATION**                                                                                                                       
+
+
 
 
 **TEAM NAME:** **FEARLESS**
@@ -54,7 +61,7 @@ Deployment - Amazon Web Services (AWS) - EC2 , S3
 
 **Architecture-level:**
 
-ReactJS as Frontend and SpringBoot as Backend
+ReactJS as Frontend and Spring Boot as Backend
 AWS as the cloud provider for deployment
 
 
@@ -90,7 +97,7 @@ Update room costs
 
 **Database Design (Tables):**
 
-(link here for db script)
+https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_database_script_v3.sql.sql
 customer
 hotel
 hotel_rooms_map
@@ -106,7 +113,13 @@ employee
 
 Limeka Dabre:
 
-bhjhgsjfbsjf
+Customer - registration and login page
+Booking a hotel room
+Checkout and payment confirmation page
+Employee - registration and login page
+Employee - Add hotel page
+Deployment Diagram
+Frontend deployment
 
 
 
@@ -121,7 +134,7 @@ Employee - registration and login
 Employee - Add new hotel feature
 Employee - View room details
 Employee - Update room cost
-
+Deployment of backend
 
 Archana Kamath:
 
@@ -137,7 +150,15 @@ Deployment of backend
 
 Mounica Kamireddy:
 
-jhjsbfjsbfs
+Search and select specific hotel page
+Customer dashboard
+Manage bookings page
+Update and cancel existing booking page
+Employee - View and update room cost
+Architecture Diagram
+UI wireframes
+Component Diagram
+Frontend deployment
 
 
 **Steps to start the application:**
