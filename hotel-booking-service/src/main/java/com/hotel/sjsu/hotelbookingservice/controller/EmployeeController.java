@@ -33,13 +33,8 @@ public class EmployeeController {
     @Autowired
     EmpLoginService empLoginService;
 
-//    @PostMapping("/addhotel")
-//    public HotelEntity addhotel(@Valid @RequestBody  HotelEntity hotelEntity) {
-//
-//         return employeeRepository.save(hotelEntity);
-//
-//    }
 
+    // add new hotel
     @RequestMapping(value="/addhotel", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<?> postBody(@RequestBody String payload ) throws  ParseException{
         if (payload == null || payload.isEmpty()){
@@ -57,40 +52,33 @@ public class EmployeeController {
 
 
 
-//    @RequestMapping(value="/updateRoomCount", method = RequestMethod.POST, consumes = "application/json")
-//    public String updateRoomsCount( @RequestBody String payload ) throws ParseException {
-//        return employeeService.updateHotelRooms((payload));
-//
-//    }
-
-
-//    @GetMapping("/{zipcode}")
-//    public ResponseEntity<List<Integer>> gethotelIdByzipcode(@PathVariable String hotelZipcode){
-//        return new ResponseEntity<>(employeeService.getNewHotelId(hotelZipcode), HttpStatus.OK);
-//    }
-
+    // update room cost
     @RequestMapping(value="/updateRCost", method = RequestMethod.POST, consumes = "application/json")
     public String updateRoomCosts( @RequestBody String payload ) throws ParseException {
         return employeeService.updateRoomCost((payload));
 
     }
 
+    // view room details
     @RequestMapping(value="/viewRoomDetails", method = RequestMethod.GET )
     public List<Room> viewRoomsDetails(){
         return employeeService.getRoomDetails();
 
     }
 
+    // employee registration
     @RequestMapping(value="/empRegister")
     public @ResponseBody Response registerEmployee(@RequestBody Employee employee) throws IOException, ParseException {
         return empLoginService.register(employee);
     }
 
+    // employee login
     @RequestMapping(value="/empLogin")
     public @ResponseBody Response loginEmployee(@RequestBody Employee employee) throws IOException, ParseException {
         return empLoginService.login(employee);
     }
 
+    // fetch employee details
     @RequestMapping(value="/{employeeId}")
     public @ResponseBody Response getEmployeeDetails(@PathVariable Integer employeeId) throws IOException, ParseException {
         return empLoginService.getEmployeeDetails(employeeId);

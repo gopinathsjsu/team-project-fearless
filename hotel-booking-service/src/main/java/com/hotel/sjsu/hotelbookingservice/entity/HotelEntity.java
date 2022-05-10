@@ -33,7 +33,6 @@ public class HotelEntity {
     private String hotel_address;
 
     @Column(name = "hotel_zip_code")
-//    private Integer hotelZipCode;
     private String hotelZipCode;
 
     @Column(name = "hotel_contact")

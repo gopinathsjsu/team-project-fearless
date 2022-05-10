@@ -44,32 +44,32 @@ public class CancelBookingService {
     ModelToEntityMapper modelToEntityMapper;
 
 
-
-    //public String cancelBooking (Long booking_id) {
     public String cancelBooking (Long booking_id) throws ParseException{
+        String output = "";
 
-//        if(validateCancelBooking(booking)) {
+        try{
+            BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
+            Booking booking = entityToModelMapper.mapBooking(bookingEntity);
 
-        BookingEntity bookingEntity = cancelRepository.getbookingBybookingId(booking_id);
-        Booking booking = entityToModelMapper.mapBooking(bookingEntity);
-        //           Long customerId = booking.getCustomerId();
+            Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
+            cancelRepository.cancelBookingStatus(booking_id);
 
-        Integer loyaltyPoints = booking.getLoyaltyPointsUsed();
-        cancelRepository.cancelBookingStatus(booking_id);
+            Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(booking.getCustomerId()) + loyaltyPoints;
+            cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, booking.getCustomerId());
 
-        Integer newLoyaltyPoints = cancelRepository.getLoyaltyPoints(booking.getCustomerId()) + loyaltyPoints;
-        cancelRepository.updateLoyaltyPoints(newLoyaltyPoints, booking.getCustomerId());
+            //refund paid amt
+            Double totalAmount = booking.getTotalAmount();
+            cancelRepository.updateTotalAmount((double) 0, booking_id);
 
-        //refund paid amt
-        Double totalAmount = booking.getTotalAmount();
-        cancelRepository.updateTotalAmount((double) 0, booking_id);
+            output = "Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!";
+            //JSONObject jsonResult = new JSONObject(output);
+            //System.out.println(jsonResult);
+            return output;
 
-        String output = "{\"result\": \"Booking has been cancelled successfully. Amount Paid will be refunded back in 5-7 business days!!\"}";
-        JSONObject jsonResult = new JSONObject(output);
-        System.out.println(jsonResult);
+        }catch (Exception err){
+            return output;
+        }
 
-
-        return output;
     }
 
     List<String> message = new ArrayList<String>();
@@ -84,7 +84,7 @@ public class CancelBookingService {
             Calendar bookingCalDate = bookingEntity.getBookingDateFrom();
             String bookingDate = bformatter.format(bookingCalDate.getTime());
             LocalDate fBookingDate = LocalDate.parse(bookingDate);
-
+            //check for past bookings
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate dateObj = LocalDate.now();
             String todayDate = dateObj.format(formatter);

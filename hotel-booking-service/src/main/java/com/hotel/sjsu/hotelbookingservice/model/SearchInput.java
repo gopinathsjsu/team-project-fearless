@@ -5,19 +5,13 @@ public class SearchInput {
     private String to;
     private String location;
 
-//    public SearchInput(String from, String to, String location) {
-//        this.from = from;
-//        this.to = to;
-//        this.location = location;
-//    }
+
 
     public SearchInput() {
 
     }
 
-//    public SearchInput() {
-//
-//    }
+
 
     public String getFrom() {
         return from;

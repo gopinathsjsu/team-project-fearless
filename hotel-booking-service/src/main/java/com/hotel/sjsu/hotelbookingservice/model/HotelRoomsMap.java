@@ -24,13 +24,7 @@ public class HotelRoomsMap {
         super();
     }
 
-//    public Integer getId() {
-//        return Id;
-//    }
-//
-//    public void setId(Integer id) {
-//        Id = id;
-//    }
+
 
     public Integer getHotelId() {
         return hotelId;
