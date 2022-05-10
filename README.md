@@ -266,21 +266,21 @@ npm start
 **ARCHITECTURE DIAGRAM:**
 
 
-https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Architecture_Diagram.png
+![Architecture_Diagram](https://user-images.githubusercontent.com/91573255/167739879-98c71de7-1d5e-4ce3-806e-4c4b6648110b.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **COMPONENT DIAGRAM:**
 
 
-https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Component_Diagram.png
+![Component_Diagram](https://user-images.githubusercontent.com/91573255/167739944-bc8985df-7cf2-4ef4-8201-3651a877c56a.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **HOTEL SERVICE CLASS DIAGRAM:**
 
 
-https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/HotelService_class_diagram.png
+![HotelService_class_diagram](https://user-images.githubusercontent.com/91573255/167739954-7052615b-4a8b-4eda-8708-eb1693e2b2f4.png)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -288,12 +288,15 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/HotelS
 **DESIGN PATTERN CLASS DIAGRAM:**
 
 
-https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Design_Patterns.png
+![Design_Patterns](https://user-images.githubusercontent.com/91573255/167739959-73a1cb9f-54db-4257-a36c-d03d29ff574b.png)
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **DEPLOYMENT DIAGRAM:**
+
+
+![Deployment Diagram202](https://user-images.githubusercontent.com/91573255/167739978-729a8821-7b0c-440a-bd9e-7e6cac8a9266.png)
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
