@@ -9,11 +9,11 @@
 
  LIMEKA DABRE ()
 
- SIMRAN MEMON ()
+ SIMRAN MEMON (015950610)
 
  ARCHANA KAMATH ()
 
- MOUNICA KAMIREDDY ()
+ MOUNICA KAMIREDDY (015949414)
                      
               
 **SCRUM MEETING SCHEDULE:**
@@ -46,7 +46,7 @@ Backend - Spring Boot
 Database – MySQL - AWS RDS
 UI Icons – MaterialUI, ReactBootstrap and CSS
 Postman - REST API client to test the developed APIs
-Deployment - Amazon Web Services (AWS) - EC@ , S3
+Deployment - Amazon Web Services (AWS) - EC2 , S3
 
 
 **Design Decisions:**
@@ -142,16 +142,62 @@ jhjsbfjsbfs
 
 **Steps to start the application:**
 
-Follow the below steps to get the development environment running:
+**Follow the below steps to get the development environment running:**
+
 
 Clone the repository from GitHub:
 
 git clone https://github.com/gopinathsjsu/team-project-fearless
 
 
+**Backend:**
+
+cd hotel-booking-service
+
+mvn clean install
+
+**Frontend:**
+
+cd hotel_app_frontend
+
+npm install
+
+npm start
+
+
 
 
 **ARCHITECTURE DIAGRAM:**
+
+
+https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Architecture_Diagram.png
+
+
+
+**COMPONENT DIAGRAM:**
+
+
+https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Component_Diagram.png
+
+
+**HOTEL SERVICE CLASS DIAGRAM:**
+
+
+https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/HotelService_class_diagram.png
+
+
+
+**DESIGN PATTERN CLASS DIAGRAM:**
+
+
+
+https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Design_Patterns.png
+
+
+
+**DEPLOYMENT DIAGRAM:**
+
+
 
 
 **Source Code:** https://github.com/gopinathsjsu/team-project-fearless
@@ -164,17 +210,7 @@ git clone https://github.com/gopinathsjsu/team-project-fearless
 
 **Postman Collection:** https://drive.google.com/file/d/1tVkhelec57uJbDsGKztUwHY5d40K4Eoh/view
 
-**UI Wireframes:**  (link here)
+**UI Wireframes:**  https://github.com/gopinathsjsu/team-project-fearless/tree/main/Documents/UI%20Wireframes
 
 
-
-
-
-
-
-
-
-[Sprint Task Sheet](https://docs.google.com/spreadsheets/d/1i8eWHIbbdOpVVJ7bxTmMopMeG-g3bVmW/edit#gid=882345882)
-
-[Project Board](https://github.com/orgs/gopinathsjsu/projects/11?fullscreen=true)
 
