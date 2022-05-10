@@ -97,7 +97,8 @@ public class RatesService {
 				
 			}
 		}
-		return new Rating(amenity.calculateCost(), amenity.getDescription());
+		Double totalCost = amenity.calculateCost();
+		return new Rating(totalCost, amenity.getDescription()+"\n" +"Total Amenity charges :"+ totalCost);
 	}
 
 	public Rating calculateRoomCharges(String roomCombination, Cost cost) {
@@ -110,10 +111,16 @@ public class RatesService {
 			String code = roomCode.substring(0, 2);
 			
 			int numberOfRooms =0;
+			String num = roomCode.substring(2);
 			
-			if(code.length()>2) {
-				numberOfRooms = Integer.parseInt(roomCode.substring(2));				
-			}
+			if(num.length()!=0) {
+				numberOfRooms = Integer.parseInt(num);				
+			}				
+			
+			System.out.println("Code "+code);
+			System.out.println("numberOfRoom "+numberOfRooms);
+			System.out.println("roomCode.substring(2) "+roomCode.substring(2));
+			System.out.println("code.length() "+code.length());
 			
 			switch(code){
 			

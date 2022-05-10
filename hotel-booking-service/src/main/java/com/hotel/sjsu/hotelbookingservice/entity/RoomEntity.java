@@ -32,18 +32,7 @@ public class RoomEntity {
 	private Double roomCostSpl;
 	
 
-	//public RoomEntity() {
-	//	super();
-	//}
-//
-//	public RoomEntity(int roomId, String roomCode, String roomType, Double roomCost, Double roomCostSpl) {
-//		super();
-//		this.roomId = roomId;
-//		this.roomCode = roomCode;
-//		this.roomType = roomType;
-//		this.roomCost = roomCost;
-//		this.roomCostSpl = roomCostSpl;
-//	}
+
 
 	public int getRoomId() {
 		return roomId;

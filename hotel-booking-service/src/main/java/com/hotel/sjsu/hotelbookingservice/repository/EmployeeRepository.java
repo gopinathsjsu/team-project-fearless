@@ -14,10 +14,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<HotelEntity, Long> {
 
-//    HotelEntity createHotel(HotelEntity hotelEntity);
 
-//    @Query("SELECT h.hotelId from hotel h where h.hotelZipCode=?1" )
-//    public List<Integer> getNewHotelIdByZipcode(String hotelZipcode);
 
     @Query("SELECT h.hotelId from hotel h where h.hotelZipCode=?1" )
     public Integer getNewHotelIdByZipcode(String hotelZipcode);

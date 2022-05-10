@@ -36,18 +36,10 @@ public class EmployeeEntity {
     @Column(name="emp_password")
     private  String empPassword;
 
-////    @Column(name="login_status")
-//    private boolean loggedIn;
 
     @Column(name="emp_contact_number")
     private String empContactNumber;
 
-//    public boolean isLoggedIn() {
-//        return loggedIn;
-//    }
-//    public void setLoggedIn(boolean loggedIn) {
-//        this.loggedIn = loggedIn;
-//    }
 
     public EmployeeEntity( Integer employeeId, String empFirstName, String empLastName,  String empEmail,  String empPassword, String empContactNumber) {
 
@@ -125,13 +117,7 @@ public class EmployeeEntity {
 		this.empContactNumber = empContactNumber;
 	}
 
-//
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(employeeId, empEmail, empPassword,
-//                loggedIn);
-//    }
+
 
 
 }

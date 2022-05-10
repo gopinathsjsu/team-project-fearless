@@ -33,7 +33,6 @@ public class HotelEntity {
     private String hotel_address;
 
     @Column(name = "hotel_zip_code")
-//    private Integer hotelZipCode;
     private String hotelZipCode;
 
     @Column(name = "hotel_contact")
@@ -42,64 +41,95 @@ public class HotelEntity {
     @Column(name = "hotel_manager_name")
     private String hotelManagerName;
 
+	@Column(name = "hotel_email")
+	private String hotelEmail;
+
 
 	public Long getHotelId() {
+
 		return hotelId;
 	}
 
 	public void setHotelId(Long hotelId) {
+
 		this.hotelId = hotelId;
 	}
 
 	public String getHotelname() {
+
 		return hotelname;
 	}
 
 	public void setHotelname(String hotelname) {
+
 		this.hotelname = hotelname;
 	}
 
 	public String getHotelLocation() {
+
 		return hotelLocation;
 	}
 
 	public void setHotelLocation(String hotelLocation) {
+
 		this.hotelLocation = hotelLocation;
 	}
 
 	public String getHotel_address() {
+
 		return hotel_address;
 	}
 
 	public void setHotel_address(String hotel_address) {
+
 		this.hotel_address = hotel_address;
 	}
 
 	public String getHotelZipCode() {
+
 		return hotelZipCode;
 	}
 
 	public void setHotelZipCode(String hotelZipCode) {
+
 		this.hotelZipCode = hotelZipCode;
 	}
 
 	public String getHotelContact() {
+
 		return hotelContact;
 	}
 
 	public void setHotelContact(String hotelContact) {
+
 		this.hotelContact = hotelContact;
 	}
 
 	public String getHotelManagerName() {
+
 		return hotelManagerName;
 	}
 
 	public void setHotelManagerName(String hotelManagerName) {
+
 		this.hotelManagerName = hotelManagerName;
 	}
 
-    public HotelEntity(Hotel hotel){
+
+	public String getHotelEmail() {
+
+		return hotelEmail;
+
+	}
+
+	public void setHotelEmail(String hotelEmail) {
+
+		this.hotelEmail = hotelEmail;
+
+	}
+
+	public HotelEntity(Hotel hotel){
+
         this.hotelId = hotel.getHotelId();
         this.hotelname = hotel.getHotelname();
         this.hotelLocation = hotel.getHotelLocation();
@@ -107,26 +137,26 @@ public class HotelEntity {
         this.hotelZipCode = hotel.getHotelZipCode();
         this.hotelContact = hotel.getHotelContact();
         this.hotelManagerName = hotel.getHotelManagerName();
+		this.hotelEmail = hotel.getHotelEmail();
 
     }
-
-//    @Column(name = "hotelEmail")
-//    private String hotelEmail;
 
 
     public HotelEntity() {
+
         super();
 
     }
 
-    public HotelEntity(String hotelname, String hotelLocation, String hotel_address, String hotelZipCode, String hotelContact, String hotelManagerName) {
-        super();
 
-        this.hotelname = hotelname;
-        this.hotelLocation = hotelLocation;
-        this.hotel_address = hotel_address;
-        this.hotelZipCode = hotelZipCode;
-        this.hotelContact = hotelContact;
-        this.hotelManagerName = hotelManagerName;
-    }
+	public HotelEntity(String hotelname, String hotelLocation, String hotel_address, String hotelZipCode, String hotelContact, String hotelManagerName, String hotelEmail) {
+
+		this.hotelname = hotelname;
+		this.hotelLocation = hotelLocation;
+		this.hotel_address = hotel_address;
+		this.hotelZipCode = hotelZipCode;
+		this.hotelContact = hotelContact;
+		this.hotelManagerName = hotelManagerName;
+		this.hotelEmail = hotelEmail;
+	}
 }
