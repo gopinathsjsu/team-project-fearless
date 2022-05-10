@@ -1,15 +1,16 @@
 **CMPE202-48 : SOFTWARE SYSTEMS ENGINEERING GROUP**
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **GROUP PROJECT:**   **HOTEL MANAGEMENT APPLICATION**                                                                                                                       
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **TEAM NAME:** **FEARLESS**
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **TEAM MEMBERS:**    
 
@@ -21,14 +22,15 @@
  ARCHANA KAMATH (015276378)
 
  MOUNICA KAMIREDDY (015949414)
-                     
+ 
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------
               
 **SCRUM MEETING SCHEDULE:**
 
 Every Monday
 
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 **XP Core Values Implemented:**
 
 **Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Story Board to track progress of the sprints.
@@ -46,6 +48,8 @@ Every Monday
 **Respect:** Each team member respected each other’s decisions and timelines.
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 **Tools and Languages:**
 
 Frontend - ReactJS
@@ -55,6 +59,7 @@ UI Icons – MaterialUI, ReactBootstrap and CSS
 Postman - REST API client to test the developed APIs
 Deployment - Amazon Web Services (AWS) - EC2 , S3
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Design Decisions:**
 
@@ -64,6 +69,7 @@ Deployment - Amazon Web Services (AWS) - EC2 , S3
 ReactJS as Frontend and Spring Boot as Backend
 AWS as the cloud provider for deployment
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Business- level:**
 
@@ -94,7 +100,7 @@ View existing room costs
 Update room costs
 
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Database Design (Tables):**
 
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_database_script_v3.sql.sql
@@ -106,7 +112,7 @@ amenity
 booking
 employee
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Summary of contributions (for each team member):**
 
@@ -161,6 +167,7 @@ UI wireframes
 Component Diagram
 Frontend deployment
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Steps to start the application:**
 
@@ -187,6 +194,7 @@ npm install
 npm start
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **ARCHITECTURE DIAGRAM:**
@@ -194,45 +202,53 @@ npm start
 
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Architecture_Diagram.png
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **COMPONENT DIAGRAM:**
 
 
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Component_Diagram.png
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **HOTEL SERVICE CLASS DIAGRAM:**
 
-***
+
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/HotelService_class_diagram.png
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 **DESIGN PATTERN CLASS DIAGRAM:**
 
 
-
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Design_Patterns.png
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **DEPLOYMENT DIAGRAM:**
 
 
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Source Code:** https://github.com/gopinathsjsu/team-project-fearless
 
+
 **Project board:** https://github.com/orgs/gopinathsjsu/projects/11
+
 
 **Sprint Task Sheet:** https://docs.google.com/spreadsheets/d/1i8eWHIbbdOpVVJ7bxTmMopMeG-g3bVmW/edit#gid=882345882
 
+
 **Application:** https://d331f1di2dfhi6.cloudfront.net/
+
 
 **Postman Collection:** https://drive.google.com/file/d/1tVkhelec57uJbDsGKztUwHY5d40K4Eoh/view
 
+
 **UI Wireframes:**  https://github.com/gopinathsjsu/team-project-fearless/tree/main/Documents/UI%20Wireframes
+
 
 
 
