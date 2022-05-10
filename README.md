@@ -172,8 +172,6 @@ UI wireframes
 
 Search Hotel on the basis of location, check-in date and check-out date for 7 days
 
-View searched hotels and select hotel
-
 Check room availability of selected hotel
 
 Cancel bookings of customer
