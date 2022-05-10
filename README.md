@@ -14,11 +14,11 @@
 **TEAM MEMBERS:**    
 
 
- LIMEKA DABRE ()
+ LIMEKA DABRE (015905812)
 
  SIMRAN MEMON (015950610)
 
- ARCHANA KAMATH ()
+ ARCHANA KAMATH (015276378)
 
  MOUNICA KAMIREDDY (015949414)
                      
@@ -31,7 +31,7 @@ Every Monday
 
 **XP Core Values Implemented:**
 
-**Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Stroy Board to track progress of the sprints.
+**Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Story Board to track progress of the sprints.
 
 
 **Simplicity:** We implemented the essential and required tasks in the project.
@@ -204,7 +204,7 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Compon
 
 **HOTEL SERVICE CLASS DIAGRAM:**
 
-
+***
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/HotelService_class_diagram.png
 
 
