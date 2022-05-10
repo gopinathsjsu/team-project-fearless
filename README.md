@@ -120,6 +120,7 @@ Employee - registration and login page
 Employee - Add hotel page
 Deployment Diagram
 Frontend deployment
+UI wireframes
 
 
 
