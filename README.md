@@ -53,11 +53,17 @@ Every Monday
 **Tools and Languages:**
 
 Frontend - ReactJS
+
 Backend - Spring Boot
+
 Database – MySQL - AWS RDS
+
 UI Icons – MaterialUI, ReactBootstrap and CSS
+
 Postman - REST API client to test the developed APIs
+
 Deployment - Amazon Web Services (AWS) - EC2 , S3
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,7 +73,9 @@ Deployment - Amazon Web Services (AWS) - EC2 , S3
 **Architecture-level:**
 
 ReactJS as Frontend and Spring Boot as Backend
+
 AWS as the cloud provider for deployment
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -77,15 +85,25 @@ AWS as the cloud provider for deployment
 **Customer Features:**
 
 Register
+
 Login
+
 Search Hotel
+
 View searched Hotels
+
 Select and book a hotel
+
 Make the payment
+
 Update Bookings
+
 Cancel Bookings
+
 Refund amount paid and loyalty points used
+
 View booked hotel details
+
 View loyalty points and profile details
 
 
@@ -93,10 +111,15 @@ View loyalty points and profile details
 **Employee Features:**
 
 Register
+
 Login
+
 View Employee details
+
 Add new hotel details
+
 View existing room costs
+
 Update room costs
 
 
@@ -104,12 +127,19 @@ Update room costs
 **Database Design (Tables):**
 
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_database_script_v3.sql.sql
+
 customer
+
 hotel
+
 hotel_rooms_map
+
 room
+
 amenity
+
 booking
+
 employee
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -117,54 +147,90 @@ employee
 **Summary of contributions (for each team member):**
 
 
-Limeka Dabre:
+**Limeka Dabre:**
 
 Customer - registration and login page
+
 Booking a hotel room
+
 Checkout and payment confirmation page
+
 Employee - registration and login page
+
 Employee - Add hotel page
+
 Deployment Diagram
+
 Frontend deployment
+
 UI wireframes
 
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Simran Memon:
+**Simran Memon:**
 
 Search Hotel on the basis of location, check-in date and check-out date for 7 days
+
 View searched hotels and select hotel
+
 Check room availability of selected hotel
+
 Cancel bookings of customer
+
 Refund amount paid and manage loyalty points
+
 Employee - registration and login
+
 Employee - Add new hotel feature
+
 Employee - View room details
+
 Employee - Update room cost
+
 Deployment of backend
 
-Archana Kamath:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Archana Kamath:**
 
 Customer - registration and login
+
 Book a hotel
+
 Using design patterns(Decorator and Strategy) -  Calculate the total room cost of booked hotel
+
 View booking details of customer
+
 Update booking details of customer
+
 View customer profile details
+
 Deployment of backend
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Mounica Kamireddy:
+
+**Mounica Kamireddy:**
 
 Search and select specific hotel page
+
 Customer dashboard
+
 Manage bookings page
+
 Update and cancel existing booking page
+
 Employee - View and update room cost
+
 Architecture Diagram
+
 UI wireframes
+
 Component Diagram
+
 Frontend deployment
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
