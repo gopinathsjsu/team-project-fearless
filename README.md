@@ -197,6 +197,12 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_da
 
 - Deployment of backend
 
+- Class diagram for Hotel Service
+
+- Test cases, validations and exception handling written for the api's
+
+- Updated Readme
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
