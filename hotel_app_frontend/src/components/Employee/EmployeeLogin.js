@@ -17,7 +17,7 @@ export default function EmployeeLogin(){
        
         const emp={empEmail,empPassword};
         console.log(emp);
-        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/customer/login",emp).then(res=>{
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/employee/empLogin",emp).then(res=>{
             if (res.status==200){
                 console.log("res data ",res.data.object);
                 navigate('/employee/homepage');
