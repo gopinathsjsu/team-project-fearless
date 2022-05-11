@@ -29,23 +29,22 @@
 
 Every Monday
 
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 **XP Core Values Implemented:**
 
-- **Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Story Board to track progress of the sprints.
+- **Communication:** Maintained healthy communication throughout the project implementation and participated in weekly scrum calls to discuss progress.
 
 
-- **Simplicity:** We implemented the essential and required tasks in the project.
+- **Simplicity:** Started with easy to understand functionality and scaled it up to meet project requirements
 
 
-- **Feedback:** Each team member provided constructive feedback on the work performed and ensured that the feedback was implemented in the next sprint.
+- **Feedback:** Constructive feedback was provided by the team members on features that needed improvement. The feedback was very well received and were effectively implemented by the team members. Frequent reviews helped us solve bugs and make fixes easily.
 
 
 - **Courage:** We had the courage to incorporate any additional details/tasks that were required for the project progress.
 
 
-- **Respect:** Each team member respected each other’s decisions and timelines.
+- **Respect:** Respected everyone’s input and implemented the solution that all agreed upon
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -58,11 +57,11 @@ Every Monday
 
 - Database – MySQL - AWS RDS
 
-- UI Icons – MaterialUI, ReactBootstrap and CSS
+- UI Icons – MaterialUI, React Bootstrap and CSS
 
 - Postman - REST API client to test the developed APIs
 
-- Deployment - Amazon Web Services (AWS) - EC2 , S3
+- Deployment - Amazon Web Services (AWS) - EC2 (With Load balancing and Auto scaling) , S3 and CloudFront
 
 - Testing - JUnit MVC
 
@@ -71,11 +70,17 @@ Every Monday
 
 **Design Decisions:**
 
+**Strategy**  
+             - To identify rating plan (Standard for weekdays and Special for weekends/holidays) for each booking dates selected</br>
+**Decorator**</br>
+             - To calculate room cost and get description for room types and number of rooms selected </br>
+             - To calculate amenity cost and get description for amenities selected 
+
 
 **Architecture-level:**
 
-- ReactJS as Frontend and Spring Boot as Backend
-
+- ReactJS as Frontend because of ease and flexibility
+- Spring Boot as Backend because of IoC and dependency injection
 - AWS as the cloud provider for deployment
 
 
@@ -192,11 +197,6 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_da
 
 - Deployment of backend
 
-- Class diagram for Hotel Service
-
-- Updated Readme
-
-- Test cases, validations and exception handling written for the api  
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -218,6 +218,9 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_da
 
 - Deployment of backend
 
+- Written test cases to validate service class 
+
+- Class diagram for design patterns used
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -256,11 +259,9 @@ Clone the repository from GitHub:
 
 **Backend:**
 
-cd hotel-booking-service
+Import backend maven project into your IDE
 
-- mvn clean install
-
-- mvn exec:java -Dexec.mainClass=com.hotel.sjsu.hotelbookingservice.HotelBookingServiceApplication
+Run HotelBookingServiceApplication class as 'Java Application'. Default port is 8080
 
 **Frontend:**
 
@@ -344,7 +345,4 @@ cd hotel-booking-service
 
 
 **UI Wireframes:**  https://github.com/gopinathsjsu/team-project-fearless/tree/main/Documents/UI%20Wireframes
-
-
-
 
