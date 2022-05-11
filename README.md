@@ -188,6 +188,8 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_da
 
 - Employee - Update room cost
 
+- Employee - view employee details
+
 - Deployment of backend
 
 
