@@ -18,7 +18,7 @@ function CancelBooking(props){
           }
            }).then(res=>{
             if (res.status==200){
-                swal(res.data.result);
+                swal(res.data);
                 navigate('../upcomingBookings')
                 console.log("cancel api response",res.data);
                 

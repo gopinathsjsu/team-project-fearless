@@ -23,10 +23,12 @@ var room;
 
 
 export default function BookRoom(props) {
+    
   
     const {id}=useParams();
     const amenities=(JSON.parse(localStorage.getItem("selectedHotel"))).amenities;
     const hotel=JSON.parse(localStorage.getItem("selectedHotel")); 
+
     console.log("hotel from local storage ",hotel); //get from local storage 
     const totalSR=hotel.availability.SR;
     const totalDR=hotel.availability.DR;
@@ -40,7 +42,8 @@ export default function BookRoom(props) {
     const [priceOfRoom,setpriceOfRoom]=useState("");
     
 //   const {id}=useParams();
-
+ const error=hotel.costOfRooms.SR;
+ console.log("Error resolving", error);
 //   let hotelId=parseInt(id,10);
   console.log("hotel id in int",hotelId);
   
@@ -222,7 +225,7 @@ const onCheckPrice=()=>{
                                 <Image src={SRimg} width={200} height={150}></Image>
                             </Col> 
                             <Col>
-                            <Form.Text ><b>{hotel.costsOfRooms.SR}$ per Room</b></Form.Text>
+                            <Form.Text ><b>{hotel.costOfRooms.SR}$ per Room</b></Form.Text>
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}
@@ -240,7 +243,7 @@ const onCheckPrice=()=>{
                                 <Image src={DRimg} width={200} height={150}></Image>
                                 </Col> 
                             <Col>
-                            <Form.Text><b>{hotel.costsOfRooms.DR}$ per Room</b></Form.Text>
+                            <Form.Text><b>{hotel.costOfRooms.DR}$ per Room</b></Form.Text>
                             </Col>
                             <Col>
                             <Form.Label htmlFor="SR" > Enter number of rooms </Form.Label> {" "}

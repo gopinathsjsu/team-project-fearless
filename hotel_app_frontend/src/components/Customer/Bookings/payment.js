@@ -79,19 +79,19 @@ export  default function Payment(){
                        {custName}'s  Bookings     
                     </ListGroup.Item>
                 <ListGroup.Item>
-                        Hotel : {hotel.hotel.hotelname} , {hotel.hotel.hotelLocation}
+                        <b style={{textAlign:'center', color:'green', fontStyle:"italic"}}>{hotel.hotel.hotelname} Hotel , {hotel.hotel.hotelLocation}</b> 
                     </ListGroup.Item>
                         <ListGroup.Item>
-                        Total Single Rooms Booked : {data.SR}
+                        Total Single Rooms Booked = {data.SR}
                     </ListGroup.Item>
                     
 
                     
                     <ListGroup.Item>
-                        Total Deluxe Rooms Booked : {data.DR}
+                        Total Deluxe Rooms Booked = {data.DR}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        Total Guests : {data.noOfGuest}
+                        Total Guests = {data.noOfGuest}
                     </ListGroup.Item>
                     <ListGroup.Item>
                         From : {fromDate}
@@ -100,7 +100,7 @@ export  default function Payment(){
                         To : {toDate}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        Loyalty Points Used : {roomdata.loyaltyPointsUsed}
+                        Loyalty Points Used = {roomdata.loyaltyPointsUsed}
                     </ListGroup.Item>
 
                     <ListGroup.Item>

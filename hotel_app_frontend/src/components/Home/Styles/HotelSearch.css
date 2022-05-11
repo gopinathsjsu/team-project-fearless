@@ -1,5 +1,5 @@
 body {
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-image:url('splash1.jpg');
     background-size: cover;
     width: 100%;
@@ -26,21 +26,21 @@ body {
     .search-from {
         position:relative;
         top: 145px;
-        left: 44%;
+        left: 45%;
         width: 13em;
     }
     
     .search-to {
         position:relative;
         top: 90px;
-        left:60%;
+        left:61%;
         width: 13em;
     }
     
     .searchHotel .button-search{
         position:relative;
         top: 35px;
-        left: 76%;
+        left: 77%;
         background-color: #044831;
         height: 3.5em;
         width: 10em;    

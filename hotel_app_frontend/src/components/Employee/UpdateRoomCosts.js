@@ -8,6 +8,7 @@ import DRimg from '../Customer/Bookings/deluxeRoom.jpg';
 import './Employee.css'
 
 class UpdateRoomCosts extends Component{
+    
     state={
         "roomDetails" : "",
         "singleRoomCost":0,
@@ -80,6 +81,7 @@ class UpdateRoomCosts extends Component{
             if (res.status == 200 && res.data) {
                 alert(res.data.result);
                 console.log(res.data);
+                
             }
             else {
                 console.log("Bad response from server");

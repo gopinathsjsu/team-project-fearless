@@ -38,8 +38,9 @@ export default function AddHotels(){
     
         .then(res=>{
             if (res.status==200){
-                console.log("res data of add hotel api ",res.data)
-                nav('/');
+                console.log("res data of add hotel api ",res.data);
+                alert(res.data.result);
+                nav('/employee/homepage');
 
        
                 console.log("hotel adding successful");

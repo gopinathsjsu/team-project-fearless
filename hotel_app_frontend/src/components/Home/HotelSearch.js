@@ -94,7 +94,7 @@ function HotelSearch(props) {
                   <MenuItem value={"San Francisco"}>San Francisco</MenuItem>
                   <MenuItem value={"Los Angeles"}>Los Angeles</MenuItem>
                   <MenuItem value={"San Jose"}>San Jose</MenuItem>
-                  <MenuItem value={"Santa Cruz"}>Sanat Cruz</MenuItem>
+                  <MenuItem value={"Santa Cruz"}>Santa Cruz</MenuItem>
                 </Select>
               </FormControl>
             </div>
