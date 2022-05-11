@@ -33,38 +33,38 @@ Every Monday
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 **XP Core Values Implemented:**
 
-**Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Story Board to track progress of the sprints.
+- **Communication:** Our team communicated with each other regularly and Scrum meetings were held every Monday. We discussed about the dependency, issues faced and provide constructive feedback to each other which helped to progress with the project. We used to GitHub Story Board to track progress of the sprints.
 
 
-**Simplicity:** We implemented the essential and required tasks in the project.
+- **Simplicity:** We implemented the essential and required tasks in the project.
 
 
-**Feedback:** Each team member provided constructive feedback on the work performed and ensured that the feedback was implemented in the next sprint.
+- **Feedback:** Each team member provided constructive feedback on the work performed and ensured that the feedback was implemented in the next sprint.
 
 
-**Courage:** We had the courage to incorporate any additional details/tasks that were required for the project progress.
+- **Courage:** We had the courage to incorporate any additional details/tasks that were required for the project progress.
 
 
-**Respect:** Each team member respected each other’s decisions and timelines.
+- **Respect:** Each team member respected each other’s decisions and timelines.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Tools and Languages:**
 
-Frontend - ReactJS
+- Frontend - ReactJS
 
-Backend - Spring Boot
+- Backend - Spring Boot
 
-Database – MySQL - AWS RDS
+- Database – MySQL - AWS RDS
 
-UI Icons – MaterialUI, ReactBootstrap and CSS
+- UI Icons – MaterialUI, ReactBootstrap and CSS
 
-Postman - REST API client to test the developed APIs
+- Postman - REST API client to test the developed APIs
 
-Deployment - Amazon Web Services (AWS) - EC2 , S3
+- Deployment - Amazon Web Services (AWS) - EC2 , S3
 
-Testing - JUnit MVC
+- Testing - JUnit MVC
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -86,43 +86,43 @@ AWS as the cloud provider for deployment
 
 **Customer Features:**
 
-Register
+- Register
 
-Login
+- Login
 
-Search Hotel
+- Search Hotel
 
-View searched Hotels
+- View searched Hotels
 
-Select and book a hotel
+- Select and book a hotel
 
-Make the payment
+- Make the payment
 
-Update Bookings
+- Update Bookings
 
-Cancel Bookings
+- Cancel Bookings
 
-Refund amount paid and loyalty points used
+- Refund amount paid and loyalty points used
 
-View booked hotel details
+- View booked hotel details
 
-View loyalty points and profile details
+- View loyalty points and profile details
 
 
 
 **Employee Features:**
 
-Register
+- Register
 
-Login
+- Login
 
-View Employee details
+- View Employee details
 
-Add new hotel details
+- Add new hotel details
 
-View existing room costs
+- View existing room costs
 
-Update room costs
+- Update room costs
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,19 +130,19 @@ Update room costs
 
 https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_database_script_v3.sql.sql
 
-customer
+- customer
 
-hotel
+- hotel
 
-hotel_rooms_map
+- hotel_rooms_map
 
-room
+- room
 
-amenity
+- amenity
 
-booking
+- booking
 
-employee
+- employee
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -151,65 +151,65 @@ employee
 
 **Limeka Dabre:**
 
-Customer - registration and login page
+- Customer - registration and login page
 
-Booking a hotel room
+- Booking a hotel room
 
-Checkout and payment confirmation page
+- Checkout and payment confirmation page
 
-Employee - registration and login page
+- Employee - registration and login page
 
-Employee - Add hotel page
+- Employee - Add hotel page
 
-Deployment Diagram
+- Deployment Diagram
 
-Frontend deployment
+- Frontend deployment
 
-UI wireframes
+- UI wireframes
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Simran Memon:**
 
-Search Hotel on the basis of location, check-in date and check-out date for 7 days
+- Search Hotel on the basis of location, check-in date and check-out date for 7 days
 
-Check room availability of selected hotel
+- Check room availability of selected hotel
 
-Cancel bookings of customer
+- Cancel bookings of customer
 
-Refund amount paid and manage loyalty points
+- Refund amount paid and manage loyalty points
 
-Employee - registration and login
+- Employee - registration and login
 
-Employee - Add new hotel feature
+- Employee - Add new hotel feature
 
-Employee - View room details
+- Employee - View room details
 
-Employee - Update room cost
+- Employee - Update room cost
 
-Deployment of backend
+- Deployment of backend
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Archana Kamath:**
 
-Customer - registration and login
+- Customer - registration and login
 
-Book a hotel
+- Book a hotel
 
-Using design patterns(Decorator and Strategy) -  Calculate the total room cost of booked hotel
+- Using design patterns(Decorator and Strategy) -  Calculate the total room cost of booked hotel
 
-View booking details of customer
+- View booking details of customer
 
-Update booking details of customer
+- Update booking details of customer
 
-View customer profile details
+- View customer profile details
 
-Manage loyalty points for customer after booking
+- Manage loyalty points for customer after booking
 
-Deployment of backend
+- Deployment of backend
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -217,23 +217,23 @@ Deployment of backend
 
 **Mounica Kamireddy:**
 
-Search and select specific hotel page
+- Search and select specific hotel page
 
-Customer dashboard
+- Customer dashboard
 
-Manage bookings page
+- Manage bookings page
 
-Update and cancel existing booking page
+- Update and cancel existing booking page
 
-Employee - View and update room cost
+- Employee - View and update room cost
 
-Architecture Diagram
+- Architecture Diagram
 
-UI wireframes
+- UI wireframes
 
-Component Diagram
+- Component Diagram
 
-Frontend deployment
+- Frontend deployment
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -251,17 +251,17 @@ git clone https://github.com/gopinathsjsu/team-project-fearless
 
 cd hotel-booking-service
 
-mvn clean install
+- mvn clean install
 
-mvn exec:java -Dexec.mainClass=com.hotel.sjsu.hotelbookingservice.HotelBookingServiceApplication
+- mvn exec:java -Dexec.mainClass=com.hotel.sjsu.hotelbookingservice.HotelBookingServiceApplication
 
 **Frontend:**
 
-cd hotel_app_frontend
+- cd hotel_app_frontend
 
-npm install
+- npm install
 
-npm start
+- npm start
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -270,7 +270,7 @@ npm start
 **ARCHITECTURE DIAGRAM:**
 
 
-![Architecture_Diagram](https://user-images.githubusercontent.com/91573255/167739879-98c71de7-1d5e-4ce3-806e-4c4b6648110b.png)
+![Architecture_Diagram](https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Architecture_Diagram.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
