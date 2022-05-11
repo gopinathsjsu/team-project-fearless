@@ -74,9 +74,9 @@ Every Monday
 
 **Architecture-level:**
 
-ReactJS as Frontend and Spring Boot as Backend
+- ReactJS as Frontend and Spring Boot as Backend
 
-AWS as the cloud provider for deployment
+- AWS as the cloud provider for deployment
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -244,7 +244,7 @@ https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/202_da
 
 Clone the repository from GitHub:
 
-git clone https://github.com/gopinathsjsu/team-project-fearless
+- git clone https://github.com/gopinathsjsu/team-project-fearless
 
 
 **Backend:**
