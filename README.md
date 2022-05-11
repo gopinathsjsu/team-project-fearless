@@ -326,6 +326,9 @@ cd hotel-booking-service
 **Project board:** https://github.com/orgs/gopinathsjsu/projects/11
 
 
+**Project Journals:** https://github.com/gopinathsjsu/team-project-fearless/tree/main/Documents
+
+
 **Sprint Task Sheet:** https://docs.google.com/spreadsheets/d/1i8eWHIbbdOpVVJ7bxTmMopMeG-g3bVmW/edit#gid=882345882
 
 
