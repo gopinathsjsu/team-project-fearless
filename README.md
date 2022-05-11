@@ -271,7 +271,7 @@ npm start
 **COMPONENT DIAGRAM:**
 
 
-![Component_Diagram](https://user-images.githubusercontent.com/91573255/167739944-bc8985df-7cf2-4ef4-8201-3651a877c56a.png)
+![Component_Diagram](https://github.com/gopinathsjsu/team-project-fearless/blob/main/Documents/Component_Diagram.png)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
