@@ -21,46 +21,14 @@ var ln = "LN";
 var dn = "DN";
 var room;
 
+
 export default function BookRoom(props) {
-    const {id}=useParams();
-   
     
-// useEffect=()=>{
-//     // const HotelList=JSON.parse(localStorage.getItem("hotelList"))
-//     // for (let i=0;i<HotelList.length;i++){
-//     //     if (HotelList[i].hotel.hotelId==id){
-//     //         localStorage.setItem("selectedHotel",JSON.stringify(HotelList[i]))
-//     //     }
-//     // }
-//     // console.log("selected hotel obj in bookroom data", JSON.parse(localStorage.getItem("selectedHotel")));
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // {
-    //     "customerId": 1,
-    //     "hotelId": 1,
-    //     "fromDate": "2022-04-27",
-    //     "toDate": "2022-05-02",
-    //     "room": "DR3-SR3",
-    //     "amenity": "CB-DP",
-    //     "noOfGuest": 2,
-    //     "cost": 0.0,
-    //     "description": "",
-    //     "loyaltyPointsUsed":20
-    // }
+  
+    const {id}=useParams();
     const amenities=(JSON.parse(localStorage.getItem("selectedHotel"))).amenities;
     const hotel=JSON.parse(localStorage.getItem("selectedHotel")); 
+
     console.log("hotel from local storage ",hotel); //get from local storage 
     const totalSR=hotel.availability.SR;
     const totalDR=hotel.availability.DR;
@@ -72,54 +40,10 @@ export default function BookRoom(props) {
     const fromDate=localStorage.getItem("from");
     const toDate=localStorage.getItem("to");
     const [priceOfRoom,setpriceOfRoom]=useState("");
-    // const amenities=
-    // [
-    //     {
-    //         "amenityId": 1,
-    //         "amenityCode": "CB",
-    //         "amenityType": "Daily Continental Breakfast",
-    //         "amenityCost": 25
-    //     },
-    //     {
-    //         "amenityId": 2,
-    //         "amenityCode": "FR",
-    //         "amenityType": "Access to fitness room",
-    //         "amenityCost": 25
-    //     },
-    //     {
-    //         "amenityId": 3,
-    //         "amenityCode": "SJ",
-    //         "amenityType": "Access to Swimming Pool/Jacuzzi",
-    //         "amenityCost": 25
-    //     },
-    //     {
-    //         "amenityId": 4,
-    //         "amenityCode": "DP",
-    //         "amenityType": "Daily Parking",
-    //         "amenityCost": 10
-    //     },
-    //     {
-    //         "amenityId": 5,
-    //         "amenityCode": "BF",
-    //         "amenityType": "Breakfast",
-    //         "amenityCost": 10
-    //     },
-    //     {
-    //         "amenityId": 6,
-    //         "amenityCode": "LN",
-    //         "amenityType": "Lunch",
-    //         "amenityCost": 10
-    //     },
-    //     {
-    //         "amenityId": 7,
-    //         "amenityCode": "DN",
-    //         "amenityType": "Dinner",
-    //         "amenityCost": 10
-    //     }
-    // ]
-
+    
 //   const {id}=useParams();
-
+ const error=hotel.costOfRooms.SR;
+ console.log("Error resolving", error);
 //   let hotelId=parseInt(id,10);
   console.log("hotel id in int",hotelId);
   

@@ -29,7 +29,6 @@ export default function AddHotels(){
         // console.log(event.target.value);
         
     }
-
     const handleSubmit=(event)=>{
         event.preventDefault();
         console.log("Hotel data is ", hotelData);
@@ -93,6 +92,8 @@ return(
                  <label htmlFor="hotelZipcode" style={{marginLeft:10}}> Hotel ZipCode</label>
                  </Form.Floating>
 
+                 
+
                  <Form.Floating className="mb-3">
                  <Form.Control type="text"  name="hotelContact" required/>
                  <label htmlFor="hotelContact" style={{marginLeft:10}} > Contact Number</label>
@@ -128,6 +129,8 @@ return(
                   </Col>
               </Row>
 
+
+
               </form>
           </Card.Body>
 {/* 
@@ -137,6 +140,4 @@ return(
 
     
 )
-
-}
 

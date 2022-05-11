@@ -7,25 +7,25 @@ import { Card, Form, Row,Col, Button } from "react-bootstrap";
 import axios from "axios";
 
 export default function EmployeeRegister(){
-    const [regUserdata, setRegUserdata]=useState({custFirstName:"",custLastName:"",  custPassword:"",custEmail:"",custAddress:"",  loyaltyPoints:"", contactNumber:"", bookingCount:""});
+    const [regEmpdata, setRegEmpdata]=useState({});
    
     const location = useLocation();
     const nav=useNavigate();
 
     const handleChange=(event)=>{
         // console.log(event.target.value);
-        setRegUserdata({...regUserdata,[event.target.name]:event.target.value})
+        setRegEmpdata({...regEmpdata,[event.target.name]:event.target.value})
     }
     const handleSubmit=(event)=>{
         event.preventDefault();
-        console.log(regUserdata);
+        console.log(regEmpdata);
  
 
-        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/customer/register",regUserdata)
+        axios.post("http://ec2-18-236-174-30.us-west-2.compute.amazonaws.com:8080/employee/empRegister",regEmpdata)
     
         .then(res=>{
             if (res.status==200){
-                console.log(res.data)
+                console.log("res data of registartion api ",res.data)
                 nav('/employee/login');
 
        
@@ -38,7 +38,7 @@ export default function EmployeeRegister(){
         });
      
        
-        setRegUserdata({custFirstName:"",custLastName:"",  custPassword:"",custEmail:"",custAddress:"",  loyaltyPoints:"", contactNumber:"",bookingCount:""})
+        setRegEmpdata({empFirstName:"",empLastName:"",  empPassword:"",empEmail:"", empContactNumber:""})
         
 
        
@@ -53,31 +53,26 @@ return(
           <form onSubmit={handleSubmit} onChange={handleChange}>
               <Form.Group>
               <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="Limeka" id="first_name" name="custFirstName" required />
+                 <Form.Control type="text"  placeholder="Limeka" id="first_name" name="empFirstName" required />
                  <label htmlFor="first_name" style={{marginLeft:10}} > First Name</label>
                  </Form.Floating>
                  <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="Dabre" id="last_name" name="custLastName" required/>
+                 <Form.Control type="text"  placeholder="Dabre" id="last_name" name="empLastName" required/>
                  <label htmlFor="last_name" style={{marginLeft:10}} > Last Name</label>
-                 </Form.Floating>
-
-                 <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="22 W 3rd st" id="address" name="custAddress" />
-                 <label htmlFor="address" style={{marginLeft:10}} > Address (Optional)</label>
                  </Form.Floating>
                  
                  <Form.Floating className="mb-3">
-                 <Form.Control type="email"  placeholder="email" id="email" name="custEmail" required/>
+                 <Form.Control type="email"  placeholder="email" id="email" name="empEmail" required/>
                  <label htmlFor="Email" style={{marginLeft:10}} > Email</label>
                  </Form.Floating>
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="password" placeholder="Password" id="Password" name="custPassword" required />
+                 <Form.Control type="password" placeholder="Password" id="Password" name="empPassword" required />
                  <label htmlFor="Password" style={{marginLeft:10}}> Password</label>
                  </Form.Floating>
 
                  <Form.Floating className="mb-3">
-                 <Form.Control type="text"  placeholder="66944554687" id="contact" name="contactNumber" required/>
+                 <Form.Control type="text"  placeholder="66944554687" id="contact" name="empContactNumber" required/>
                  <label htmlFor="contact" style={{marginLeft:10}} > Contact Number</label>
                  </Form.Floating> 
                  
