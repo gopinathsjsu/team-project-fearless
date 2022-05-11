@@ -205,6 +205,8 @@ Update booking details of customer
 
 View customer profile details
 
+Manage loyalty points for customer after booking
+
 Deployment of backend
 
 
@@ -248,6 +250,8 @@ git clone https://github.com/gopinathsjsu/team-project-fearless
 cd hotel-booking-service
 
 mvn clean install
+
+mvn exec:java -Dexec.mainClass=com.hotel.sjsu.hotelbookingservice.HotelBookingServiceApplication
 
 **Frontend:**
 
