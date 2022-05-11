@@ -64,6 +64,8 @@ Postman - REST API client to test the developed APIs
 
 Deployment - Amazon Web Services (AWS) - EC2 , S3
 
+Testing - JUnit MVC
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
